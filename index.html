@@ -3,104 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rani's Petari - Official</title>
+<title>RanisPetari - Traditional & Trendy Clothing</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#fffaf5}
-header{background:#4a102c;color:#fff;text-align:center;padding:18px;font-size:26px;font-weight:bold}
-header span{font-size:13px;font-weight:normal;letter-spacing:1px}
-h2{text-align:center;color:#4a102c;margin:25px 0 10px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:15px;max-width:1100px;margin:auto}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);text-align:center;padding-bottom:14px}
-.card img{width:100%;height:420px;object-fit:cover}
-.info{padding:8px;font-size:14px}
-.price{color:#4a102c;font-weight:bold;font-size:20px;margin:6px 0}
-.buy{background:#4a102c;color:#fff;border:none;padding:11px 26px;border-radius:25px;cursor:pointer;font-size:15px;margin-top:5px}
-.buy:hover{background:#7a1a46}
-.terms{background:#1e2142;color:#fff;text-align:center;padding:28px 15px;margin-top:30px;line-height:1.8}
-.terms h3{color:#ffcc99;margin-bottom:10px}
-/* Order Popup */
-#orderBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);justify-content:center;align-items:center;z-index:9999}
-.box{background:#fff;padding:22px;border-radius:14px;width:92%;max-width:380px}
-.box input,.box textarea{width:100%;padding:10px;margin:7px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
-.box h3{margin:0 0 10px;color:#4a102c;text-align:center}
-.closeBtn{float:right;font-size:22px;cursor:pointer}
+body{margin:0;font-family:Arial,sans-serif;background:#fffaf5;color:#333}
+header{background:#8b0000;color:white;padding:20px;text-align:center}
+header h1{margin:0;font-size:36px;letter-spacing:2px}
+header p{margin:5px 0 0 0}
+nav{background:#333;color:white;text-align:center;padding:10px}
+nav a{color:white;margin:0 15px;text-decoration:none;font-weight:bold}
+.hero{background:url('https://images.unsplash.com/photo-1445205170230-053b83016050') center/cover;height:450px;display:flex;align-items:center;justify-content:center;color:white;text-align:center}
+.hero div{background:rgba(0,0,0,0.6);padding:30px;border-radius:10px}
+.hero h2{font-size:40px;margin:0}
+.btn{background:#8b0000;color:white;padding:12px 25px;border:none;border-radius:5px;font-size:16px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:15px}
+.section{padding:50px 20px;text-align:center;max-width:1100px;margin:auto}
+.products{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px}
+.card{border:1px solid #ddd;border-radius:10px;width:300px;overflow:hidden;background:white}
+.card img{width:100%;height:350px;object-fit:cover}
+.card h3{margin:15px 0 5px 0}
+footer{background:#222;color:#ccc;padding:30px;text-align:center;margin-top:40px}
 </style>
 </head>
 <body>
+<header>
+<h1>RanisPetari</h1>
+<p>Where Tradition Meets Fashion</p>
+</header>
+<nav>
+<a href="#">Home</a>
+<a href="#">Collections</a>
+<a href="#">About Us</a>
+<a href="#">Contact</a>
+</nav>
+<div class="hero">
+<div>
+<h2>New Festive Collection 2026</h2>
+<p>Handmade with Love - For Every Rani</p>
+<a class="btn" href="https://wa.me/91XXXXXXXXXX">Order on WhatsApp</a>
+</div>
+</div>
 
-<header>RANI'S PETARI<br><span>Elegance. Style. Confidence.</span></header>
-
-<h2>Our Best Sellers - Festive Collection</h2>
-
+<div class="section">
+<h2>Our Best Sellers</h2>
 <div class="products">
-  <!-- 1.jpeg -->
-  <div class="card">
-    <img src="1.jpeg">
-    <div class="info">Purple Velvet Sharara<br><span class="price">₹2399/-</span><br><small>MRP 2800/- 15% OFF</small></div>
-    <button class="buy" onclick="openForm('1.jpeg - Purple Velvet - Rs 2399')">BUY NOW</button>
-  </div>
-  <!-- 2.jpeg -->
-  <div class="card">
-    <img src="2.jpeg">
-    <div class="info">Yellow Angrakha with Pink Dupatta<br><span class="price">₹1899/-</span></div>
-    <button class="buy" onclick="openForm('2.jpeg - Yellow Set - Rs 1899')">BUY NOW</button>
-  </div>
-  <!-- 3.jpeg -->
-  <div class="card">
-    <img src="3.jpeg">
-    <div class="info">Ethnic Elephant Print Set<br><span class="price">₹1699/-</span></div>
-    <button class="buy" onclick="openForm('3.jpeg - Red Elephant Set - Rs 1699')">BUY NOW</button>
-  </div>
-  <!-- 4.jpeg -->
-  <div class="card">
-    <img src="4.jpeg">
-    <div class="info">Timeless Elegance Maroon Set<br><span class="price">₹1799/-</span></div>
-    <button class="buy" onclick="openForm('4.jpeg - Maroon Set - Rs 1799')">BUY NOW</button>
-  </div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1583391733956-3750e79ff55e">
+<h3>Bridal Lehenga</h3>
+<p>Starting at Rs. 4,999</p>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8">
+<h3>Designer Saree</h3>
+<p>Starting at Rs. 2,499</p>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f">
+<h3>Kurti Collection</h3>
+<p>Starting at Rs. 999</p>
+</div>
+</div>
 </div>
 
-<div class="terms">
-  <h3>Rani's Petari Terms and Conditions</h3>
-  <b>No Return - No Exchange</b><br>
-  Home Delivered Available - All India<br>
-  100% Payment Advance<br>
-  Delivery in 5-7 Working Days<br><br>
-  RanisPetari.com | Delhi's Trusted Clothing Brand<br>
-  © 2026 RanisPetari. All Rights Reserved.
-</div>
-
-<!-- ORDER FORM -->
-<div id="orderBox">
-  <div class="box">
-    <span class="closeBtn" onclick="closeForm()">&times;</span>
-    <h3>Place Order</h3>
-    <p id="prodName" style="text-align:center;font-weight:bold;color:#4a102c"></p>
-    <input type="text" id="cName" placeholder="Customer Name *">
-    <input type="tel" id="cContact" placeholder="Contact No *">
-    <textarea id="cAddress" placeholder="Delivery Address *"></textarea>
-    <input type="text" id="cPin" placeholder="Pin Code *">
-    <label style="font-size:13px"><input type="checkbox" id="cAdvance" style="width:auto"> I agree 100% Payment Advance</label>
-    <button class="buy" style="width:100%;margin-top:12px" onclick="sendOrder()">Confirm & Order on WhatsApp</button>
-  </div>
-</div>
-
-<script>
-let selected = "";
-function openForm(p){ selected=p; document.getElementById('prodName').innerText=p; document.getElementById('orderBox').style.display='flex'; }
-function closeForm(){ document.getElementById('orderBox').style.display='none'; }
-function sendOrder(){
-  let n=document.getElementById('cName').value;
-  let c=document.getElementById('cContact').value;
-  let a=document.getElementById('cAddress').value;
-  let pin=document.getElementById('cPin').value;
-  let adv=document.getElementById('cAdvance').checked;
-  if(!n||!c||!a||!pin){ alert("Saare details bharo malik"); return; }
-  if(!adv){ alert("100% Payment Advance pe tick karo"); return; }
-  let msg=*NEW ORDER - Rani's Petari*%0A%0A*Product:* ${selected}%0A*Name:* ${n}%0A*Contact:* ${c}%0A*Address:* ${a}%0A*Pin:* ${pin}%0A*Payment:* 100% Advance OK;
-  let waNumber="919999999999"; // <-- yahan apna WhatsApp number dal do 91 ke saath
-  window.open(https://wa.me/${waNumber}?text=${msg},'_blank');
-  closeForm();
-}
-</script>
+<footer>
+<h3>RanisPetari.com</h3>
+<p>Delhi's Trusted Clothing Brand</p>
+<p>Contact: +91-XXXXXXXXXX | Instagram: @RanisPetari</p>
+<p>© 2026 RanisPetari. All Rights Reserved.</p>
+</footer>
 </body>
 </html>
