@@ -3,104 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rani's Petari - Official</title>
+<title>RanisPetari - Where Tradition Meets Fashion</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#fffaf5}
-header{background:#4a102c;color:#fff;text-align:center;padding:18px;font-size:26px;font-weight:bold}
-header span{font-size:13px;font-weight:normal;letter-spacing:1px}
-h2{text-align:center;color:#4a102c;margin:25px 0 10px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:15px;max-width:1100px;margin:auto}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);text-align:center;padding-bottom:14px}
-.card img{width:100%;height:420px;object-fit:cover}
-.info{padding:8px;font-size:14px}
-.price{color:#4a102c;font-weight:bold;font-size:20px;margin:6px 0}
-.buy{background:#4a102c;color:#fff;border:none;padding:11px 26px;border-radius:25px;cursor:pointer;font-size:15px;margin-top:5px}
-.buy:hover{background:#7a1a46}
-.terms{background:#1e2142;color:#fff;text-align:center;padding:28px 15px;margin-top:30px;line-height:1.8}
-.terms h3{color:#ffcc99;margin-bottom:10px}
-/* Order Popup */
-#orderBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);justify-content:center;align-items:center;z-index:9999}
-.box{background:#fff;padding:22px;border-radius:14px;width:92%;max-width:380px}
-.box input,.box textarea{width:100%;padding:10px;margin:7px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
-.box h3{margin:0 0 10px;color:#4a102c;text-align:center}
-.closeBtn{float:right;font-size:22px;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+.topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px}
+.topbar h1{letter-spacing:1px}
+.topbar p{font-size:13px;opacity:0.9}
+nav{background:#1c1c2e;display:flex;justify-content:center;gap:30px;padding:12px;position:sticky;top:0;z-index:100}
+nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;background:none;border:none}
+.dropdown{position:relative;display:inline-block}
+.dropdown-content{display:none;position:absolute;background:#fff;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:1;border-radius:8px;top:25px}
+.dropdown-content a{color:#333;padding:12px 16px;display:block;text-decoration:none;font-size:14px}
+.dropdown-content a:hover{background:#f5e6e8}
+.dropdown:hover .dropdown-content{display:block}
+
+.hero{background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200') center/cover;height:380px;display:flex;align-items:center;justify-content:center}
+.hero-box{background:rgba(0,0,0,0.55);padding:30px;border-radius:12px;text-align:center;color:#fff}
+.hero-box h2{font-size:32px;margin-bottom:8px}
+.hero-box button{background:#c0392b;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;margin-top:12px}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;padding:20px;max-width:1150px;margin:auto}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.1);text-align:center;padding-bottom:12px}
+.card img{width:100%;height:380px;object-fit:cover}
+.price{color:#4a102c;font-weight:bold;font-size:19px;margin:5px 0}
+.buy{background:#2c3e50;color:#fff;border:none;padding:9px 22px;border-radius:20px;cursor:pointer}
+.buy:hover{background:#4a102c}
+
+footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-top:25px}
+.payment{margin:15px 0;font-size:28px;display:flex;justify-content:center;gap:15px}
+.payment i{background:#fff;color:#1a237e;padding:6px 10px;border-radius:6px;font-size:22px}
+
+/* MODALS */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;padding:15px}
+.modal-box{background:#fff;width:100%;max-width:500px;border-radius:12px;padding:20px;max-height:90vh;overflow:auto}
+.modal-box h3{text-align:center;color:#4a102c;margin-bottom:12px}
+.close{float:right;font-size:22px;cursor:pointer}
+.about-bg{background:url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600') center/cover;padding:18px;border-radius:10px;color:#fff}
+.about-bg .inner{background:rgba(74,16,44,0.85);padding:18px;border-radius:10px;line-height:1.7}
+.contact-item{background:#f8f2f4;padding:10px;border-radius:8px;margin:8px 0;display:flex;justify-content:space-between}
+.order input,.order textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:7px}
 </style>
 </head>
 <body>
 
-<header>RANI'S PETARI<br><span>Elegance. Style. Confidence.</span></header>
+<div class="topbar">
+  <h1>RanisPetari</h1>
+  <p>Where Tradition Meets Fashion</p>
+</div>
 
-<h2>Our Best Sellers - Festive Collection</h2>
+<nav>
+  <a onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Collections <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content">
+      <a onclick="filterCol('Anarkali')">Anarkali Suits</a>
+      <a onclick="filterCol('Lahori')">Lahori / Lakhnavi Suits</a>
+      <a onclick="filterCol('Kurti')">Kurti Collection</a>
+      <a onclick="filterCol('Sharara')">Sharara Collection</a>
+      <a onclick="filterCol('Patiala')">Patiala Collection</a>
+    </div>
+  </div>
+  <a onclick="openModal('aboutModal')">About Us</a>
+  <a onclick="openModal('contactModal')">Contact</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-box">
+    <h2>New Festive Collection 2026</h2>
+    <p>Handmade with Love - For Every Rani</p>
+    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Order on WhatsApp</button>
+  </div>
+</div>
+
+<h2 id="shop" style="text-align:center;margin:25px 0;color:#4a102c">Our Best Sellers - Festive Collection</h2>
 
 <div class="products">
-  <!-- 1.jpeg -->
-  <div class="card">
-    <img src="1.jpeg">
-    <div class="info">Purple Velvet Sharara<br><span class="price">₹2399/-</span><br><small>MRP 2800/- 15% OFF</small></div>
-    <button class="buy" onclick="openForm('1.jpeg - Purple Velvet - Rs 2399')">BUY NOW</button>
-  </div>
-  <!-- 2.jpeg -->
-  <div class="card">
-    <img src="2.jpeg">
-    <div class="info">Yellow Angrakha with Pink Dupatta<br><span class="price">₹1899/-</span></div>
-    <button class="buy" onclick="openForm('2.jpeg - Yellow Set - Rs 1899')">BUY NOW</button>
-  </div>
-  <!-- 3.jpeg -->
-  <div class="card">
-    <img src="3.jpeg">
-    <div class="info">Ethnic Elephant Print Set<br><span class="price">₹1699/-</span></div>
-    <button class="buy" onclick="openForm('3.jpeg - Red Elephant Set - Rs 1699')">BUY NOW</button>
-  </div>
-  <!-- 4.jpeg -->
-  <div class="card">
-    <img src="4.jpeg">
-    <div class="info">Timeless Elegance Maroon Set<br><span class="price">₹1799/-</span></div>
-    <button class="buy" onclick="openForm('4.jpeg - Maroon Set - Rs 1799')">BUY NOW</button>
+  <div class="card"><img src="1.jpeg"><div>Velvet Sharara Festive - 15% OFF<br><span class="price">₹2399/-</span></div><button class="buy" onclick="openOrder('1.jpeg - Rs 2399')">BUY NOW</button></div>
+  <div class="card"><img src="2.jpeg"><div>Festive Sale Yellow Set<br><span class="price">₹1899/-</span></div><button class="buy" onclick="openOrder('2.jpeg - Rs 1899')">BUY NOW</button></div>
+  <div class="card"><img src="3.jpeg"><div>Ethnic Elephant Print<br><span class="price">₹1699/-</span></div><button class="buy" onclick="openOrder('3.jpeg - Rs 1699')">BUY NOW</button></div>
+  <div class="card"><img src="4.jpeg"><div>Timeless Elegance Maroon<br><span class="price">₹1799/-</span></div><button class="buy" onclick="openOrder('4.jpeg - Rs 1799')">BUY NOW</button></div>
+</div>
+
+<!-- ABOUT US MODAL (Terms) -->
+<div id="aboutModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+    <h3>Rani's Petari Terms and Conditions</h3>
+    <div class="about-bg"><div class="inner">
+      <p>Hum Rani's Petari par <b>Premium Quality ki Clothes</b> dete hain. Humara kapda 100% original aur festive collection ka hota hai.</p><br>
+      <p>✓ No Return - No Exchange<br>✓ Home Delivered - All India<br>✓ 100% Payment Advance<br>✓ Delivery 5-7 Working Days</p><br>
+      <p>Agar kisi bhi tarah ki problem hoti hai to hamari Helpline pe call kare.</p>
+      <p style="margin-top:10px">Helpline: XXXXXXXXXX<br>Helpline: XXXXXXXXXX<br>... 10 numbers tak aap add kar sakte ho</p>
+    </div></div>
   </div>
 </div>
 
-<div class="terms">
-  <h3>Rani's Petari Terms and Conditions</h3>
-  <b>No Return - No Exchange</b><br>
-  Home Delivered Available - All India<br>
-  100% Payment Advance<br>
-  Delivery in 5-7 Working Days<br><br>
-  RanisPetari.com | Delhi's Trusted Clothing Brand<br>
-  © 2026 RanisPetari. All Rights Reserved.
+<!-- CONTACT MODAL -->
+<div id="contactModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal('contactModal')">&times;</span>
+    <h3>Contact Us</h3>
+    <div class="contact-item"><b>Owner</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Admin</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Manager</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 1</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 2</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 3</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 4</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 5</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 6</b><span>XXXXXXXXXX</span></div>
+    <div class="contact-item"><b>Staff - Support 7</b><span>XXXXXXXXXX</span></div>
+    <p style="font-size:12px;text-align:center;margin-top:10px">Aap XXX ko baad me apne numbers se replace kar dena malik</p>
+  </div>
 </div>
 
-<!-- ORDER FORM -->
-<div id="orderBox">
-  <div class="box">
-    <span class="closeBtn" onclick="closeForm()">&times;</span>
+<!-- ORDER FORM MODAL -->
+<div id="orderModal" class="modal">
+  <div class="modal-box order">
+    <span class="close" onclick="closeModal('orderModal')">&times;</span>
     <h3>Place Order</h3>
-    <p id="prodName" style="text-align:center;font-weight:bold;color:#4a102c"></p>
-    <input type="text" id="cName" placeholder="Customer Name *">
-    <input type="tel" id="cContact" placeholder="Contact No *">
-    <textarea id="cAddress" placeholder="Delivery Address *"></textarea>
-    <input type="text" id="cPin" placeholder="Pin Code *">
-    <label style="font-size:13px"><input type="checkbox" id="cAdvance" style="width:auto"> I agree 100% Payment Advance</label>
-    <button class="buy" style="width:100%;margin-top:12px" onclick="sendOrder()">Confirm & Order on WhatsApp</button>
+    <p id="pName" style="text-align:center;font-weight:bold;color:#4a102c"></p>
+    <input id="cName" placeholder="Customer Name *">
+    <input id="cContact" placeholder="Contact No *">
+    <textarea id="cAddr" placeholder="Delivery Address *"></textarea>
+    <input id="cPin" placeholder="Pin Code *">
+    <label style="font-size:13px"><input type="checkbox" id="cAdv" style="width:auto"> I agree 100% Payment Advance</label>
+    <button class="buy" style="width:100%;margin-top:10px" onclick="sendWA()">Confirm Order on WhatsApp</button>
   </div>
 </div>
+
+<footer>
+  <div class="payment">
+    <i class="fa-brands fa-cc-visa"></i>
+    <i class="fa-brands fa-cc-mastercard"></i>
+    <i class="fa-brands fa-cc-paypal"></i>
+    <i class="fa-solid fa-qrcode"></i> UPI
+  </div>
+  <p>Visa / MasterCard / UPI / Net Banking Accepted | 100% Secure Payment</p>
+  <br>
+  <p>Rani's Petari Terms and Conditions - No Return - No Exchange - Home Delivered All India - 100% Payment Advance</p>
+  <p>RanisPetari.com | Delhi's Trusted Clothing Brand</p>
+  <p style="margin-top:8px">© 2026 RanisPetari. All Rights Reserved.</p>
+</footer>
 
 <script>
-let selected = "";
-function openForm(p){ selected=p; document.getElementById('prodName').innerText=p; document.getElementById('orderBox').style.display='flex'; }
-function closeForm(){ document.getElementById('orderBox').style.display='none'; }
-function sendOrder(){
-  let n=document.getElementById('cName').value;
-  let c=document.getElementById('cContact').value;
-  let a=document.getElementById('cAddress').value;
-  let pin=document.getElementById('cPin').value;
-  let adv=document.getElementById('cAdvance').checked;
-  if(!n||!c||!a||!pin){ alert("Saare details bharo malik"); return; }
-  if(!adv){ alert("100% Payment Advance pe tick karo"); return; }
-  let msg=*NEW ORDER - Rani's Petari*%0A%0A*Product:* ${selected}%0A*Name:* ${n}%0A*Contact:* ${c}%0A*Address:* ${a}%0A*Pin:* ${pin}%0A*Payment:* 100% Advance OK;
-  let waNumber="919999999999"; // <-- yahan apna WhatsApp number dal do 91 ke saath
-  window.open(https://wa.me/${waNumber}?text=${msg},'_blank');
-  closeForm();
+let sel="";
+function openModal(id){document.getElementById(id).style.display='flex'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+function openOrder(p){sel=p;document.getElementById('pName').innerText=p;openModal('orderModal')}
+function sendWA(){
+  let n=document.getElementById('cName').value,c=document.getElementById('cContact').value,a=document.getElementById('cAddr').value,p=document.getElementById('cPin').value,adv=document.getElementById('cAdv').checked;
+  if(!n||!c||!a||!p){alert("Details bharo");return}
+  if(!adv){alert("100% advance tick karo");return}
+  let msg=*NEW ORDER*%0AProduct:${sel}%0AName:${n}%0AContact:${c}%0AAddress:${a}%0APin:${p};
+  let wa="919999999999"; // yahan apna number dalo
+  window.open(https://wa.me/${wa}?text=${msg},'_blank');closeModal('orderModal');
 }
+function filterCol(name){alert(name + " collection jaldi add hoga! Abhi ke liye 4 best sellers dikh rahe hain.");}
 </script>
 </body>
 </html>
