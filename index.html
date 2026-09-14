@@ -64,7 +64,12 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
     </div>
   </div>
-  <a onclick="openModal('aboutModal')">About Us</a>
+  <div class="dropdown">
+  <button class="dropbtn">About Us <i class="fa fa-caret-down"></i></button>
+  <div class="dropdown-content">
+    <a onclick="openModal('aboutModal')">Terms & Conditions</a>
+  </div>
+</div>
   <div class="dropdown">
   <a class="dropbtn">Contact ▾</a>
   <div class="dropdown-content">
@@ -130,12 +135,17 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
 <div id="aboutModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeModal('aboutModal')">&times;</span>
-    <h3>Rani's Petari Terms and Conditions</h3>
-    <div class="about-bg"><div class="inner">
-      <p>Hum Rani's Petari par <b>Premium Quality ki Clothes</b> dete hain. Humara kapda 100% original aur festive collection ka hota hai.</p><br>
-      <p>✓ No Return - No Exchange<br>✓ Home Delivered - All India<br>✓ 100% Payment Advance<br>✓ Delivery 5-7 Working Days</p><br>
-      <p>Agar kisi bhi tarah ki problem hoti hai to hamari Helpline pe call kare.</p>
-      <p style="margin-top:10px">Helpline: 9319646064<br>Helpline: 9319646064<br>... 10 numbers tak aap add kar sakte ho</p>
+   <h3>Terms & Conditions - Rani's Petari</h3>
+<div class="about-bg"><div class="inner">
+  <p><b>Welcome to Rani's Petari - Where Tradition Meets Fashion</b></p>
+  <p>1. <b>Premium Quality:</b> We provide 100% premium quality handmade festive collection.</p>
+  <p>2. <b>No Return, No Exchange:</b> Strictly no return and no exchange. Please check size and color before ordering.</p>
+  <p>3. <b>100% Advance Payment:</b> All orders are prepaid. COD not available.</p>
+  <p>4. <b>All India Delivery:</b> We deliver all over India.</p>
+  <p>5. <b>Delivery Time:</b> 5-7 working days after payment confirmation.</p>
+  <p>6. <b>Color Variation:</b> Slight color variation may occur due to screen resolution.</p>
+  <p style="margin-top:15px; border-top:1px solid #eee; padding-top:10px;"><b>Helpline:</b> +91 9319646064<br><b>Email:</b> ranispetari@gmail.com</p>
+</div></div>
     </div></div>
   </div>
 </div>
