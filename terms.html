@@ -6,12 +6,34 @@
 <title>Terms & Conditions - RanisPetari</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.terms-page{max-width:800px; margin:40px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); line-height:1.8;}
-.terms-page h1{text-align:center; color:#4a154b; margin-bottom:20px;}
-.terms-page h3{margin-top:25px; color:#333;}
-.back-btn{display:inline-block; margin:20px; padding:10px 20px; background:#4a154b; color:#fff; text-decoration:none; border-radius:6px;}
-</style>
-</head>
+/* Dropdown Fix for Laptop + Mobile */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000; /* Ye sabse important hai - isse click block nahi hoga */
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown.active .dropdown-content {
+  display: block;
+}
+  <script>
+// Mobile par click se dropdown khulega
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+  dropdown.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('active');
+  });
+});
+// Bahar click karne par dropdown band ho jayega
+window.addEventListener('click', function() {
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+});
+</script>
 <body>
 <a href="index.html" class="back-btn">← Back to Home</a>
 <div class="terms-page">
