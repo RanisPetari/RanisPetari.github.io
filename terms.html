@@ -6,36 +6,14 @@
 <title>Terms & Conditions - RanisPetari</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Dropdown Fix for Laptop + Mobile */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1000; /* Ye sabse important hai - isse click block nahi hoga */
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown.active .dropdown-content {
-  display: block;
-}
-  <script>
-// Mobile par click se dropdown khulega
-document.querySelectorAll('.dropdown').forEach(dropdown => {
-  dropdown.addEventListener('click', function(e) {
-    e.stopPropagation();
-    this.classList.toggle('active');
-  });
-});
-// Bahar click karne par dropdown band ho jayega
-window.addEventListener('click', function() {
-  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
-});
-</script>
+.terms-page { max-width: 800px; margin: 40px auto; padding: 20px; font-family: Arial; line-height: 1.6; background: white; }
+.back-btn { display: inline-block; margin: 20px; padding: 10px 20px; background: #4b0e1f; color: white; text-decoration: none; border-radius: 5px; }
+</style>
+</head>
 <body>
+
 <a href="index.html" class="back-btn">← Back to Home</a>
+
 <div class="terms-page">
 <h1>Terms & Conditions - Rani's Petari</h1>
 <p><b>Welcome to Rani's Petari - Where Tradition Meets Fashion</b></p>
@@ -44,7 +22,7 @@ window.addEventListener('click', function() {
 <p>We provide 100% premium quality handmade festive collection. All products are checked before dispatch.</p>
 
 <h3>2. No Return, No Exchange Policy</h3>
-<p>Due to hygiene and festive nature of our products, we have a strict <b>No Return and No Exchange</b> policy. Please check size, color and design carefully before ordering.</p>
+<p>Due to hygiene and festive nature of our products, we have a strict <b>No Return and No Exchange</b> policy. Please check size, color before ordering.</p>
 
 <h3>3. 100% Advance Payment</h3>
 <p>All orders are prepaid. We accept UPI, Razorpay, and Bank Transfer. Cash on Delivery (COD) is not available.</p>
@@ -60,11 +38,12 @@ window.addEventListener('click', function() {
 
 <h3>7. Customer Support</h3>
 <p>For any query, contact us:<br>
-<b>Helpline:</b> +91 9711900520<br>
-<b>Email:</b> Hello@ranispetaricom<br>
+<b>Helpline:</b> +91 9711908520<br>
+<b>Email:</b> Hello@ranispetari.com<br>
 <b>Website:</b> www.ranispetari.com</p>
 
 <p style="text-align:center; margin-top:30px; font-weight:bold;">Thank you for shopping with Rani's Petari!</p>
 </div>
+
 </body>
 </html>
