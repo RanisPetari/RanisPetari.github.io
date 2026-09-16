@@ -64,6 +64,23 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
     </div>
   </div>
+  <style>
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { 
+  display: none; 
+  position: absolute; 
+  top: 100%; 
+  left: 0;
+  background-color: white; 
+  min-width: 200px; 
+  z-index: 9999; /* Ye sabse important hai */
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content { 
+  display: block; 
+}
+</style>
   <div class="dropdown">
   <button class="dropbtn">About Us <i class="fa fa-caret-down"></i></button>
   <div class="dropdown-content">
