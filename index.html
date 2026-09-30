@@ -14,20 +14,22 @@
 <title>RanisPetari - Where Tradition Meets Fashion</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  /* Myntra jaisa chhota product fix */
-.product img, 
-img[src*=".jpeg"], 
-img[src*=".jpg"], 
-img[src*=".png"] {
-  width: 100% !important;
-  height: 320px !important;
-  object-fit: cover !important;
-  object-position: top !important;
+  /* Rani's Petari - Myntra jaisa chhota grid */
+.product-card, .card, .item, .product {
+  width: 180px !important;
+  display: inline-block !important;
+  margin: 8px !important;
+  vertical-align: top !important;
 }
-.grid, .products, .best-sellers {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-  gap: 15px !important;
+.product-card img, .card img, .item img, .product img, 
+img[src*=".jpeg"], img[src$=".jpeg"], img[src*=".jpg"] {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  background: white !important;
+  border: 1px solid #eee !important;
+  border-radius: 4px !important;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 .topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px}
