@@ -16,18 +16,49 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 * { box-sizing: border-box; }
-html, body { width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; }
+html, body { width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; }
 img { max-width: 100% !important; height: auto !important; display: block; }
-  /* Rani's Petari - Myntra jaisa chhota grid */
-/* Rani's Petari - Mobile Fix Grid */
-.product-grid, div[style*="grid"] {
+
+/* PHONE ME 2 PRODUCT - LAPTOP PE 4 PRODUCT - CUTTING KHATAM */
+div[style*="grid"], .product-grid, main, section {
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 10px !important;
-  padding: 10px !important;
   width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
 }
-.card, .product, .item {
+
+/* Mobile me 2 column */
+@media (max-width: 768px){
+  div[style*="grid"], .product-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+}
+
+/* Laptop me 4 column */
+@media (min-width: 769px){
+  div[style*="grid"], .product-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    gap: 15px !important;
+    padding: 15px !important;
+  }
+}
+
+/* Card kabhi cut nahi hoga */
+.card, .product, .item, .product-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+.card h3, .card p, .product h3 {
+  white-space: normal !important;
+  overflow: visible !important;
+  word-wrap: break-word !important;
+}
   width: 100% !important;
   max-width: 100% !important;
 }
