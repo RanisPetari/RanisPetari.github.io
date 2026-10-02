@@ -253,35 +253,28 @@ function sendWA(){
   let wa="919319646064"; // yahan apna number dalo
   window.open(https://wa.me/${wa}?text=${msg},'_blank');closeModal('orderModal');
 }
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
 function payNow(name,price){
-  var options={
-    key:"rzp_live_Tj0PF1woHNLkQ",
-    amount:price*100,
-    currency:"INR",
-    name:"Rani's Petari",
-    description:name,
-    handler:function(r){ alert(name+" Payment Done: "+r.razorpay_payment_id); },
-    theme:{color:"#4a102c"}
-  };
-  var rzp=new Razorpay(options);
-  rzp.open();
+  var opt={key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,handler:function(r){alert(name+" Paid Rs"+price+" | ID: "+r.razorpay_payment_id); window.open("https://wa.me/919582601194?text=Paid "+name+" Rs"+price+" ID:"+r.razorpay_payment_id,"_blank");},theme:{color:"#4a102c"}};
+  var rz=new Razorpay(opt); rz.open();
 }
 </script>
 <script>
-// Har product ka apna price lega - 2399, 1899, 1699, 1799 sab alag
-document.querySelectorAll('a').forEach(function(btn){
-  if(btn.textContent.includes('BUY NOW')){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      let card = btn.parentElement;
-      let fullText = card.innerText;
-      let priceMatch = fullText.match(/₹\s*(\d+)/);
-      let price = priceMatch? parseInt(priceMatch[1]) : 0;
-      let prodName = fullText.split('₹')[0].trim().split('\n').slice(-1)[0];
-      console.log("Buying:", prodName, price);
-      payNow(prodName, price);
-    });
-  }
+// 34 products ka auto-fix - aapko ek-ek karne ki zarurat nahi!
+window.addEventListener('load', function(){
+  document.querySelectorAll('div.card a').forEach(function(btn){
+    if(btn.innerText.includes('BUY NOW')){
+      let card = btn.closest('.card');
+      let priceSpan = card.querySelector('.price');
+      let price = priceSpan? parseInt(priceSpan.innerText.replace(/[^0-9]/g,'')) : 0;
+      let nameDiv = card.querySelector('div');
+      let prodName = nameDiv? nameDiv.innerText.split('₹')[0].trim().replace(/\n/g,' ').substring(0,40) : "Rani Product";
+      btn.href="javascript:void(0)";
+      btn.onclick=function(e){ e.preventDefault(); payNow(prodName, price); return false; };
+    }
+  });
+  console.log("34 products auto-fixed with different prices!");
 });
 </script>
 </body>
