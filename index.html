@@ -316,5 +316,48 @@ setInterval(function(){
   });
 }, 500);
 </script>
+  <!-- PRODUCT DETAIL POPUP -->
+<div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;padding:15px;">
+  <div style="background:#fff;max-width:450px;width:100%;border-radius:15px;overflow:hidden;max-height:90vh;overflow-y:auto;position:relative;">
+    <span onclick="document.getElementById('pModal').style.display='none'" style="position:absolute;top:10px;right:15px;font-size:28px;cursor:pointer;background:#fff;border-radius:50%;width:35px;height:35px;text-align:center;line-height:35px;z-index:10;">&times;</span>
+    <img id="pmImg" src="" style="width:100%;height:400px;object-fit:cover;object-position:top;">
+    <div style="padding:20px;text-align:center;">
+      <h3 id="pmTitle" style="color:#4a102c;margin-bottom:8px;"></h3>
+      <p id="pmPrice" style="font-weight:bold;font-size:22px;color:#000;margin-bottom:10px;"></p>
+      <p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:15px;">Premium Quality Fabric | Free Delivery | Cash on Delivery Available | Easy Exchange. Rani's Petari - Where Tradition Meets Fashion.</p>
+      <button id="pmBuy" style="background:#0d4a8a;color:#fff;border:none;padding:12px 35px;border-radius:25px;font-size:16px;cursor:pointer;width:100%;">BUY NOW</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openP(el){
+  var img = el.querySelector('img').src;
+  var title = el.innerText.split('₹')[0].trim();
+  var price = '₹' + el.innerText.split('₹')[1].split('\n')[0].trim();
+  document.getElementById('pmImg').src = img;
+  document.getElementById('pmTitle').innerText = title;
+  document.getElementById('pmPrice').innerText = price;
+  document.getElementById('pmBuy').onclick = function(){
+    document.getElementById('pModal').style.display='none';
+    // aapka purana buy wala function yaha call hoga
+    var buyBtn = el.querySelector('.buy, button');
+    if(buyBtn) buyBtn.click();
+  };
+  document.getElementById('pModal').style.display='flex';
+}
+// har card ko clickable banao
+setInterval(function(){
+  document.querySelectorAll('.card').forEach(function(c){
+    if(!c.dataset.clickAdded){
+      c.style.cursor='pointer';
+      c.dataset.clickAdded='1';
+      c.addEventListener('click', function(e){
+        if(e.target.tagName!=='BUTTON') openP(c);
+      });
+    }
+  });
+},1000);
+</script>
 </body>
 </html>
