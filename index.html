@@ -255,36 +255,40 @@ function sendWA(){
 }
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-let tempProduct="", tempPrice=0;
-function openOrderForm(name, price){
-  tempProduct=name; tempPrice=price;
-  let n=prompt("Customer Ka Naam Likho:");
-  if(!n) return;
-  let m=prompt("Mobile Number Likho:");
-  if(!m) return;
-  let a=prompt("Full Delivery Address Likho (Gali, City, Pincode):");
-  if(!a) return;
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function payNow(name,price){
+  // 1. Pehle Customer se detail lo
+  let cName = prompt("Apna Naam likho:");
+  if(!cName) return;
+  let cMob = prompt("Mobile Number likho:");
+  if(!cMob) return;
+  let cAddr = prompt("Full Delivery Address with Pincode likho:");
+  if(!cAddr) return;
 
-  // Sab details mil gayi, ab payment kholo
-  let cName=n, cMobile=m, cAddr=a;
-
-  var options={
+  var opt={
     key:"rzp_live_Tj0fPF1woHNLkQ",
-    amount: tempPrice*100,
+    amount:price*100,
     currency:"INR",
     name:"Rani's Petari",
-    description: tempProduct,
-    prefill:{ name: cName, contact: cMobile },
+    description:name,
+    prefill:{name:cName, contact:cMob},
     handler:function(r){
-      let msg = *NEW ORDER*%0AProduct: ${tempProduct}%0ARs ${tempPrice}%0APayID: ${r.razorpay_payment_id}%0ACust: ${cName}%0AMob: ${cMobile}%0AAddr: ${cAddr};
-      window.open("https://wa.me/919582601194?text="+msg, "_blank");
-      alert("Payment Ho Gaya! Owner ko WhatsApp chala gaya.");
+      // 2. Customer ko success message
+      alert("Payment Success! Aapka product " + name + " 7 din ke andar " + cAddr + " pe deliver ho jayega. | ID: " + r.razorpay_payment_id);
+
+      // 3. Owner ko WhatsApp pe pura detail
+      let msg=*NEW PAID ORDER*%0A%0AProduct: ${name}%0APrice: Rs ${price}%0APayment ID: ${r.razorpay_payment_id}%0A%0ACustomer: ${cName}%0AMobile: ${cMob}%0AAddress: ${cAddr};
+      window.open("https://wa.me/919582601194?text="+msg,"_blank");
     },
     theme:{color:"#4a102c"}
   };
-  var rzp = new Razorpay(options);
-  rzp.open();
+  var rz=new Razorpay(opt);
+  rz.open();
 }
+</script>
+<script>
+// 34 products ka auto-fix - aapko ek-ek karne ki zarurat nahi!
 window.addEventListener('load', function(){
   document.querySelectorAll('div.card a').forEach(function(btn){
     if(btn.innerText.includes('BUY NOW')){
@@ -292,12 +296,12 @@ window.addEventListener('load', function(){
       let priceSpan = card.querySelector('.price');
       let price = priceSpan? parseInt(priceSpan.innerText.replace(/[^0-9]/g,'')) : 0;
       let nameDiv = card.querySelector('div');
-      let prodName = nameDiv? nameDiv.innerText.split('₹')[0].trim().substring(0,40) : "Product";
+      let prodName = nameDiv? nameDiv.innerText.split('₹')[0].trim().replace(/\n/g,' ').substring(0,40) : "Rani Product";
       btn.href="javascript:void(0)";
-      btn.onclick=function(e){ e.preventDefault(); openOrderForm(prodName, price); return false; };
+      btn.onclick=function(e){ e.preventDefault(); payNow(prodName, price); return false; };
     }
   });
-  console.log("Fixed: Form > Payment > WhatsApp");
+  console.log("34 products auto-fixed with different prices!");
 });
 </script>
 </body>
