@@ -302,27 +302,19 @@ window.addEventListener('load', function(){
   });
 });
 </script>
-  <script>
-// FINAL FIX - MOBILE ME 2 - PHOTO KATNA BAND - 34 ITEM
-function fixRanis() {
+<script>
+setInterval(function(){
   document.querySelectorAll('div').forEach(function(d){
-    if(d.style.gridTemplateColumns || d.getAttribute('style')?.includes('grid')){
-      d.style.setProperty('display','grid','important');
-      d.style.setProperty('grid-template-columns','1fr 1fr','important');
-      d.style.setProperty('gap','10px','important');
-      d.style.setProperty('width','100%','important');
-      d.style.setProperty('overflow','visible','important');
+    var s = d.getAttribute('style') || '';
+    if(s.indexOf('grid') > -1){
+      d.style.display = 'grid';
+      d.style.gridTemplateColumns = '1fr 1fr';
+      d.style.gap = '10px';
+      d.style.padding = '10px';
+      d.style.width = '100%';
     }
   });
-  document.querySelectorAll('div > div').forEach(function(c){
-    if(c.parentElement && c.parentElement.style.display === 'grid'){
-       c.style.setProperty('width','100%','important');
-       c.style.setProperty('min-width','0','important');
-    }
-  });
-}
-setInterval(fixRanis, 800);
-window.addEventListener('load', fixRanis);
+}, 500);
 </script>
 </body>
 </html>
