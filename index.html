@@ -16,65 +16,36 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 * { box-sizing: border-box; }
-html, body { width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; }
-img { max-width: 100% !important; height: auto !important; display: block; }
+html, body { width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; background: #fff; }
+img { max-width: 100% !important; display: block; }
 
-/* PHONE ME 2 PRODUCT - LAPTOP PE 4 PRODUCT - CUTTING KHATAM */
-div[style*="grid"], .product-grid, main, section {
+/* MOBILE ME 2 - LAPTOP PE 4 - FIX */
+div[style*="grid"], #product-grid, .product-grid {
   display: grid !important;
   width: 100% !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
 }
-
-/* Mobile me 2 column */
 @media (max-width: 768px){
-  div[style*="grid"], .product-grid {
+  div[style*="grid"], #product-grid, .product-grid {
     grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-    padding: 10px !important;
+    gap: 10px !important; padding: 10px !important;
   }
 }
-
-/* Laptop me 4 column */
 @media (min-width: 769px){
-  div[style*="grid"], .product-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr !important;
-    gap: 15px !important;
-    padding: 15px !important;
+  div[style*="grid"], #product-grid, .product-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important; padding: 20px !important;
   }
 }
-
-/* Card kabhi cut nahi hoga */
-.card, .product, .item, .product-card {
-  width: 100% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  border-radius: 10px !important;
+.card, .product, .product-card, .item {
+  width: 100% !important; min-width: 0 !important;
+  border-radius: 10px !important; overflow: hidden !important;
+  background: #fff !important; border: 1px solid #eee !important;
 }
-.card h3, .card p, .product h3 {
-  white-space: normal !important;
-  overflow: visible !important;
-  word-wrap: break-word !important;
-}
-  width: 100% !important;
-  max-width: 100% !important;
-}
-  display: inline-block !important;
-  margin: 8px !important;
-  vertical-align: top !important;
-}
-.product-card img, .card img, .item img, .product img, 
-img[src*=".jpeg"], img[src$=".jpeg"], img[src*=".jpg"] {
-  width: 100% !important;
-  height: 220px !important;
-  object-fit: contain !important;
-  object-position: center top !important;
-  background: white !important;
-  border: 1px solid #eee !important;
-  border-radius: 4px !important;
+.card img, .product img {
+  width: 100% !important; height: 260px !important;
+  object-fit: cover !important; object-position: top !important;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 .topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px}
