@@ -16,40 +16,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 * { box-sizing: border-box; }
-  /* FINAL FIX - PHOTO KATNA BAND + MOBILE ME 2 PRODUCT */
-.product-grid, div[style*="grid"]{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 10px !important;
+body { overflow-x: hidden; }
+div[style*="grid"] { 
+  display: grid !important; 
+  grid-template-columns: 1fr 1fr !important; 
+  gap: 10px !important; 
   padding: 10px !important;
-  width: 100% !important;
 }
-.product-grid , div[style="grid"] *{
-  min-width: 0 !important;
+div[style*="grid"] > div { 
+  width: 100% !important; 
 }
-.product-card, .card, .product, .item{
-  display: block !important;
-  width: 100% !important;
-  float: none !important;
-  margin: 0 !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-}
-.product-card img, .card img, .product img{
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 3/4 !important;
-  object-fit: cover !important;
-}
-html, body { width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; background: #fff; }
-img { max-width: 100% !important; display: block; }
-
-/* MOBILE ME 2 - LAPTOP PE 4 - FIX */
-div[style*="grid"], #product-grid, .product-grid {
-  display: grid !important;
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
+div[style*="grid"] img { 
+  width: 100% !important; 
+  height: auto !important; 
 }
 @media (max-width: 768px){
   div[style*="grid"], #product-grid, .product-grid {
