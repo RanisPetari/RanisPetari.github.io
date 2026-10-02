@@ -253,6 +253,10 @@ function sendWA(){
   let wa="919319646064"; // yahan apna number dalo
   window.open(https://wa.me/${wa}?text=${msg},'_blank');closeModal('orderModal');
 }
+  function payNow(name,price){
+var o={key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,handler:function(r){alert("Payment Success: "+r.razorpay_payment_id);window.open("https://wa.me/919582601194?text=Paid "+name+" Rs"+price+" ID:"+r.razorpay_payment_id,'_blank')},theme:{color:"#4a102c"}};
+var rz=new Razorpay(o);rz.open();
+}
 function filterCol(name){alert(name + " collection jaldi add hoga! Abhi ke liye 4 best sellers dikh rahe hain.");}
 </script>
 </body>
