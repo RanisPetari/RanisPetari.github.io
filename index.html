@@ -85,6 +85,8 @@ div[style*="grid"] img {
 .topbar h1{letter-spacing:1px}
 @keyframes leftRight{0%{transform:translateX(0)}50%{transform:translateX(12px)}100%{transform:translateX(0)}}
 .logo-move{animation:leftRight 2s infinite ease-in-out; height:50px; background:white; border-radius:50%; padding:4px;}
+ @keyframes scrollLeft{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.scroll-text{display:inline-block; white-space:nowrap; animation:scrollLeft 18s linear infinite;}
   .topbar p{font-size:13px;opacity:0.9}
 nav{background:#1c1c2e;display:flex;justify-content:center;gap:30px;padding:12px;position:sticky;top:0;z-index:100}
 nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;background:none;border:none}
@@ -226,17 +228,16 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
     <p style="color:#000; font-size:13px; margin-top:15px; font-weight:bold;">Rani’s Petari | Curated Fashion, Crafted for You<br>©️ 2026 Rani’s Petari. All Rights Reserved.</p>
   </div>
 
-  <div style="flex:1; min-width:280px; text-align:center;">
-    <img src="Ranislogo1.png" style="width:95%; max-width:450px; height:auto;">
+<div style="flex:1; min-width:350px;">
+    <img src="RANISAMPLE2.JPG" style="width:100%; max-width:500px; border-radius:12px;">
   </div>
-
 </div>
 
-<div style="text-align:center; background:#f3eef5; padding:22px 15px; margin:15px; border-radius:15px;">
-  <h2 style="margin:0; color:#000;">New Festive Collection 2026</h2>
-  <p style="margin:8px 0 0 0; color:#000;">Handmade with Love - For Every Rani</p>
-</div>
-  <p style="margin:8px 0 0 0;">Handmade with Love - For Every Rani</p>
+<!-- YE CHALEGA DISPLAY KI TARAH -->
+<div style="background:#000; color:#fff; overflow:hidden; white-space:nowrap; padding:12px 0; margin:15px 0;">
+  <div class="scroll-text" style="font-weight:bold; font-size:16px; color:#fff;">
+    ✨ New Festive Collection 2026 ✨ &nbsp;&nbsp;|&nbsp;&nbsp; Payment & Delivery - Secure Payments | Visa • MasterCard • UPI • PayPal &nbsp;&nbsp;|&nbsp;&nbsp; Pan-India Delivery &nbsp;&nbsp;|&nbsp;&nbsp; No Return & No Exchange Policy &nbsp;&nbsp;|&nbsp;&nbsp; Handmade with Love - For Every Rani ✨
+  </div>
 </div>
 
 <h2 id="shop" style="text-align:center;margin:25px 0;color:#4a102c">Our Best Sellers - Festive Collection</h2>
