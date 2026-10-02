@@ -19,8 +19,18 @@
 html, body { width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; }
 img { max-width: 100% !important; height: auto !important; display: block; }
   /* Rani's Petari - Myntra jaisa chhota grid */
-.product-card, .card, .item, .product {
-  width: 180px !important;
+/* Rani's Petari - Mobile Fix Grid */
+.product-grid, div[style*="grid"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  padding: 10px !important;
+  width: 100% !important;
+}
+.card, .product, .item {
+  width: 100% !important;
+  max-width: 100% !important;
+}
   display: inline-block !important;
   margin: 8px !important;
   vertical-align: top !important;
