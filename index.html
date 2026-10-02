@@ -256,9 +256,9 @@ function sendWA(){
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 function payNow(name,price){
-  let cName=prompt("Apna Naam likho:"); if(!cName) return;
-  let cMob=prompt("Mobile Number likho:"); if(!cMob) return;
-  let cAddr=prompt("Full Address Pincode ke sath:"); if(!cAddr) return;
+  let cName=prompt("Customer Name:"); if(!cName) return;
+  let cMob=prompt("customer Mobile Number :"); if(!cMob) return;
+  let cAddr=prompt("Full Address With Pincode :"); if(!cAddr) return;
   var opt={
     key:"rzp_live_Tj0fPF1woHNLkQ",
     amount:price*100,
