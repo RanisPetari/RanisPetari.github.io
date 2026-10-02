@@ -126,19 +126,21 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
   <p>Where Tradition Meets Fashion</p>
 </div>
 
-<nav>
-  <a onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a>
-  <div class="dropdown">
+<nav style="display:flex; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; gap:5px;">
+  <a onclick="window.scrollTo({top:0,behavior:'smooth'})" style="flex-shrink:0;">Home</a>
+  
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Collections <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a onclick="filterCol('Anarkali')">Anarkali Suits</a>
-      <a onclick="filterCol('Lahori')">Lahori / Lakhnavi Suits</a>
+      <a onclick="filterCol('Lahori')">Lahori Suits</a>
       <a onclick="filterCol('Kurti')">Kurti Collection</a>
       <a onclick="filterCol('Sharara')">Sharara Collection</a>
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Size <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a onclick="filterCol('M')">M</a>
@@ -147,7 +149,8 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('XXL')">XXL</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Colour <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a onclick="filterCol('Red')">Red</a>
@@ -157,15 +160,16 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('Off White')">Off White</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Pattern & Print <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a onclick="filterCol('Printed')">Printed</a>
-      <a onclick="filterCol('Women Design')">Women Design</a>
       <a onclick="filterCol('Solid')">Solid</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Price Range <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a onclick="filterCol('499-999')">₹499-999</a>
@@ -173,16 +177,20 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('1999-4999')">₹1999-4999</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">About Us <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
+      <a href="terms.html">Terms & Conditions</a>
       <a href="owner.html">Owner</a>
     </div>
   </div>
-  <div class="dropdown">
+
+  <div class="dropdown" style="flex-shrink:0;">
     <button class="dropbtn">Contact <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-content">
       <a href="contact.html">Contact Us</a>
+      <a href="owner.html">Owner Info</a>
     </div>
   </div>
 </nav>
