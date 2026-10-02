@@ -253,15 +253,68 @@ function sendWA(){
   let wa="919319646064"; // yahan apna number dalo
   window.open(https://wa.me/${wa}?text=${msg},'_blank');closeModal('orderModal');
 }
+<style>
+#orderModal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;}
+#orderBox{background:#fff;padding:20px;border-radius:12px;width:90%;max-width:400px;}
+#orderBox input, #orderBox textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px;font-size:16px;}
+#orderBox button{width:100%;padding:12px;background:#4a102c;color:#fff;border:none;border-radius:8px;font-size:18px;margin-top:10px;}
+</style>
+
+<div id="orderModal">
+  <div id="orderBox">
+    <h3 id="mProdName" style="color:#4a102c">Product</h3>
+    <p id="mProdPrice"></p>
+    <input type="text" id="custName" placeholder="Customer Ka Naam *" required>
+    <input type="tel" id="custMobile" placeholder="Mobile Number *" required>
+    <textarea id="custAddress" placeholder="Full Delivery Address - Gali, City, Pincode *" rows="3" required></textarea>
+    <button onclick="proceedToPay()">Ab Payment Karo</button>
+    <button onclick="closeModal()" style="background:#ccc;color:#000;margin-top:5px;">Cancel</button>
+  </div>
+</div>
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-function payNow(name,price){
-  var opt={key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,handler:function(r){alert(name+" Paid Rs"+price+" | ID: "+r.razorpay_payment_id); window.open("https://wa.me/919582601194?text=Paid "+name+" Rs"+price+" ID:"+r.razorpay_payment_id,"_blank");},theme:{color:"#4a102c"}};
-  var rz=new Razorpay(opt); rz.open();
+let tempProduct = "";
+let tempPrice = 0;
+
+function openOrderForm(name, price){
+  tempProduct = name;
+  tempPrice = price;
+  document.getElementById('mProdName').innerText = name;
+  document.getElementById('mProdPrice').innerText = "Price: ₹" + price;
+  document.getElementById('orderModal').style.display = "flex";
 }
-</script>
-<script>
-// 34 products ka auto-fix - aapko ek-ek karne ki zarurat nahi!
+function closeModal(){
+  document.getElementById('orderModal').style.display = "none";
+}
+
+function proceedToPay(){
+  let cName = document.getElementById('custName').value.trim();
+  let cMobile = document.getElementById('custMobile').value.trim();
+  let cAddr = document.getElementById('custAddress').value.trim();
+  if(!cName ||!cMobile ||!cAddr){ alert("Saare form bharo Malik!"); return; }
+
+  var options={
+    key:"rzp_live_Tj0fPF1woHNLkQ",
+    amount: tempPrice*100,
+    currency:"INR",
+    name:"Rani's Petari",
+    description: tempProduct,
+    prefill:{ name: cName, contact: cMobile },
+    handler:function(r){
+      // Payment Success -> Owner ko WhatsApp
+      let msg = *NEW ORDER - Rani's Petari*%0A%0A*Product:* ${tempProduct}%0A*Price:* Rs ${tempPrice}%0A*Payment ID:* ${r.razorpay_payment_id}%0A%0A*Customer:* ${cName}%0A*Mobile:* ${cMobile}%0A*Address:* ${cAddr};
+      window.open("https://wa.me/919582601194?text="+msg, "_blank");
+      alert("Payment Success! Owner ko detail chala gaya. Aapka order pack hoga.");
+      closeModal();
+    },
+    theme:{color:"#4a102c"}
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+
+// Auto-fix 34 products
 window.addEventListener('load', function(){
   document.querySelectorAll('div.card a').forEach(function(btn){
     if(btn.innerText.includes('BUY NOW')){
@@ -269,12 +322,11 @@ window.addEventListener('load', function(){
       let priceSpan = card.querySelector('.price');
       let price = priceSpan? parseInt(priceSpan.innerText.replace(/[^0-9]/g,'')) : 0;
       let nameDiv = card.querySelector('div');
-      let prodName = nameDiv? nameDiv.innerText.split('₹')[0].trim().replace(/\n/g,' ').substring(0,40) : "Rani Product";
+      let prodName = nameDiv? nameDiv.innerText.split('₹')[0].trim().replace(/\n/g,' ').substring(0,50) : "Rani Product";
       btn.href="javascript:void(0)";
-      btn.onclick=function(e){ e.preventDefault(); payNow(prodName, price); return false; };
+      btn.onclick=function(e){ e.preventDefault(); openOrderForm(prodName, price); return false; };
     }
   });
-  console.log("34 products auto-fixed with different prices!");
 });
 </script>
 </body>
