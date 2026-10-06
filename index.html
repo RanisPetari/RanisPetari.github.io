@@ -16,7 +16,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 * { box-sizing: border-box; }
-body { overflow-x: hidden; }
+body { overflow-x: Auto; }
+  /* Phone me laptop jaisa menu */
+@media screen and (max-width: 768px) {
+  header, nav, div[style*="display:flex"] {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+  header a, nav a {
+    flex: 0 0 auto !important;
+    font-size: 12px !important;
+  }
+}
   .hero{
   width:100% !important;
   max-width:100% !important;
