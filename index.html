@@ -17,14 +17,25 @@
 <style>
 * { box-sizing: border-box; }
 body { overflow-x: Auto; }
-  /* Phone me laptop jaisa menu */
-@media screen and (max-width: 768px) {
-  header, nav, div[style*="display:flex"] {
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-  }
-  header a, nav a {
+* { box-sizing: border-box; }
+body { overflow-x: auto; margin: 0; }
+
+/* UPAR MENU PURA DIKHEGA */
+header, nav { 
+  display: flex !important; 
+  flex-wrap: wrap !important; 
+  justify-content: center !important; 
+  gap: 10px !important; 
+}
+header a, nav a { font-size: 13px !important; }
+
+/* PRODUCT PHOTO PURI DIKHEGI - KATKE NAHI */
+img, .hero {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  max-height: none !important;
+}
     flex: 0 0 auto !important;
     font-size: 12px !important;
   }
