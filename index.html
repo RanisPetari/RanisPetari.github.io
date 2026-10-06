@@ -15,17 +15,18 @@
 <title>RanisPetari - Where Tradition Meets Fashion</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-* { box-sizing: border-box; }
-body { overflow-x: Auto; }
+html, body { overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; }
+body { touch-action: pan-y !important; }
 .product-card img { object-fit: contain !important; height: auto !important; background: white !important; }
-  .hero{
+
+.hero{
   width:100% !important;
-  max-width:100% !important;
-  height:520px !important;
-  margin:0 !important;
-    background:url('RANISAMPLE3.JPG') !important;
-  background-size:cover !important;
-  background-position:center top !important;
+  max-width:100vw !important;
+  height: 320px !important;
+  overflow: hidden !important;
+  background:url('RANISAMPLE3.JPG') !important;
+  background-size: cover !important;
+  background-position: center top !important;
   display:flex !important;
   justify-content:center !important;
   align-items:center !important;
@@ -66,7 +67,16 @@ div[style*="grid"] img {
     gap: 20px !important; padding: 20px !important;
   }
 }
-.card, .product, .product-card, .item {
+/* FIX - Page left-right hilna band */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.topbar, .marquee, header, nav {
+  max-width: 100vw !important;
+  overflow: hidden !important;
+}.card, .product, .product-card, .item {
   width: 100% !important; min-width: 0 !important;
   border-radius: 10px !important; overflow: visible !important;
   background: #fff !important; border: 1px solid #eee !important;
