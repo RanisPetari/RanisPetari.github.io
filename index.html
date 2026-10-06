@@ -15,22 +15,14 @@
 <title>RanisPetari - Where Tradition Meets Fashion</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  /* Side wala purple menu band karo */
-.sidebar, .mobile-menu, #sideMenu, .side-nav {
-  display: none !important;
-}
-
-/* Upar wala kaala menu wapas lao - Horizontal */
-nav, .navbar {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  background: #111 !important;
-  position: relative !important;
-  width: 100% !important;
-  left: 0 !important;
-  top: 0 !important;
-}
+/* TOP MENU FINAL FIX */
+.main-header { background:#0f0f0f !important; display:flex !important; justify-content:center !important; gap:22px !important; padding:12px 0 !important; width:100% !important; }
+.main-header a { color:white !important; text-decoration:none !important; }
+.filter-dropdown { position:relative !important; display:inline-block !important; }
+.filter-list { display:none; position:absolute; background:white; min-width:150px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:9999; top:100%; left:0; }
+.filter-dropdown:hover .filter-list { display:block; }
+.filter-list a { color:black !important; padding:8px 12px; display:block; }
+div[style*="fef9e8"] { display:none !important; }
 html, body { overflow-x: hidden !important; width: 100% !important; max-width: 100vw !important; }
 body { touch-action: pan-y !important; }
 .product-card img { object-fit: contain !important; height: auto !important; background: white !important; }
