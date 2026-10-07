@@ -432,14 +432,9 @@ function openP(el){
 function filterCol(type){
   const cards=document.querySelectorAll('.card');
   cards.forEach(c=>{
-    const s=c.getAttribute('data-size');
-    if(type==='All' || s===type){c.style.display='block';}else{c.style.display='none';}
+    const txt=(c.getAttribute('data-size')||c.innerText||'').toUpperCase();
+    if(type==='All' || txt.includes(type)){c.style.display='block';}else{c.style.display='none';}
   });
-  if(type==='JEWELLERY'){
-    document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'});
-  }
-}
-// har card ko clickable banao
 }
 // har card ko clickable banao
 setInterval(function(){
