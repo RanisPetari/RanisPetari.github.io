@@ -394,32 +394,7 @@ function payNow(name,price){
   };
   new Razorpay(opt).open();
 }
-// JEWELLERY ONLY POPUP + RAZORPAY
-window.addEventListener('load', function(){
-  document.querySelectorAll('div[data-size="LLERY"]').forEach(function(card){
-    card.style.cursor='pointer';
-    card.addEventListener('click', function(e){
-      if(e.target.tagName=='BUTTON') return;
-      let img=card.querySelector('img');
-      let src=img?img.src:'';
-      let txt=card.innerText;
-      let name=txt.split('₹')[0].replace('BUY NOW','').trim().substring(0,70);
-      let pm=txt.match(/₹\s*([\d,]+)/);
-      let priceText=pm?pm[0]:'₹1,499/-';
-      let pr=card.dataset.price?parseInt(card.dataset.price):1499;
-      if(pm) pr=parseInt(pm[1].replace(/,/g,''));
-      document.getElementById('jImg').src=src;
-      document.getElementById('jName').innerText=name;
-      document.getElementById('jPrice').innerText=priceText;
-      document.getElementById('jBuy').onclick=function(){
-        closeModal('jewelModal');
-        payNow(name,pr);
-      };
-      openModal('jewelModal');
-    });
-  });
-});
-</script>
+
 
   <!-- PRODUCT DETAIL POPUP -->
 <div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;padding:15px;">
@@ -435,22 +410,55 @@ window.addEventListener('load', function(){
   </div>
 </div>
 
-<script>
-function openP(el){
-  var img = el.querySelector('img').src;
-  var title = el.innerText.split('₹')[0].trim();
-  var price = '₹' + el.innerText.split('₹')[1].split('\n')[0].trim();
-  document.getElementById('pmImg').src = img;
-  document.getElementById('pmTitle').innerText = title;
-  document.getElementById('pmPrice').innerText = price;
-  document.getElementById('pmBuy').onclick = function(){
-    document.getElementById('pModal').style.display='none';
-    // aapka purana buy wala function yaha call hoga
-    var buyBtn = el.querySelector('.buy, button');
-    if(buyBtn) buyBtn.click();
-  };
-  document.getElementById('pModal').style.display='flex';
+function openCheckoutFlow(name,price){
+  // Agar price nahi mila toh alert, default nahi
+  if(!price || price==0){ alert("Price nahi mila is product ka, ₹ check karo"); return; }
+
+  if(!document.getElementById('checkoutModal')){
+    let chk=document.createElement('div');
+    chk.id='checkoutModal';
+    chk.style='display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:100000;justify-content:center;align-items:center;';
+    chk.innerHTML=`<div style="background:#fff;max-width:400px;width:92%;border-radius:15px;padding:20px;position:relative;">
+    <span onclick="document.getElementById('checkoutModal').style.display='none'" style="position:absolute;top:10px;right:15px;font-size:28px;cursor:pointer;">&times;</span>
+    <h3 id="chkPName"></h3><p id="chkPPrice" style="color:#00c853;font-weight:700"></p>
+    <input id="cName" type="text" placeholder="Customer Name *" style="width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px;">
+    <input id="cNumber" type="tel" placeholder="Mobile Number *" style="width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px;">
+    <textarea id="cAddress" placeholder="Shipping Address *" rows="3" style="width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px;"></textarea>
+    <button id="cPayBtn" style="width:100%;background:#00c853;color:#fff;padding:14px;border:none;border-radius:8px;font-weight:800;">PROCEED TO PAY</button></div>`;
+    document.body.appendChild(chk);
   }
+  document.getElementById('chkPName').innerText=name;
+  document.getElementById('chkPPrice').innerText='₹'+price+'/-';
+  document.getElementById('checkoutModal').style.display='flex';
+  document.getElementById('cPayBtn').onclick=function(){
+    let cn=document.getElementById('cName').value.trim();
+    let cm=document.getElementById('cNumber').value.trim();
+    let ca=document.getElementById('cAddress').value.trim();
+    if(!cn||cm.length<10||!ca){alert('Saare details bharo');return;}
+    document.getElementById('checkoutModal').style.display='none';
+    new Razorpay({key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,prefill:{name:cn,contact:cm},notes:{address:ca,product:name},theme:{color:"#00c853"},handler:function(r){alert(name+" Order Success! Price: ₹"+price+" ID: "+r.razorpay_payment_id);window.open("https://wa.me/919582601194?text=NEW ORDER%0AProduct: "+name+"%0APrice: Rs"+price+"%0AName:"+cn+"%0ANo:"+cm+"%0AAdd:"+ca+"%0APayID:"+r.razorpay_payment_id,"_blank");}}).open();
+  };
+}
+function openP(el){
+  // Yaha se asli price nikalega
+  var t=el.innerText;
+  var n=t.split('₹')[0].trim().replace('BUY NOW','').replace('Item: LLERY','').trim().substring(0,70);
+  var m=t.match(/₹\s*([\d,]+)/);
+  var p=m?parseInt(m[1].replace(/,/g,'')):0; // default hata diya, ab 0
+  openCheckoutFlow(n,p);
+}
+window.addEventListener('load', function(){
+  document.querySelectorAll('div[data-size]').forEach(function(card){
+    let h=card.innerHTML;
+    if(h.indexOf('BUY NOW')>-1 && h.indexOf('jbuy-btn')==-1){
+      card.innerHTML=h.replace('BUY NOW','<button class="jbuy-btn" style="background:#00c853;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:800;cursor:pointer;margin-top:8px;width:100%;">BUY NOW</button>');
+    }
+  });
+  document.querySelectorAll('div[data-size]').forEach(function(card){
+    let b=card.querySelector('.jbuy-btn');
+    if(b){b.addEventListener('click',function(e){e.stopPropagation();let t=card.innerText;let n=t.split('₹')[0].replace('BUY NOW','').replace('Item: LLERY','').trim().substring(0,70);let m=t.match(/₹\s*([\d,]+)/);let p=m?parseInt(m[1].replace(/,/g,'')):0;openCheckoutFlow(n,p);});}
+  });
+});
 function filterCol(type){
   const cards=document.querySelectorAll('.card');
   cards.forEach(c=>{
