@@ -293,7 +293,17 @@ div[data-size="LLERY"] img,div[data-size="LLERY"] video{height:250px!important;o
 <div class="card" data-size="LLERY" data-price="499"><img src="J6.jpeg"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
 <div class="card" data-size="LLERY" data-price="1199"><img src="J7.jpeg"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
 <div class="card" data-size="LLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-</div>  
+</div> 
+  <!-- JEWELLERY POPUP ONLY -->
+<div id="jewelModal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;justify-content:center;align-items:center">
+ <div style="background:#fff;padding:15px;border-radius:12px;max-width:380px;width:90%;text-align:center;position:relative">
+  <span onclick="closeModal('jewelModal')" style="position:absolute;top:5px;right:12px;font-size:28px;cursor:pointer">&times;</span>
+  <img id="jImg" style="width:100%;height:280px;object-fit:contain;background:#fff;border-radius:8px">
+  <h3 id="jName" style="margin:10px 0 5px;font-size:15px"></h3>
+  <p id="jPrice" style="font-weight:bold;color:#4a102c;font-size:18px"></p>
+  <button id="jBuy" style="background:#16a34a;color:#fff;padding:12px 20px;border:none;border-radius:8px;width:100%;font-weight:bold;font-size:16px;cursor:pointer">BUY NOW - Pay with Razorpay</button>
+ </div>
+</div>
 
 <!-- ABOUT US MODAL (Terms) -->
 <div id="aboutModal" class="modal">
@@ -385,10 +395,10 @@ function payNow(name,price){
   new Razorpay(opt).open();
 }
 window.addEventListener('load', function(){
-  document.querySelectorAll('a').forEach(function(b){
-    if(b.innerText.trim()=="BUY NOW"){
+  document.querySelectorAll('a, button.buy,.buy-now').forEach(function(b){
+    if(b.innerText.trim()=="BUY NOW" || b.classList.contains('buy')){
       b.href="javascript:void(0)";
-      b.onclick=function(e){ e.preventDefault(); var txt=b.parentElement.innerText; var pm=txt.match(/₹\s*(\d+)/); var pr=pm?parseInt(pm[1]):1799; var nm=txt.split('₹')[0].replace('BUY NOW','').trim().slice(0,45); payNow(nm,pr); return false; };
+      b.onclick=function(e){ e.preventDefault(); var card=b.closest('.card'); var name=card?card.innerText.split('₹')[0].trim().substring(0,60):"Rani's Product"; var pr=0; if(card && card.dataset.price) pr=parseInt(card.dataset.price); else { var txt=b.parentElement.innerText; var pm=txt.match(/₹\s*(\d+)/); pr=pm?parseInt(pm[1]):1499; } payNow(name,pr); }
     }
   });
 });
