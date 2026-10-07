@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -81,71 +81,6 @@ html, body {
   max-width: 100% !important;
   width: 100% !important;
 }
-/* FINAL - DARK MEHROON LEFT FILTER + RIGHT SIDE OPEN */
-nav, .navbar {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 250px !important;
-  height: 100vh !important;
-  background: #ffffff !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-  padding: 15px !important;
-  overflow-y: auto !important;
-  overflow-x: visible !important;
-  z-index: 1000 !important;
-  border-right: 2px solid #eee !important;
-}
-nav a, .navbar a, nav .dropbtn {
-  background: #4b0a16 !important;
-  color: white !important;
-  padding: 12px !important;
-  border-radius: 25px !important;
-  text-align: center !important;
-  display: block !important;
-  width: 100% !important;
-  text-decoration: none !important;
-  font-size: 14px !important;
-}
-nav ul, .navbar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; display: flex !important; flex-direction: column !important; gap: 10px !important; width: 100% !important; }
-nav ul li { position: relative !important; width: 100% !important; }
-/* FILTER RIGHT SIDE ME DARK MEHROON ME KHULEGA */
-nav ul li ul, .navbar ul li ul, nav .dropdown-content {
-  display: none !important;
-  position: absolute !important;
-  left: 255px !important;
-  top: 0 !important;
-  width: 200px !important;
-  background: #4b0a16 !important;
-  border-radius: 12px !important;
-  padding: 10px !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  z-index: 9999 !important;
-}
-nav ul li:hover ul, nav .dropdown:hover .dropdown-content { display: flex !important; }
-nav ul li ul a, nav .dropdown-content a { background: #7a1428 !important; color: white !important; }
-main, .hero, section, .content { margin-left: 250px !important; width: calc(100% - 250px) !important; }
-  display: block !important;
-  width: 100% !important;
-}
-
-body { overflow-x: hidden !important; }
-main, .hero, .content, .container, .products, section {
-  margin-left: 235px !important;
-  width: calc(100% - 235px) !important;
-}
-.card, .product, .product-card, .item {
-  width: 100% !important; min-width: 0 !important;
-  border-radius: 10px !important; overflow: visible !important;
-  background: #fff !important; border: 1px solid #eee !important;
-}
-.card img, .product img {
-  width: 100% !important; height: auto !important;
-  object-fit: contain !important; object-position: top !important;
-}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 .topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px}
   .price{text-decoration:none !important; color:#000 !important; font-weight:bold;}
@@ -213,6 +148,7 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('Kurti')">Kurti Collection</a>
       <a onclick="filterCol('Sharara')">Sharara Collection</a>
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
+      <a onclick="filterCol('JEWELLERY');document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'})">Jewellery Item</a>
     </div>
   </div>
 
@@ -339,6 +275,17 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
 <div class="card" data-size="SAREE" data-price="1499"><img src="55.jpeg"><div>Tradition flaunt with Silk<br><span class="price"><s>₹1,999</s> ₹1,499/-</span><br><small>Item: SAREE</small></div><a href="https://wa.me/919711900520?text=Hi, I want Item No 55"><button>BUY NOW</button></a></div>
 
 </div>
+<h2 id="jewellery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;">JEWELLERY ITEM - BUY NOW</h2>
+<div class="collection-grid">
+<div class="card" data-size="JEWELLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Mini Sling Major Style - only ₹1,999/-<br><span class="price">₹1,999/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="1499"><img src="J2.jpeg"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="1299"><img src="J3.jpeg"><div>Garba Royal Oxidised Jewellery Set<br><span class="price">₹1,299/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="1399"><img src="J4.jpeg"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="599"><img src="J5.jpeg"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="499"><img src="J6.jpeg"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="1199"><img src="J7.jpeg"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="JEWELLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+</div>  
 
 <!-- ABOUT US MODAL (Terms) -->
 <div id="aboutModal" class="modal">
@@ -481,6 +428,13 @@ function openP(el){
     if(buyBtn) buyBtn.click();
   };
   document.getElementById('pModal').style.display='flex';
+  }
+function filterCol(type){
+  const cards=document.querySelectorAll('.card');
+  cards.forEach(c=>{
+    const txt=(c.getAttribute('data-size')||c.innerText||'').toUpperCase();
+    if(type==='All' || txt.includes(type)){c.style.display='block';}else{c.style.display='none';}
+  });
 }
 // har card ko clickable banao
 setInterval(function(){
