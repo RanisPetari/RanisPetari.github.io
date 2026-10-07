@@ -394,29 +394,33 @@ function payNow(name,price){
   };
   new Razorpay(opt).open();
 }
+// JEWELLERY ONLY POPUP + RAZORPAY
 window.addEventListener('load', function(){
-  document.querySelectorAll('a, button.buy,.buy-now').forEach(function(b){
-    if(b.innerText.trim()=="BUY NOW" || b.classList.contains('buy')){
-      b.href="javascript:void(0)";
-      b.onclick=function(e){ e.preventDefault(); var card=b.closest('.card'); var name=card?card.innerText.split('₹')[0].trim().substring(0,60):"Rani's Product"; var pr=0; if(card && card.dataset.price) pr=parseInt(card.dataset.price); else { var txt=b.parentElement.innerText; var pm=txt.match(/₹\s*(\d+)/); pr=pm?parseInt(pm[1]):1499; } payNow(name,pr); }
-    }
+  document.querySelectorAll('div[data-size="LLERY"]').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click', function(e){
+      if(e.target.tagName=='BUTTON') return;
+      let img=card.querySelector('img');
+      let src=img?img.src:'';
+      let txt=card.innerText;
+      let name=txt.split('₹')[0].replace('BUY NOW','').trim().substring(0,70);
+      let pm=txt.match(/₹\s*([\d,]+)/);
+      let priceText=pm?pm[0]:'₹1,499/-';
+      let pr=card.dataset.price?parseInt(card.dataset.price):1499;
+      if(pm) pr=parseInt(pm[1].replace(/,/g,''));
+      document.getElementById('jImg').src=src;
+      document.getElementById('jName').innerText=name;
+      document.getElementById('jPrice').innerText=priceText;
+      document.getElementById('jBuy').onclick=function(){
+        closeModal('jewelModal');
+        payNow(name,pr);
+      };
+      openModal('jewelModal');
+    });
   });
 });
 </script>
-<script>
-setInterval(function(){
-  document.querySelectorAll('div').forEach(function(d){
-    var s = d.getAttribute('style') || '';
-    if(s.indexOf('grid') > -1){
-      d.style.display = 'grid';
-      d.style.gridTemplateColumns = '1fr 1fr';
-      d.style.gap = '10px';
-      d.style.padding = '10px';
-      d.style.width = '100%';
-    }
-  });
-}, 500);
-</script>
+
   <!-- PRODUCT DETAIL POPUP -->
 <div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;padding:15px;">
   <div style="background:#fff;max-width:450px;width:100%;border-radius:15px;overflow:hidden;max-height:90vh;overflow-y:auto;position:relative;">
