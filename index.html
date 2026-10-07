@@ -470,5 +470,25 @@ setInterval(function(){
     
     <p style="color:#000; font-size:13px; margin-top:15px; font-weight:bold;">Rani’s Petari | Curated Fashion, Crafted for You<br>©️ 2026 Rani’s Petari. All Rights Reserved.</p>
   </div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function openP(el){
+  var t=el.innerText;
+  var name=t.split('₹')[0].replace('BUY NOW','').trim().substring(0,60);
+  var m=t.match(/₹\s*([\d,]+)/);
+  var price=m?parseInt(m[1].replace(/,/g,'')):0;
+  if(!price)return alert('Price nahi mila');
+  var cn=prompt("Customer Name:"),cm=prompt("Mobile:"),ca=prompt("Address:");
+  if(!cn||!cm||!ca)return;
+  new Razorpay({key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,notes:{address:ca},theme:{color:"#00c853"},handler:function(r){window.open("https://wa.me/919582601194?text=ORDER "+name+" Rs"+price+" Name:"+cn+" No:"+cm+" Add:"+ca+" PayID:"+r.razorpay_payment_id,"_blank");}}).open();
+}
+setInterval(function(){
+  document.querySelectorAll('div[data-size]').forEach(function(card){
+    if(card.innerHTML.indexOf('jbuy-btn')==-1 && card.innerText.indexOf('BUY NOW')>-1){
+      card.innerHTML=card.innerHTML.replace('BUY NOW','<button class="jbuy-btn" onclick="openP(this.closest(\'div[data-size]\'));event.stopPropagation();" style="background:#00c853;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:800;width:100%;margin-top:8px;cursor:pointer;">BUY NOW</button>');
+    }
+  });
+},800);
+</script>
 </body>
 </html>
