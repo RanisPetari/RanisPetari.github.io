@@ -428,6 +428,18 @@ function openP(el){
     if(buyBtn) buyBtn.click();
   };
   document.getElementById('pModal').style.display='flex';
+  }
+function filterCol(type){
+  const cards=document.querySelectorAll('.card');
+  cards.forEach(c=>{
+    const s=c.getAttribute('data-size');
+    if(type==='All' || s===type){c.style.display='block';}else{c.style.display='none';}
+  });
+  if(type==='JEWELLERY'){
+    document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'});
+  }
+}
+// har card ko clickable banao
 }
 // har card ko clickable banao
 setInterval(function(){
