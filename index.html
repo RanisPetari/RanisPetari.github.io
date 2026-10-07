@@ -96,9 +96,14 @@ nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;ba
 .dropdown{position:relative;display:inline-block}
 .dropdown-content{display:none;position:absolute;background:#fff;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:1;border-radius:8px;top:25px}
 .dropdown-content a{color:#333;padding:12px 16px;display:block;text-decoration:none;font-size:14px}
+/* SAREE / SUIT - white box me full photo, 1 line me 2 product */
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px;max-width:1300px;margin:auto}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.1);text-align:center;padding-bottom:12px}
+.card img{width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#fff;cursor:zoom-in;display:block}
 .dropdown-content a:hover{background:#f5e6e8}
 .dropdown:hover .dropdown-content{display:block}
 
+  
 .hero{background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200') center/cover;height:380px;display:flex;align-items:center;justify-content:center}
 .hero-box{background:rgba(0,0,0,0.55);padding:30px;border-radius:12px;text-align:center;color:#fff}
 .hero-box h2{font-size:32px;margin-bottom:8px}
@@ -148,7 +153,7 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
       <a onclick="filterCol('Kurti')">Kurti Collection</a>
       <a onclick="filterCol('Sharara')">Sharara Collection</a>
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
-      <a onclick="filterCol('JEWELLERY');document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'})">Jewellery Item</a>
+      <a onclick="filterCol('LLERY');document.getElementById('llery-section').scrollIntoView({behavior:'smooth'})">llery Item</a>
     </div>
   </div>
 
@@ -275,16 +280,16 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
 <div class="card" data-size="SAREE" data-price="1499"><img src="55.jpeg"><div>Tradition flaunt with Silk<br><span class="price"><s>₹1,999</s> ₹1,499/-</span><br><small>Item: SAREE</small></div><a href="https://wa.me/919711900520?text=Hi, I want Item No 55"><button>BUY NOW</button></a></div>
 
 </div>
-<h2 id="jewellery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;">JEWELLERY ITEM - BUY NOW</h2>
+<h2 id="llery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;">LLERY ITEM - BUY NOW</h2>
 <div class="collection-grid">
-<div class="card" data-size="JEWELLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Mini Sling Major Style - only ₹1,999/-<br><span class="price">₹1,999/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="1499"><img src="J2.jpeg"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="1299"><img src="J3.jpeg"><div>Garba Royal Oxidised Jewellery Set<br><span class="price">₹1,299/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="1399"><img src="J4.jpeg"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="599"><img src="J5.jpeg"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="499"><img src="J6.jpeg"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="1199"><img src="J7.jpeg"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="JEWELLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br>Item: JEWELLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Mini Sling Major Style - only ₹1,999/-<br><span class="price">₹1,999/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1499"><img src="J2.jpeg"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1299"><img src="J3.jpeg"><div>Garba Royal Oxidised llery Set<br><span class="price">₹1,299/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1399"><img src="J4.jpeg"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="599"><img src="J5.jpeg"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="499"><img src="J6.jpeg"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1199"><img src="J7.jpeg"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
+<div class="card" data-size="LLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
 </div>  
 
 <!-- ABOUT US MODAL (Terms) -->
@@ -470,25 +475,5 @@ setInterval(function(){
     
     <p style="color:#000; font-size:13px; margin-top:15px; font-weight:bold;">Rani’s Petari | Curated Fashion, Crafted for You<br>©️ 2026 Rani’s Petari. All Rights Reserved.</p>
   </div>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-function openP(el){
-  var t=el.innerText;
-  var name=t.split('₹')[0].replace('BUY NOW','').trim().substring(0,60);
-  var m=t.match(/₹\s*([\d,]+)/);
-  var price=m?parseInt(m[1].replace(/,/g,'')):0;
-  if(!price)return alert('Price nahi mila');
-  var cn=prompt("Customer Name:"),cm=prompt("Mobile:"),ca=prompt("Address:");
-  if(!cn||!cm||!ca)return;
-  new Razorpay({key:"rzp_live_Tj0fPF1woHNLkQ",amount:price*100,currency:"INR",name:"Rani's Petari",description:name,notes:{address:ca},theme:{color:"#00c853"},handler:function(r){window.open("https://wa.me/919582601194?text=ORDER "+name+" Rs"+price+" Name:"+cn+" No:"+cm+" Add:"+ca+" PayID:"+r.razorpay_payment_id,"_blank");}}).open();
-}
-setInterval(function(){
-  document.querySelectorAll('div[data-size]').forEach(function(card){
-    if(card.innerHTML.indexOf('jbuy-btn')==-1 && card.innerText.indexOf('BUY NOW')>-1){
-      card.innerHTML=card.innerHTML.replace('BUY NOW','<button class="jbuy-btn" onclick="openP(this.closest(\'div[data-size]\'));event.stopPropagation();" style="background:#00c853;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:800;width:100%;margin-top:8px;cursor:pointer;">BUY NOW</button>');
-    }
-  });
-},800);
-</script>
 </body>
 </html>
