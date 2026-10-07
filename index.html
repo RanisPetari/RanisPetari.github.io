@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -81,6 +81,71 @@ html, body {
   max-width: 100% !important;
   width: 100% !important;
 }
+/* FINAL - DARK MEHROON LEFT FILTER + RIGHT SIDE OPEN */
+nav, .navbar {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 250px !important;
+  height: 100vh !important;
+  background: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  padding: 15px !important;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+  z-index: 1000 !important;
+  border-right: 2px solid #eee !important;
+}
+nav a, .navbar a, nav .dropbtn {
+  background: #4b0a16 !important;
+  color: white !important;
+  padding: 12px !important;
+  border-radius: 25px !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+}
+nav ul, .navbar ul { list-style: none !important; padding: 0 !important; margin: 0 !important; display: flex !important; flex-direction: column !important; gap: 10px !important; width: 100% !important; }
+nav ul li { position: relative !important; width: 100% !important; }
+/* FILTER RIGHT SIDE ME DARK MEHROON ME KHULEGA */
+nav ul li ul, .navbar ul li ul, nav .dropdown-content {
+  display: none !important;
+  position: absolute !important;
+  left: 255px !important;
+  top: 0 !important;
+  width: 200px !important;
+  background: #4b0a16 !important;
+  border-radius: 12px !important;
+  padding: 10px !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  z-index: 9999 !important;
+}
+nav ul li:hover ul, nav .dropdown:hover .dropdown-content { display: flex !important; }
+nav ul li ul a, nav .dropdown-content a { background: #7a1428 !important; color: white !important; }
+main, .hero, section, .content { margin-left: 250px !important; width: calc(100% - 250px) !important; }
+  display: block !important;
+  width: 100% !important;
+}
+
+body { overflow-x: hidden !important; }
+main, .hero, .content, .container, .products, section {
+  margin-left: 235px !important;
+  width: calc(100% - 235px) !important;
+}
+.card, .product, .product-card, .item {
+  width: 100% !important; min-width: 0 !important;
+  border-radius: 10px !important; overflow: visible !important;
+  background: #fff !important; border: 1px solid #eee !important;
+}
+.card img, .product img {
+  width: 100% !important; height: auto !important;
+  object-fit: contain !important; object-position: top !important;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 .topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px}
   .price{text-decoration:none !important; color:#000 !important; font-weight:bold;}
@@ -96,14 +161,9 @@ nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;ba
 .dropdown{position:relative;display:inline-block}
 .dropdown-content{display:none;position:absolute;background:#fff;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:1;border-radius:8px;top:25px}
 .dropdown-content a{color:#333;padding:12px 16px;display:block;text-decoration:none;font-size:14px}
-/* SAREE / SUIT - white box me full photo, 1 line me 2 product */
-.products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px;max-width:1300px;margin:auto}
-.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.1);text-align:center;padding-bottom:12px}
-.card img{width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#fff;cursor:zoom-in;display:block}
 .dropdown-content a:hover{background:#f5e6e8}
 .dropdown:hover .dropdown-content{display:block}
 
-  
 .hero{background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200') center/cover;height:380px;display:flex;align-items:center;justify-content:center}
 .hero-box{background:rgba(0,0,0,0.55);padding:30px;border-radius:12px;text-align:center;color:#fff}
 .hero-box h2{font-size:32px;margin-bottom:8px}
@@ -129,9 +189,6 @@ footer{background:#1a237e;color:#fff;text-align:center;padding:25px 15px;margin-
 .about-bg .inner{background:rgba(74,16,44,0.85);padding:18px;border-radius:10px;line-height:1.7}
 .contact-item{background:#f8f2f4;padding:10px;border-radius:8px;margin:8px 0;display:flex;justify-content:space-between}
 .order input,.order textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:7px}
-.collection-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:12px!important;padding:15px!important;max-width:1300px!important;margin:auto!important}
-div[data-size="LLERY"] img,div[data-size="LLERY"] video{height:250px!important;object-fit:contain!important;background:#fff!important;width:100%!important;display:block!important}
-.buy{background:#16a34a!important;color:#fff!important}
 </style>
 </head>
 <body>
@@ -156,7 +213,6 @@ div[data-size="LLERY"] img,div[data-size="LLERY"] video{height:250px!important;o
       <a onclick="filterCol('Kurti')">Kurti Collection</a>
       <a onclick="filterCol('Sharara')">Sharara Collection</a>
       <a onclick="filterCol('Patiala')">Patiala Collection</a>
-      <a onclick="filterCol('LLERY');document.getElementById('llery-section').scrollIntoView({behavior:'smooth'})">llery Item</a>
     </div>
   </div>
 
@@ -283,27 +339,6 @@ div[data-size="LLERY"] img,div[data-size="LLERY"] video{height:250px!important;o
 <div class="card" data-size="SAREE" data-price="1499"><img src="55.jpeg"><div>Tradition flaunt with Silk<br><span class="price"><s>₹1,999</s> ₹1,499/-</span><br><small>Item: SAREE</small></div><a href="https://wa.me/919711900520?text=Hi, I want Item No 55"><button>BUY NOW</button></a></div>
 
 </div>
-<h2 id="llery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;">LLERY ITEM - BUY NOW</h2>
-<div class="collection-grid">
-<div class="card" data-size="LLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Mini Sling Major Style - only ₹1,999/-<br><span class="price">₹1,999/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="1499"><img src="J2.jpeg"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="1299"><img src="J3.jpeg"><div>Garba Royal Oxidised llery Set<br><span class="price">₹1,299/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="1399"><img src="J4.jpeg"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="599"><img src="J5.jpeg"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="499"><img src="J6.jpeg"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="1199"><img src="J7.jpeg"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-<div class="card" data-size="LLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br>Item: LLERY<br><span class="buy-now">BUY NOW</span></div></div>
-</div> 
-  <!-- JEWELLERY POPUP ONLY -->
-<div id="jewelModal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;justify-content:center;align-items:center">
- <div style="background:#fff;padding:15px;border-radius:12px;max-width:380px;width:90%;text-align:center;position:relative">
-  <span onclick="closeModal('jewelModal')" style="position:absolute;top:5px;right:12px;font-size:28px;cursor:pointer">&times;</span>
-  <img id="jImg" style="width:100%;height:280px;object-fit:contain;background:#fff;border-radius:8px">
-  <h3 id="jName" style="margin:10px 0 5px;font-size:15px"></h3>
-  <p id="jPrice" style="font-weight:bold;color:#4a102c;font-size:18px"></p>
-  <button id="jBuy" style="background:#16a34a;color:#fff;padding:12px 20px;border:none;border-radius:8px;width:100%;font-weight:bold;font-size:16px;cursor:pointer">BUY NOW - Pay with Razorpay</button>
- </div>
-</div>
 
 <!-- ABOUT US MODAL (Terms) -->
 <div id="aboutModal" class="modal">
@@ -394,8 +429,29 @@ function payNow(name,price){
   };
   new Razorpay(opt).open();
 }
-
-
+window.addEventListener('load', function(){
+  document.querySelectorAll('a').forEach(function(b){
+    if(b.innerText.trim()=="BUY NOW"){
+      b.href="javascript:void(0)";
+      b.onclick=function(e){ e.preventDefault(); var txt=b.parentElement.innerText; var pm=txt.match(/₹\s*(\d+)/); var pr=pm?parseInt(pm[1]):1799; var nm=txt.split('₹')[0].replace('BUY NOW','').trim().slice(0,45); payNow(nm,pr); return false; };
+    }
+  });
+});
+</script>
+<script>
+setInterval(function(){
+  document.querySelectorAll('div').forEach(function(d){
+    var s = d.getAttribute('style') || '';
+    if(s.indexOf('grid') > -1){
+      d.style.display = 'grid';
+      d.style.gridTemplateColumns = '1fr 1fr';
+      d.style.gap = '10px';
+      d.style.padding = '10px';
+      d.style.width = '100%';
+    }
+  });
+}, 500);
+</script>
   <!-- PRODUCT DETAIL POPUP -->
 <div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;justify-content:center;align-items:center;padding:15px;">
   <div style="background:#fff;max-width:450px;width:100%;border-radius:15px;overflow:hidden;max-height:90vh;overflow-y:auto;position:relative;">
@@ -410,52 +466,34 @@ function payNow(name,price){
   </div>
 </div>
 
+<script>
 function openP(el){
-  var t = el.innerText;
-  var name = t.split('₹')[0].replace('BUY NOW','').trim().substring(0,60);
-  var m = t.match(/₹\s*([\d,]+)/);
-  var price = m?parseInt(m[1].replace(/,/g,'')):0;
-  if(!price){alert('Price nahi mila');return;}
-  var cn = prompt("Customer Name:");
-  if(!cn) return;
-  var cm = prompt("Mobile Number:");
-  if(!cm) return;
-  var ca = prompt("Full Address:");
-  if(!ca) return;
-  new Razorpay({
-    key:"rzp_live_Tj0fPF1woHNLkQ",
-    amount:price*100,
-    currency:"INR",
-    name:"Rani's Petari",
-    description:name,
-    prefill:{name:cn,contact:cm},
-    notes:{address:ca},
-    theme:{color:"#00c853"},
-    handler:function(r){
-      alert("Success! ₹"+price+" PayID:"+r.razorpay_payment_id);
-      window.open("https://wa.me/919582601194?text=ORDER "+name+" Rs"+price+" Name:"+cn+" No:"+cm+" Add:"+ca+" PayID:"+r.razorpay_payment_id,"_blank");
-    }
-  }).open();
+  var img = el.querySelector('img').src;
+  var title = el.innerText.split('₹')[0].trim();
+  var price = '₹' + el.innerText.split('₹')[1].split('\n')[0].trim();
+  document.getElementById('pmImg').src = img;
+  document.getElementById('pmTitle').innerText = title;
+  document.getElementById('pmPrice').innerText = price;
+  document.getElementById('pmBuy').onclick = function(){
+    document.getElementById('pModal').style.display='none';
+    // aapka purana buy wala function yaha call hoga
+    var buyBtn = el.querySelector('.buy, button');
+    if(buyBtn) buyBtn.click();
+  };
+  document.getElementById('pModal').style.display='flex';
 }
-function filterCol(type){
-  const cards=document.querySelectorAll('.card');
-  cards.forEach(c=>{
-    const txt=(c.getAttribute('data-size')||c.innerText||'').toUpperCase();
-    if(type==='All' || txt.includes(type)){c.style.display='block';}else{c.style.display='none';}
-  });
-}
-window.addEventListener('load', function(){
-  document.querySelectorAll('div[data-size]').forEach(function(card){
-    let h=card.innerHTML;
-    if(h.indexOf('BUY NOW')>-1 && h.indexOf('jbuy-btn')==-1){
-      card.innerHTML=h.replace('BUY NOW','<button class="jbuy-btn" style="background:#00c853;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:800;cursor:pointer;margin-top:8px;width:100%;">BUY NOW</button>');
+// har card ko clickable banao
+setInterval(function(){
+  document.querySelectorAll('.card').forEach(function(c){
+    if(!c.dataset.clickAdded){
+      c.style.cursor='pointer';
+      c.dataset.clickAdded='1';
+      c.addEventListener('click', function(e){
+        if(e.target.tagName!=='BUTTON') openP(c);
+      });
     }
   });
-  document.querySelectorAll('div[data-size]').forEach(function(card){
-    let b=card.querySelector('.jbuy-btn');
-    if(b){b.addEventListener('click',function(e){e.stopPropagation();openP(card);});}
-  });
-});
+},1000);
 </script>
   <div style="background:#f2e5bf; color:#000; padding:30px 20px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
 
