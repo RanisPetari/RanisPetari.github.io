@@ -369,7 +369,7 @@ document.addEventListener('click', function(){ document.querySelectorAll('.dropd
 </div>
 </div>
 
-<!-- CHECKOUT FORM LIKE MYNTRA - No More Prompts -->
+<!-- CHECKOUT FORM LIKE MYNTRA - Fixed -->
 <div id="checkoutModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:100000;overflow-y:auto;">
 <div style="padding:15px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;position:sticky;top:0;">
 <span onclick="document.getElementById('checkoutModal').style.display='none'" style="font-size:24px;cursor:pointer;">←</span>
@@ -380,70 +380,69 @@ document.addEventListener('click', function(){ document.querySelectorAll('.dropd
 <input id="cName" placeholder="Full Name *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
 <input id="cMob" placeholder="Mobile Number *" type="tel" maxlength="10" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
 <input id="cPin" placeholder="Pincode *" maxlength="6" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
-<textarea id="cAddr" placeholder="Full Address (House No, Building, Street, Area) *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;height:80px;"></textarea>
+<textarea id="cAddr" placeholder="Full Address (House No, Building, Street, Area) *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;height:70px;"></textarea>
 <input id="cCity" placeholder="City *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:20px;">
 
 <div style="background:#f5f5f6;padding:12px;border-radius:8px;margin-bottom:15px;">
-<p><span id="coTitle">Product</span> - Size: <b id="coSize">M</b></p>
-<p style="font-weight:700;margin-top:5px;">Payable: <span id="coPrice">₹1499</span></p>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Product: <b id="coTitle"></b></span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Size: <b id="coSize"></b></span></div>
+<div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;"><span>Total Pay</span><span id="coPrice"></span></div>
 </div>
 
-<button onclick="finalPay()" style="width:100%;background:#ff3e6c;color:#fff;border:none;padding:15px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;">PAY NOW - Razorpay / UPI / COD</button>
+<button onclick="finalPay()" style="width:100%;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;">PAY NOW & PLACE ORDER</button>
 </div>
 </div>
 
 <style>@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}</style>
-
 <script>
 let selSizeVal = "";
 let curProd = {name:"", price:0, img:""};
 
 function selSize(btn, size){
- document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
- btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c';
- selSizeVal = size;
- document.getElementById('sizeErr').style.display='none';
+document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
+btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c';
+selSizeVal = size;
+document.getElementById('sizeErr').style.display='none';
 }
 function checkPin(){
- let pin = document.getElementById('pinCheck').value;
- let msg = document.getElementById('pinMsg');
- if(pin.length!=6){ msg.innerText="Enter valid 6 digit pincode"; msg.style.color="#ff3f6c"; return; }
- msg.innerText="✓ Delivery available in 4-5 days at "+pin; msg.style.color="#03a685";
- document.getElementById('cPin').value = pin;
+let pin = document.getElementById('pinCheck').value;
+let msg = document.getElementById('pinMsg');
+if(pin.length!=6){ msg.innerText="Enter valid 6 digit pincode"; msg.style.color="#ff3f6c"; return; }
+msg.innerText="✓ Delivery available in 4-5 days at "+pin; msg.style.color="#03a685";
+document.getElementById('cPin').value = pin;
 }
 function closeM(){ document.getElementById('pModal').style.display='none'; }
 function openP(el){
- selSizeVal="";
- document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
- let img = el.querySelector('img')? el.querySelector('img').src : "";
- let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
- let price = parseInt(el.getAttribute('data-price')||1499);
- curProd={name:title, price:price, img:img};
- document.getElementById('pmImg').src=img;
- document.getElementById('pmTitle').innerText=title;
- document.getElementById('pmPrice').innerText="₹"+price;
- document.getElementById('coTitle').innerText=title;
- document.getElementById('coPrice').innerText="₹"+price;
- document.getElementById('pModal').style.display='flex';
+selSizeVal="";
+let img = el.querySelector('img')? el.querySelector('img').src : "";
+let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+let price = parseInt(el.getAttribute('data-price')||1499);
+curProd = {name:title, price:price, img:img};
+document.getElementById('pmImg').src=img;
+document.getElementById('pmTitle').innerText=title;
+document.getElementById('pmPrice').innerText="₹"+price;
+document.getElementById('coTitle').innerText=title;
+document.getElementById('coPrice').innerText="₹"+price;
+document.getElementById('pModal').style.display='flex';
 }
 function addToBag(){
- if(!selSizeVal){ document.getElementById('sizeErr').style.display='block'; return; }
- document.getElementById('coSize').innerText=selSizeVal;
- document.getElementById('pModal').style.display='none';
- document.getElementById('checkoutModal').style.display='block';
+if(!selSizeVal){ document.getElementById('sizeErr').style.display='block'; return; }
+document.getElementById('coSize').innerText=selSizeVal;
+document.getElementById('pModal').style.display='none';
+document.getElementById('checkoutModal').style.display='block';
 }
 function finalPay(){
- let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
- if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
- if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
- // Razorpay like your old
- var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal, handler:function(r){
-   alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
-   var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APincode: "+p+"%0ACity: "+city+"%0AAddress: "+a;
-   window.open("https://wa.me/919582601194?text="+msg,"_blank");
-   document.getElementById('checkoutModal').style.display='none';
- }, theme:{color:"#ff3e6c"} };
- new Razorpay(opt).open();
+let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
+if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
+if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
+var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
+handler:function(r){
+alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
+var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a;
+window.open("https://wa.me/919582601194?text="+msg,"_blank");
+document.getElementById('checkoutModal').style.display='none';
+}, theme:{color:"#ff3e6c"} };
+var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
 </body>
