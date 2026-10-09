@@ -432,18 +432,18 @@ document.getElementById('pModal').style.display='none';
 document.getElementById('checkoutModal').style.display='block';
 }
 function finalPay(){
-let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
-if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
-if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
-var opt={ key:"rzp_live_Tj0FPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
-handler:function(r){
-alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
-var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a;
-window.open("https://wa.me/919711900520?text="+msg,"_blank");
-document.getElementById('checkoutModal').style.display='none';
-}, modal: { ondismiss: function(){
-var msg="PAYMENT CANCELLED / ABANDONED%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a+"%0AReason: Customer exited payment";
-window.open("https://wa.me/919711900520?text="+msg,"_blank");
+ let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value;
+ if(!n||!m||!p||!a){ alert("Please fill all fields"); return; }
+ if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
+ var opt={ key:"rzp_live_Tj0FPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
+ handler:function(r){
+ alert("Payment Success! ID: "+r.razorpay_payment_id);
+ var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a;
+ window.open("https://wa.me/919711900520?text="+msg,"_blank");
+ document.getElementById('checkoutModal').style.display='none';
+ }, theme:{color:"#ff3e6c"} };
+ var rzp = new Razorpay(opt); rzp.open();
+}
 alert("Customer ne payment cancel kar diya. Message owner ko chala gaya.");
 } }, theme:{color:"#ff3e6c"} };
 var rzp = new Razorpay(opt); rzp.open();
