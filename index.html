@@ -362,11 +362,7 @@ document.addEventListener('click', function(){ document.querySelectorAll('.dropd
 
 <!-- MYNTRA STYLE BUTTONS -->
 <div style="display:flex;gap:10px;position:sticky;bottom:0;background:#fff;padding:10px 0;">
-<button onclick="addToBag()" style="flex:1;background:#fff;border:1px solid #d4d5d9;padding:14px;border-radius:8px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;">♡ WISHLIST</button>
-<button id="pmBuy" style="flex:2;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;cursor:pointer;">ADD TO BAG</button>
-</div>
-</div>
-</div>
+<button id="pmBuy" onclick="addToBag()" style="flex:1;background:#0d4a8a;color:#fff;border:none;padding:16px;border-radius:30px;font-weight:800;font-size:16px;cursor:pointer;">BUY NOW</button>
 </div>
 
 <!-- CHECKOUT FORM LIKE MYNTRA - Fixed -->
@@ -432,21 +428,18 @@ document.getElementById('pModal').style.display='none';
 document.getElementById('checkoutModal').style.display='block';
 }
 function finalPay(){
- let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value;
- if(!n||!m||!p||!a){ alert("Please fill all fields"); return; }
- if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
- var opt={ key:"rzp_live_Tj0FPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
- handler:function(r){
- alert("Payment Success! ID: "+r.razorpay_payment_id);
- var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a;
- window.open("https://wa.me/919711900520?text="+msg,"_blank");
- document.getElementById('checkoutModal').style.display='none';
- }, theme:{color:"#ff3e6c"} };
- var rzp = new Razorpay(opt); rzp.open();
-}
-alert("Customer ne payment cancel kar diya. Message owner ko chala gaya.");
-} }, theme:{color:"#ff3e6c"} };
+let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
+if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
+if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
+var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
+handler:function(r){
+alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
+var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a;
+window.open("https://wa.me/919582601194?text="+msg,"_blank");
+document.getElementById('checkoutModal').style.display='none';
+}, theme:{color:"#ff3e6c"} };
 var rzp = new Razorpay(opt); rzp.open();
+}
 </script>
 </body>
 </html>
