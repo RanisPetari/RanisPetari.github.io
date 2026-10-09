@@ -1,120 +1,449 @@
-<!DOCTYPE html> <html lang="en"> <head> <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ3DCR2EHH"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-GJ3DCR2EHH'); </script> <script src="https://checkout.razorpay.com/v1/checkout.js"></script> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>RanisPetari - Where Tradition Meets Fashion</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <style> {margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif} html, body { overflow-x:hidden !important; max-width:100% !important; width:100% !important; } body { touch-action: pan-y !important; background:#fffaf5; } .topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;} @keyframes leftRight{0%{transform:translateX(0)}50%{transform:translateX(12px)}100%{transform:translateX(0)}} .logo-move{animation:leftRight 2s infinite ease-in-out; height:50px; background:white; border-radius:50%; padding:4px;} nav{background:#1c1c2e;display:flex;justify-content:center;gap:18px;padding:12px;position:sticky;top:0;z-index:1000;flex-wrap:wrap;} nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;background:none;border:none;padding:5px 8px;} .dropdown{position:relative;display:inline-block} .dropdown-content{display:none;position:absolute;background:#fff;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:9999;border-radius:8px;top:28px;left:0;max-height:400px;overflow:auto;} .dropdown-content.show{display:block !important;} .dropdown-content a{color:#333 !important;padding:10px 14px;display:block;text-decoration:none;font-size:14px} .dropdown-content a:hover{background:#f5e6e8} .dropdown:hover .dropdown-content{display:block} / GRID FIX - Mobile 2, Desktop 4 */ .products, .collection-grid{display:grid;gap:12px;padding:15px;max-width:1300px;margin:auto} .products{grid-template-columns:repeat(2,1fr);} .collection-grid{grid-template-columns:repeat(2,1fr);} @media (min-width:769px){ .products, .collection-grid{grid-template-columns:repeat(4,1fr);gap:20px;padding:20px;} } .card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.1);text-align:center;padding-bottom:12px;cursor:pointer;transition:0.2s;} .card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.15);} .card img, .card video{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;display:block;height:auto;} .card video{object-fit:cover;} .price{color:#4a102c;font-weight:bold;font-size:17px;margin:6px 0;display:block;} .buy{background:#0d4a8a;color:white !important;padding:8px 22px;border-radius:25px;text-decoration:none !important;display:inline-block;border:none;cursor:pointer;margin-top:6px;} .buy-now{background:#0d4a8a;color:#fff;padding:8px 22px;border-radius:25px;display:inline-block;cursor:pointer;margin-top:6px;font-size:14px;} @keyframes scrollLeft{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}} .scroll-text{display:inline-block; white-space:nowrap; animation:scrollLeft 18s linear infinite;} .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;padding:15px} .modal-box{background:#fff;width:100%;max-width:500px;border-radius:12px;padding:20px;max-height:90vh;overflow:auto} .close{float:right;font-size:22px;cursor:pointer} .order input,.order textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:7px} </style> </head> <body> <div class="topbar"> <img src="Ranislogo1.png" class="logo-move"> <div style="text-align:center;"><h1 style="margin:0;">RanisPetari</h1><p style="margin:0;">Where Tradition Meets Fashion</p></div> <img src="Ranislogo1.png" class="logo-move" style="animation-delay:0.7s;"> </div> <nav> <a onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a> <div class="dropdown"><button class="dropbtn">Collections <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"> <a onclick="filterCol('Anarkali')">Anarkali Suits</a> <a onclick="filterCol('Lahori')">Lahori Suits</a> <a onclick="filterCol('Kurti')">Kurti Collection</a> <a onclick="filterCol('Sharara')">Sharara Collection</a> <a onclick="filterCol('Patiala')">Patiala Collection</a> <a onclick="filterCol('JEWELLERY');document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'})">JEWELLERY ITEM</a> <a onclick="filterCol('All')" style="border-top:1px solid #eee;font-weight:bold;">Show All</a> </div></div> <div class="dropdown"><button class="dropbtn">Size <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"> <a onclick="filterCol('M')">M</a><a onclick="filterCol('L')">L</a><a onclick="filterCol('XL')">XL</a><a onclick="filterCol('XXL')">XXL</a><a onclick="filterCol('All')">Show All</a> </div></div> <div class="dropdown"><button class="dropbtn">Colour <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"> <a onclick="filterCol('Red')">Red</a><a onclick="filterCol('Blue')">Blue</a><a onclick="filterCol('Green')">Green</a><a onclick="filterCol('Mustard')">Mustard</a><a onclick="filterCol('Off White')">Off White</a><a onclick="filterCol('All')">Show All</a> </div></div> <div class="dropdown"><button class="dropbtn">Pattern & Print <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"><a onclick="filterCol('Printed')">Printed</a><a onclick="filterCol('Solid')">Solid</a><a onclick="filterCol('All')">Show All</a></div></div> <div class="dropdown"><button class="dropbtn">Price Range <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"><a onclick="filterCol('499-999')">₹499-999</a><a onclick="filterCol('999-1999')">₹999-1999</a><a onclick="filterCol('1999-4999')">₹1999-4999</a><a onclick="filterCol('All')">Show All</a></div></div> <div class="dropdown"><button class="dropbtn">About Us <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"><a href="terms.html">Terms & Conditions</a><a href="owner.html">Owner</a></div></div> <div class="dropdown"><button class="dropbtn">Contact <i class="fa fa-caret-down"></i></button> <div class="dropdown-content"><a href="contact.html">Contact Us</a><a href="owner.html">Owner Info</a></div></div> </nav> <div style="background:#FFD700;color:#000;font-weight:bold;font-size:18px;padding:10px 0;overflow:hidden;white-space:nowrap;border-top:2px solid #000;border-bottom:2px solid #000;"> <marquee scrollamount="6">✨ DIWALI OFFER 2026 AVAILABLE - BOOK YOUR ORDER NOW ✨ DIWALI DHAMAKA SALE - Also KARWACHAUTH SPECIAL - UPTO 50% OFF ✨</marquee> </div> <div style="width:100%;background:#000;">
-  <img src="RANISAMPLE3.JPG" style="width:100%;height:auto;display:block;object-fit:contain;"> </div> <div style="background:#000; color:#fff; overflow:hidden; white-space:nowrap; padding:12px 0; margin:15px 0;"> <div class="scroll-text" style="font-weight:bold; font-size:16px;"> ✨ New Festive Collection 2026 ✨ | Payment & Delivery - Secure Payments | Visa • MasterCard • UPI • PayPal | Pan-India Delivery | No Return & No Exchange | Handmade with Love - For Every Rani ✨ </div> </div> <h2 id="shop" style="text-align:center;margin:25px 0;color:#4a102c">Our Best Sellers - Festive Collection</h2> <div class="products" id="product-grid"> <!-- 1-20 tak fixed with data attributes --> <div class="card" data-collection="Kurti" data-size="M L XL XXL" data-color="Beige" data-pattern="Printed" data-price="1850"><img src="1.jpeg" onclick="openP(this.parentElement)"><div>3Pcs Jute Co-ord Set<br><span class="price"><s>₹2,999</s> ₹1,850/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('3Pcs Jute Co-ord Set',1850)">BUY NOW</button></div> <div class="card" data-collection="Lahori" data-size="M L XL" data-color="Green" data-pattern="Printed" data-price="1499"><img src="2.jpeg" onclick="openP(this.parentElement)"><div>Nimbu Hara Dupatta Suit<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Nimbu Hara Dupatta Suit',1499)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="L XL" data-color="Red" data-pattern="Printed" data-price="999"><img src="3.jpeg" onclick="openP(this.parentElement)"><div>Floral Pink Dupatta Suit<br><span class="price"><s>₹1,299</s> ₹999/-</span><br><small>Size: L/XL</small></div><button class="buy" onclick="payNow('Floral Pink Dupatta Suit',999)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="M XXL" data-color="Yellow" data-pattern="Printed" data-price="1299"><img src="4.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Gulabo<br><span class="price"><s>₹1,499</s> ₹1,299/-</span><br><small>Size: M/XXL</small></div><button class="buy" onclick="payNow('Jaipuri Gulabo',1299)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="M XL XXL" data-color="Off White" data-pattern="Solid" data-price="2199"><img src="5.jpeg" onclick="openP(this.parentElement)"><div>Rich Chikenkari Co-Ord Set<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Size: M/XL/XXL</small></div><button class="buy" onclick="payNow('Rich Chikenkari Co-Ord Set',2199)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="L XXL" data-color="Mustard" data-pattern="Solid" data-price="2199"><img src="6.jpeg" onclick="openP(this.parentElement)"><div>Premium Linen Cotton Dupatta Set<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Size: L/XXL</small></div><button class="buy" onclick="payNow('Premium Linen Cotton Dupatta Set',2199)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="M L XL" data-color="Blue" data-pattern="Printed" data-price="1299"><img src="7.jpeg" onclick="openP(this.parentElement)"><div>3 Pcs Floral Print Suit<br><span class="price"><s>₹1,499</s> ₹1,299/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('3 Pcs Floral Print Suit',1299)">BUY NOW</button></div> <div class="card" data-collection="Patiala" data-size="S L XXL" data-color="Red" data-pattern="Solid" data-price="1599"><img src="8.jpeg" onclick="openP(this.parentElement)"><div>Sheesha Work - Rich Red Silk Set<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Size: S/L/XXL</small></div><button class="buy" onclick="payNow('Sheesha Work Rich Red Silk Set',1599)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="M L XL XXL" data-color="Off White" data-pattern="Solid" data-price="1799"><img src="9.jpeg" onclick="openP(this.parentElement)"><div>Designer Patch Work - Farsi Salwar<br><span class="price"><s>₹2,999</s> ₹1,799/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('Designer Patch Work Farsi Salwar',1799)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="M L XL XXL" data-color="Blue" data-pattern="Printed" data-price="1599"><img src="10.jpeg" onclick="openP(this.parentElement)"><div>Polka Dot Farshi salwar<br><span class="price"><s>₹1,799</s> ₹1,599/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('Polka Dot Farshi salwar',1599)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Green" data-pattern="Solid" data-price="1499"><img src="11.jpeg" onclick="openP(this.parentElement)"><div>Smooth Grey Embroidory Set<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Smooth Grey Embroidory Set',1499)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Blue" data-pattern="Solid" data-price="1599"><img src="12.jpeg" onclick="openP(this.parentElement)"><div>Jamuni Phool Dupatta Set<br><span class="price"><s>₹1,799</s> ₹1,599/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Jamuni Phool Dupatta Set',1599)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="L XL XXL" data-color="Red" data-pattern="Printed" data-price="1399"><img src="13.jpeg" onclick="openP(this.parentElement)"><div>Lemon Pink Royality dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: L/XL/XXL</small></div><button class="buy" onclick="payNow('Lemon Pink Royality dupatta set',1399)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="L XL XXL" data-color="Green" data-pattern="Printed" data-price="1399"><img src="14.jpeg" onclick="openP(this.parentElement)"><div>Phulkari dhoti 3 PCS dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: L/XL/XXL</small></div><button class="buy" onclick="payNow('Phulkari dhoti 3 PCS dupatta set',1399)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Yellow" data-pattern="Printed" data-price="1399"><img src="15.jpeg" onclick="openP(this.parentElement)"><div>Yellow flower Ankarkali Suit<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Yellow flower Ankarkali Suit',1399)">BUY NOW</button></div> <div class="card" data-collection="Patiala" data-size="XL XXL XXXL" data-color="Mustard" data-pattern="Solid" data-price="2299"><img src="16.jpeg" onclick="openP(this.parentElement)"><div>Rich Peach Elegant 3 Pcs Suit<br><span class="price"><s>₹2,599</s> ₹2,299/-</span><br><small>Size: XL/XXL/XXL</small></div><button class="buy" onclick="payNow('Rich Peach Elegant 3 Pcs Suit',2299)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="PLUS SIZE 48 50" data-color="Yellow" data-pattern="Solid" data-price="999"><img src="17.jpeg" onclick="openP(this.parentElement)"><div>Plus Comfort Yellow co-ord set<br><span class="price"><s>₹1,199</s> ₹999/-</span><br><small>Size: PLUS SIZE 48/50</small></div><button class="buy" onclick="payNow('Plus Comfort Yellow co-ord set',999)">BUY NOW</button></div> <div class="card" data-collection="Patiala" data-size="XL" data-color="Off White" data-pattern="Solid" data-price="1199"><img src="18.jpeg" onclick="openP(this.parentElement)"><div>Punjabi Grace- white pink contrast suit<br><span class="price"><s>₹1,299</s> ₹1,199/-</span><br><small>Size: XL - 4 PCS</small></div><button class="buy" onclick="payNow('Punjabi Grace white pink contrast suit',1199)">BUY NOW</button></div> <div class="card" data-collection="Lahori" data-size="XL" data-color="Blue" data-pattern="Solid" data-price="1399"><img src="19.jpeg" onclick="openP(this.parentElement)"><div>Silk Royality Dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: XL</small></div><button class="buy" onclick="payNow('Silk Royality Dupatta set',1399)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="L XL 4XL" data-color="Red" data-pattern="Solid" data-price="1499"><img src="20.jpeg" onclick="openP(this.parentElement)"><div>Reyon Mirror Pink Grace<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: L/XL/4XL</small></div><button class="buy" onclick="payNow('Reyon Mirror Pink Grace',1499)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="XL XXL 4XL" data-color="Off White" data-pattern="Solid" data-price="1599"><img src="21.jpeg" onclick="openP(this.parentElement)"><div>Royality In Black & White tessels<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Size: XL/XXL/4XL</small></div><button class="buy" onclick="payNow('Royality In Black White tessels',1599)">BUY NOW</button></div> <div class="card" data-collection="Anarkali" data-size="L XXL XXXXL" data-color="Green" data-pattern="Solid" data-price="2999"><img src="22.jpeg" onclick="openP(this.parentElement)"><div>Grace in RAMA green Golden Suit<br><span class="price"><s>₹2,299</s> ₹2,999/-</span><br><small>Size: L/XXL/XXXXL</small></div><button class="buy" onclick="payNow('Grace in RAMA green Golden Suit',2999)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Printed" data-price="1499"><img src="23.jpeg" onclick="openP(this.parentElement)"><div>Rama Green Contrast with sharara<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: STD</small></div><button class="buy" onclick="payNow('Rama Green Contrast with sharara',1499)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="STD" data-color="Red" data-pattern="Solid" data-price="1599"><img src="25.jpeg" onclick="openP(this.parentElement)"><div>Rani Pink Kurti With Skirt<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Rani Pink Kurti With Skirt',1599)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Solid" data-price="1599"><img src="27.jpeg" onclick="openP(this.parentElement)"><div>Rich Green sharara<br><span class="price"><s>₹1,699</s> ₹1,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Rich Green sharara',1599)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Solid" data-price="2599"><img src="29.jpeg" onclick="openP(this.parentElement)"><div>Grace in Green Lehnga<br><span class="price"><s>₹2,999</s> ₹2,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Grace in Green Lehnga',2599)">BUY NOW</button></div> <div class="card" data-collection="Kurti" data-size="STD" data-color="Blue" data-pattern="Printed" data-price="1599"><img src="30.jpeg" onclick="openP(this.parentElement)"><div>Purple Grace Skirt Kurti<br><span class="price"><s>₹1,699</s> ₹1,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Purple Grace Skirt Kurti',1599)">BUY NOW</button></div> <div class="card" data-collection="Sharara" data-size="STD" data-color="Yellow" data-pattern="Solid" data-price="2199"><img src="31.jpeg" onclick="openP(this.parentElement)"><div>Nawabi Golden Party Wear Kurti & Skirt<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Nawabi Golden Party Wear',2199)">BUY NOW</button></div> <!-- SAREE 32-55 --> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="32.jpeg" onclick="openP(this.parentElement)"><div>Digital print black & red with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Digital print black red saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="33.jpeg" onclick="openP(this.parentElement)"><div>Grey and Red Contrast Print with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Grey and Red Contrast Print saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="34.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Red & black bandhej saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Red black bandhej saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="35.jpeg" onclick="openP(this.parentElement)"><div>Cotton Queen with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Cotton Queen saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="36.jpeg" onclick="openP(this.parentElement)"><div>Organza Floral Pink<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Organza Floral Pink saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Off White" data-pattern="Printed" data-price="999"><img src="37.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Print With Blouse Saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Print saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="38.jpeg" onclick="openP(this.parentElement)"><div>Pure Chiffon Magic With Overall Print<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Pure Chiffon Magic saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="39.jpeg" onclick="openP(this.parentElement)"><div>Chiffon Love with Floral Pink<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Chiffon Love Floral Pink saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="40.jpeg" onclick="openP(this.parentElement)"><div>Festive Golden Purple Magic<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Festive Golden Purple Magic saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Mustard" data-pattern="Printed" data-price="999"><img src="41.jpeg" onclick="openP(this.parentElement)"><div>Pure Chiffon Narangi Orange saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Pure Chiffon Narangi Orange saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="42.jpeg" onclick="openP(this.parentElement)"><div>Half n Half Grace Saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Half n Half Grace Saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="43.jpeg" onclick="openP(this.parentElement)"><div>Evergreen Grace with Chiffon Magic<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Evergreen Grace saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="44.jpeg" onclick="openP(this.parentElement)"><div>Forever style with chiffon<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Forever style chiffon saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="45.jpeg" onclick="openP(this.parentElement)"><div>Gracefull Strip with Blouse<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Gracefull Strip with Blouse saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="46.jpeg" onclick="openP(this.parentElement)"><div>Magic Blue stars with Chiffon<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Magic Blue stars saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Green" data-pattern="Printed" data-price="999"><img src="47.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Grace with Green<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Grace Green saree',999)">BUY NOW</button></div> <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="1199"><img src="54.jpeg" onclick="openP(this.parentElement)"><div>Royal Gotta Pati with Chiffon Grace<br><span class="price"><s>₹1,599</s> ₹1,199/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Royal Gotta Pati saree',1199)">BUY NOW</button></div>
-  <div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="1499"><img src="55.jpeg" onclick="openP(this.parentElement)"><div>Tradition flaunt with Silk<br><span class="price"><s>₹1,999</s> ₹1,499/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Tradition flaunt Silk saree',1499)">BUY NOW</button></div> </div> <h2 id="jewellery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;color:#4a102c;">JEWELLERY ITEM - BUY NOW</h2> <div class="collection-grid"> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline onclick="openP(this.parentElement)"></video><div>Mini Sling Major Style<br><span class="price">₹1,999/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Mini Sling Major Style',1999)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1499"><img src="J2.jpeg" onclick="openP(this.parentElement)"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Karwa Chauth Glamour Ruby Set',1499)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1299"><img src="J3.jpeg" onclick="openP(this.parentElement)"><div>Garba Royal Oxidised Jewellery Set<br><span class="price">₹1,299/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Garba Royal Oxidised Jewellery Set',1299)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1399"><img src="J4.jpeg" onclick="openP(this.parentElement)"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Peacock Elegance Set',1399)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="599"><img src="J5.jpeg" onclick="openP(this.parentElement)"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Statement Earrings Timelessly Desi',599)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="499"><img src="J6.jpeg" onclick="openP(this.parentElement)"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('A little blue luxury Ring',499)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1199"><img src="J7.jpeg" onclick="openP(this.parentElement)"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Wine-toned oxidised twist Set',1199)">BUY NOW</button></div> <div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline onclick="openP(this.parentElement)"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Garba Special Navratri Edit',1299)">BUY NOW</button></div> </div> <script> // ====== FILTER LOGIC FIXED ====== function filterCol(type){ const cards=document.querySelectorAll('.card'); const upType = type.toUpperCase(); if(type==='All'){ cards.forEach(c=>c.style.display='block'); window.scrollTo({top:document.getElementById('shop').offsetTop-80,behavior:'smooth'}); return; } if(type.includes('-')){ let parts = type.split('-'); let min = parseInt(parts[0]); let max = parseInt(parts[1]); cards.forEach(c=>{ let p = parseInt(c.getAttribute('data-price')||0); if(p>=min && p<=max) c.style.display='block'; else c.style.display='none'; }); return; } cards.forEach(c=>{ let size = (c.getAttribute('data-size')||'').toUpperCase(); let col = (c.getAttribute('data-collection')||'').toUpperCase(); let color = (c.getAttribute('data-color')||'').toUpperCase(); let pattern = (c.getAttribute('data-pattern')||'').toUpperCase(); let match = false; if(size.includes(upType)) match=true; if(col.includes(upType)) match=true; if(color.includes(upType)) match=true; if(pattern.includes(upType)) match=true; c.style.display = match? 'block' : 'none'; }); if(upType==='JEWELLERY'){ document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'}); } else { window.scrollTo({top:document.getElementById('shop').offsetTop-80,behavior:'smooth'}); } }
-    </script> <!-- FOOTER --> <div style="background:#f2e5bf; color:#000; padding:30px 20px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; margin-top:30px;"> <div style="flex:1; min-width:300px;"> <img src="RANISAMPLE1.jpg" style="width:100%; max-width:380px; border-radius:12px; margin-bottom:20px; object-fit:cover;"> <h3 style="color:#000; margin:15px 0 5px 0;">Payment & Delivery</h3> <p style="color:#000; font-weight:bold; margin:5px 0;">Secure Payments | Seamless Shopping</p> <p style="color:#000; margin:5px 0;">Visa • MasterCard • UPI • Net Banking • PayPal</p> <p style="color:#000; margin:5px 0;">100% Secure & Encrypted Payments</p> <p style="color:#000; margin:10px 0;"><b>Pan-India Delivery</b><br>Your order, delivered safely to your doorstep across India.</p> <hr style="border:0.5px solid #000; margin:15px 0;"> <p style="color:#000; font-size:14px; line-height:1.5;"><b>Rani’s Petari – Terms & Conditions</b><br> All orders are confirmed against 100% advance payment.<br> Please note that we currently follow a No Return & No Exchange Policy.<br> Kindly review product details, size and colour carefully before placing your order.</p> <p style="color:#000; font-size:13px; margin-top:15px; font-weight:bold;">Rani’s Petari | Curated Fashion, Crafted for You<br>©️ 2026 Rani’s Petari. All Rights Reserved.</p> </div> </div> <!-- ===== MYNTRA STYLE PRODUCT MODAL - FIXED ===== --> <div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:99999;justify-content:center;align-items:flex-end;"> <div style="background:#fff;width:100%;max-width:500px;border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;position:relative;animation:slideUp 0.3s;"> <span onclick="closeM()" style="position:absolute;top:12px;right:15px;font-size:26px;cursor:pointer;z-index:10;background:#f5f5f5;width:35px;height:35px;border-radius:50%;text-align:center;line-height:35px;">&times;</span> <img id="pmImg" src="" style="width:100%;height:450px;object-fit:contain;background:#f9f9f9;"> <div style="padding:16px;"> <h3 id="pmTitle" style="font-size:18px;font-weight:700;color:#282c3f;margin-bottom:4px;"></h3> <p id="pmPrice" style="font-size:20px;font-weight:700;color:#282c3f;"></p> <p style="font-size:12px;color:#03a685;margin:6px 0;">Inclusive of all taxes | Free Delivery</p> <!-- SIZE SELECT - AUTO HIDE FOR JEWELLERY --> <div id="sizeSection" style="margin:15px 0;"> <div style="display:flex;justify-content:space-between;align-items:center;"> <b style="font-size:14px;">SELECT SIZE</b> <span style="font-size:12px;color:#ff3f6c;font-weight:600;cursor:pointer;">SIZE CHART ></span> </div> <div id="sizeBox" style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;"> </div> <p id="sizeErr" style="color:#ff3f6c;font-size:12px;display:none;margin-top:6px;">Please select a size</p> </div> <!-- PINCODE CHECK --> <div style="border:1px solid #d4d5d9;border-radius:8px;padding:10px;display:flex;gap:10px;margin:15px 0;"> <input id="pinCheck" placeholder="Enter Pincode" maxlength="6" style="border:none;flex:1;outline:none;font-size:14px;"> <span onclick="checkPin()" style="color:#ff3f6c;font-weight:700;font-size:13px;cursor:pointer;">CHECK</span> </div> <p id="pinMsg" style="font-size:12px;margin-top:-10px;margin-bottom:10px;"></p> <!-- FIXED BUTTONS - WISHLIST HATA DIYA --> <div style="display:flex;gap:10px;position:sticky;bottom:0;background:#fff;padding:10px 0;"> <button id="pmBuy" onclick="addToBag()" style="flex:2;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;cursor:pointer;font-size:16px;">BUY NOW</button> </div> </div> </div> </div> <!-- CHECKOUT FORM --> <div id="checkoutModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:100000;overflow-y:auto;"> <div style="padding:15px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;position:sticky;top:0;"> <span onclick="document.getElementById('checkoutModal').style.display='none'" style="font-size:24px;cursor:pointer;">←</span> <b>Rani's Petari - Checkout</b> </div> <div style="padding:20px;max-width:500px;margin:0 auto;"> <h3 style="margin-bottom:15px;">Delivery Details</h3> <input id="cName" placeholder="Full Name *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;"> <input id="cMob" placeholder="Mobile Number *" type="tel" maxlength="10" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;"> <input id="cPin" placeholder="Pincode *" maxlength="6" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;"> <textarea id="cAddr" placeholder="Full Address (House No, Building, Street, Area) *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;height:70px;"></textarea> <input id="cCity" placeholder="City *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:20px;"> <div style="background:#f5f5f6;padding:12px;border-radius:8px;margin-bottom:15px;"> <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Product: <b id="coTitle"></b></span></div> <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Size: <b id="coSize"></b></span></div> <div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;"><span>Total Pay</span><span id="coPrice"></span></div> </div> <button onclick="finalPay()" style="width:100%;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;">PAY NOW & PLACE ORDER</button> </div> </div> <style>@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}</style> <script> let selSizeVal = ""; let curProd = {name:"", price:0, img:"", isJewellery:false};
-      function selSize(btn, size){ document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';}); btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c'; selSizeVal = size; document.getElementById('sizeErr').style.display='none'; document.getElementById('coSize').innerText = size; }
-function checkPin(){ let pin = document.getElementById('pinCheck').value; let msg = document.getElementById('pinMsg'); if(pin.length!=6){ msg.innerText="Enter valid 6 digit pincode"; msg.style.color="#ff3f6c"; return; } msg.innerText="✓ Delivery available in 4-5 days at "+pin; msg.style.color="#03a685"; document.getElementById('cPin').value = pin; }
-function closeM(){ document.getElementById('pModal').style.display='none'; selSizeVal=""; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ3DCR2EHH"></script>
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-GJ3DCR2EHH'); </script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RanisPetari - Where Tradition Meets Fashion</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+html, body { overflow-x:hidden !important; max-width:100% !important; width:100% !important; }
+body { touch-action: pan-y !important; background:#fffaf5; }
 
-// ===== MAIN FIX: SINGLE openP FUNCTION =====
-function openP(el){
-  if(!el) return;
-  selSizeVal="";
-  let imgEl = el.querySelector('img');
-  let videoEl = el.querySelector('video');
-  let img = imgEl? imgEl.src : "";
-  let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
-  let price = parseInt(el.getAttribute('data-price')||1499);
-  let collection = (el.getAttribute('data-collection')||'').toUpperCase();
-  let sizeData = (el.getAttribute('data-size')||'').toUpperCase();
-  let isJewellery = collection.includes('JEWELLERY') || sizeData.includes('JEWELLERY') || sizeData.includes('SAREE');
+/* TOP HEADER */
+.topbar{background:linear-gradient(90deg,#9a1f3d,#4a102c);color:#fff;text-align:center;padding:15px;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;}
+@keyframes leftRight{0%{transform:translateX(0)}50%{transform:translateX(12px)}100%{transform:translateX(0)}}
+.logo-move{animation:leftRight 2s infinite ease-in-out; height:50px; background:white; border-radius:50%; padding:4px;}
 
-  curProd = {name:title, price:price, img:img, isJewellery:isJewellery, sizeData: sizeData };
+nav{background:#1c1c2e;display:flex;justify-content:center;gap:18px;padding:12px;position:sticky;top:0;z-index:1000;flex-wrap:wrap;}
+nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;background:none;border:none;padding:5px 8px;}
+.dropdown{position:relative;display:inline-block}
+.dropdown-content{display:none;position:absolute;background:#fff;min-width:200px;box-shadow:0 8px 16px rgba(0,0,0,0.2);z-index:9999;border-radius:8px;top:28px;left:0;max-height:400px;overflow:auto;}
+.dropdown-content a{color:#333 !important;padding:10px 14px;display:block;text-decoration:none;font-size:14px}
+.dropdown-content a:hover{background:#f5e6e8}
+.dropdown:hover .dropdown-content{display:block}
 
-  document.getElementById('pmImg').src = imgEl? imgEl.src : "";
-  if(videoEl){ document.getElementById('pmImg').style.display='none'; } else { document.getElementById('pmImg').style.display='block'; document.getElementById('pmImg').src = img; }
+/* GRID FIX - Mobile 2, Desktop 4 */
+.products, .collection-grid{display:grid;gap:12px;padding:15px;max-width:1300px;margin:auto}
+.products{grid-template-columns:repeat(2,1fr);}
+.collection-grid{grid-template-columns:repeat(2,1fr);}
 
-  document.getElementById('pmTitle').innerText=title;
-  document.getElementById('pmPrice').innerText="₹"+price;
-  document.getElementById('coTitle').innerText=title;
-  document.getElementById('coPrice').innerText="₹"+price;
+@media (min-width:769px){
+  .products, .collection-grid{grid-template-columns:repeat(4,1fr);gap:20px;padding:20px;}
+}
 
-  // SIZE LOGIC FIX - Jewellery ke liye hide, Clothes ke liye sirf available size dikhao
-  let sizeSection = document.getElementById('sizeSection');
-  let sizeBox = document.getElementById('sizeBox');
-  sizeBox.innerHTML = "";
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.1);text-align:center;padding-bottom:12px;cursor:pointer;transition:0.2s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.15);}
+.card img, .card video{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;display:block;height:auto;}
+.card video{object-fit:cover;}
 
-  if(isJewellery){
-    sizeSection.style.display='none';
-    selSizeVal = "Free Size";
-    document.getElementById('coSize').innerText = "Free Size";
-  } else {
-    sizeSection.style.display='block';
-    // Jo size product me hai wahi button banao - video wala issue fix
-    let sizes = sizeData.split(' ');
-    let allSizes = ['S','M','L','XL','XXL','XXXL','4XL','STD','PLUS SIZE','48','50'];
-    // Clean sizes
-    let available = el.getAttribute('data-size') || "M L XL";
-    available.split(' ').forEach(s=>{
-      if(s.trim()=="") return;
-      let btn = document.createElement('button');
-      btn.className = 'sBtn';
-      btn.innerText = s;
-      btn.style.cssText = 'min-width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;padding:0 12px;';
-      btn.onclick = function(){ selSize(this, s); };
-      sizeBox.appendChild(btn);
-    });
-    selSizeVal = "";
-    document.getElementById('coSize').innerText = "Select Size";
+.price{color:#4a102c;font-weight:bold;font-size:17px;margin:6px 0;display:block;}
+.buy{background:#0d4a8a;color:white !important;padding:8px 22px;border-radius:25px;text-decoration:none !important;display:inline-block;border:none;cursor:pointer;margin-top:6px;}
+.buy-now{background:#0d4a8a;color:#fff;padding:8px 22px;border-radius:25px;display:inline-block;cursor:pointer;margin-top:6px;font-size:14px;}
+@keyframes scrollLeft{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.scroll-text{display:inline-block; white-space:nowrap; animation:scrollLeft 18s linear infinite;}
+
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;padding:15px}
+.modal-box{background:#fff;width:100%;max-width:500px;border-radius:12px;padding:20px;max-height:90vh;overflow:auto}
+.close{float:right;font-size:22px;cursor:pointer}
+.order input,.order textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:7px}
+</style>
+</head>
+<body>
+<div class="topbar">
+<img src="Ranislogo1.png" class="logo-move">
+<div style="text-align:center;"><h1 style="margin:0;">RanisPetari</h1><p style="margin:0;">Where Tradition Meets Fashion</p></div>
+<img src="Ranislogo1.png" class="logo-move" style="animation-delay:0.7s;">
+</div>
+
+<nav>
+<a onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a>
+<div class="dropdown"><button class="dropbtn">Collections <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content">
+<a onclick="filterCol('Anarkali')">Anarkali Suits</a>
+<a onclick="filterCol('Lahori')">Lahori Suits</a>
+<a onclick="filterCol('Kurti')">Kurti Collection</a>
+<a onclick="filterCol('Sharara')">Sharara Collection</a>
+<a onclick="filterCol('Patiala')">Patiala Collection</a>
+<a onclick="filterCol('JEWELLERY');document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'})">JEWELLERY ITEM</a>
+<a onclick="filterCol('All')" style="border-top:1px solid #eee;font-weight:bold;">Show All</a>
+</div></div>
+
+<div class="dropdown"><button class="dropbtn">Size <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content">
+<a onclick="filterCol('M')">M</a><a onclick="filterCol('L')">L</a><a onclick="filterCol('XL')">XL</a><a onclick="filterCol('XXL')">XXL</a><a onclick="filterCol('All')">Show All</a>
+</div></div>
+
+<div class="dropdown"><button class="dropbtn">Colour <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content">
+<a onclick="filterCol('Red')">Red</a><a onclick="filterCol('Blue')">Blue</a><a onclick="filterCol('Green')">Green</a><a onclick="filterCol('Mustard')">Mustard</a><a onclick="filterCol('Off White')">Off White</a><a onclick="filterCol('All')">Show All</a>
+</div></div>
+
+<div class="dropdown"><button class="dropbtn">Pattern & Print <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content"><a onclick="filterCol('Printed')">Printed</a><a onclick="filterCol('Solid')">Solid</a><a onclick="filterCol('All')">Show All</a></div></div>
+
+<div class="dropdown"><button class="dropbtn">Price Range <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content"><a onclick="filterCol('499-999')">₹499-999</a><a onclick="filterCol('999-1999')">₹999-1999</a><a onclick="filterCol('1999-4999')">₹1999-4999</a><a onclick="filterCol('All')">Show All</a></div></div>
+
+<div class="dropdown"><button class="dropbtn">About Us <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content"><a href="terms.html">Terms & Conditions</a><a href="owner.html">Owner</a></div></div>
+<div class="dropdown"><button class="dropbtn">Contact <i class="fa fa-caret-down"></i></button>
+<div class="dropdown-content"><a href="contact.html">Contact Us</a><a href="owner.html">Owner Info</a></div></div>
+</nav>
+<div style="background:#FFD700;color:#000;font-weight:bold;font-size:18px;padding:10px 0;overflow:hidden;white-space:nowrap;border-top:2px solid #000;border-bottom:2px solid #000;">
+<marquee scrollamount="6">✨ DIWALI OFFER 2026 AVAILABLE - BOOK YOUR ORDER NOW ✨ DIWALI DHAMAKA SALE -  Also KARWACHAUTH SPECIAL - UPTO 50% OFF ✨</marquee>
+</div>
+
+<div style="width:100%;background:#000;">
+<img src="RANISAMPLE3.JPG" style="width:100%;height:auto;display:block;object-fit:contain;">
+</div>
+
+<div style="background:#000; color:#fff; overflow:hidden; white-space:nowrap; padding:12px 0; margin:15px 0;">
+<div class="scroll-text" style="font-weight:bold; font-size:16px;"> ✨ New Festive Collection 2026 ✨ | Payment & Delivery - Secure Payments | Visa • MasterCard • UPI • PayPal | Pan-India Delivery | No Return & No Exchange | Handmade with Love - For Every Rani ✨ </div>
+</div>
+
+<h2 id="shop" style="text-align:center;margin:25px 0;color:#4a102c">Our Best Sellers - Festive Collection</h2>
+
+<div class="products" id="product-grid">
+<!-- 1-20 tak fixed with data attributes -->
+<div class="card" data-collection="Kurti" data-size="M L XL XXL" data-color="Beige" data-pattern="Printed" data-price="1850"><img src="1.jpeg" onclick="openP(this.parentElement)"><div>3Pcs Jute Co-ord Set<br><span class="price"><s>₹2,999</s> ₹1,850/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('3Pcs Jute Co-ord Set',1850)">BUY NOW</button></div>
+
+<div class="card" data-collection="Lahori" data-size="M L XL" data-color="Green" data-pattern="Printed" data-price="1499"><img src="2.jpeg" onclick="openP(this.parentElement)"><div>Nimbu Hara Dupatta Suit<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Nimbu Hara Dupatta Suit',1499)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="L XL" data-color="Red" data-pattern="Printed" data-price="999"><img src="3.jpeg" onclick="openP(this.parentElement)"><div>Floral Pink Dupatta Suit<br><span class="price"><s>₹1,299</s> ₹999/-</span><br><small>Size: L/XL</small></div><button class="buy" onclick="payNow('Floral Pink Dupatta Suit',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="M XXL" data-color="Yellow" data-pattern="Printed" data-price="1299"><img src="4.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Gulabo<br><span class="price"><s>₹1,499</s> ₹1,299/-</span><br><small>Size: M/XXL</small></div><button class="buy" onclick="payNow('Jaipuri Gulabo',1299)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="M XL XXL" data-color="Off White" data-pattern="Solid" data-price="2199"><img src="5.jpeg" onclick="openP(this.parentElement)"><div>Rich Chikenkari Co-Ord Set<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Size: M/XL/XXL</small></div><button class="buy" onclick="payNow('Rich Chikenkari Co-Ord Set',2199)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="L XXL" data-color="Mustard" data-pattern="Solid" data-price="2199"><img src="6.jpeg" onclick="openP(this.parentElement)"><div>Premium Linen Cotton Dupatta Set<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Size: L/XXL</small></div><button class="buy" onclick="payNow('Premium Linen Cotton Dupatta Set',2199)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="M L XL" data-color="Blue" data-pattern="Printed" data-price="1299"><img src="7.jpeg" onclick="openP(this.parentElement)"><div>3 Pcs Floral Print Suit<br><span class="price"><s>₹1,499</s> ₹1,299/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('3 Pcs Floral Print Suit',1299)">BUY NOW</button></div>
+
+<div class="card" data-collection="Patiala" data-size="S L XXL" data-color="Red" data-pattern="Solid" data-price="1599"><img src="8.jpeg" onclick="openP(this.parentElement)"><div>Sheesha Work - Rich Red Silk Set<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Size: S/L/XXL</small></div><button class="buy" onclick="payNow('Sheesha Work Rich Red Silk Set',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="M L XL XXL" data-color="Off White" data-pattern="Solid" data-price="1799"><img src="9.jpeg" onclick="openP(this.parentElement)"><div>Designer Patch Work - Farsi Salwar<br><span class="price"><s>₹2,999</s> ₹1,799/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('Designer Patch Work Farsi Salwar',1799)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="M L XL XXL" data-color="Blue" data-pattern="Printed" data-price="1599"><img src="10.jpeg" onclick="openP(this.parentElement)"><div>Polka Dot Farshi salwar<br><span class="price"><s>₹1,799</s> ₹1,599/-</span><br><small>Size: M/L/XL/XXL</small></div><button class="buy" onclick="payNow('Polka Dot Farshi salwar',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Green" data-pattern="Solid" data-price="1499"><img src="11.jpeg" onclick="openP(this.parentElement)"><div>Smooth Grey Embroidory Set<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Smooth Grey Embroidory Set',1499)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Blue" data-pattern="Solid" data-price="1599"><img src="12.jpeg" onclick="openP(this.parentElement)"><div>Jamuni Phool Dupatta Set<br><span class="price"><s>₹1,799</s> ₹1,599/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Jamuni Phool Dupatta Set',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="L XL XXL" data-color="Red" data-pattern="Printed" data-price="1399"><img src="13.jpeg" onclick="openP(this.parentElement)"><div>Lemon Pink Royality dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: L/XL/XXL</small></div><button class="buy" onclick="payNow('Lemon Pink Royality dupatta set',1399)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="L XL XXL" data-color="Green" data-pattern="Printed" data-price="1399"><img src="14.jpeg" onclick="openP(this.parentElement)"><div>Phulkari dhoti 3 PCS dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: L/XL/XXL</small></div><button class="buy" onclick="payNow('Phulkari dhoti 3 PCS dupatta set',1399)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="M L XL" data-color="Yellow" data-pattern="Printed" data-price="1399"><img src="15.jpeg" onclick="openP(this.parentElement)"><div>Yellow flower Ankarkali Suit<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: M/L/XL</small></div><button class="buy" onclick="payNow('Yellow flower Ankarkali Suit',1399)">BUY NOW</button></div>
+<div class="card" data-collection="Patiala" data-size="XL XXL XXXL" data-color="Mustard" data-pattern="Solid" data-price="2299"><img src="16.jpeg" onclick="openP(this.parentElement)"><div>Rich Peach Elegant 3 Pcs Suit<br><span class="price"><s>₹2,599</s> ₹2,299/-</span><br><small>Size: XL/XXL/XXL</small></div><button class="buy" onclick="payNow('Rich Peach Elegant 3 Pcs Suit',2299)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="PLUS SIZE 48 50" data-color="Yellow" data-pattern="Solid" data-price="999"><img src="17.jpeg" onclick="openP(this.parentElement)"><div>Plus Comfort Yellow co-ord set<br><span class="price"><s>₹1,199</s> ₹999/-</span><br><small>Size: PLUS SIZE 48/50</small></div><button class="buy" onclick="payNow('Plus Comfort Yellow co-ord set',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Patiala" data-size="XL" data-color="Off White" data-pattern="Solid" data-price="1199"><img src="18.jpeg" onclick="openP(this.parentElement)"><div>Punjabi Grace- white pink contrast suit<br><span class="price"><s>₹1,299</s> ₹1,199/-</span><br><small>Size: XL - 4 PCS</small></div><button class="buy" onclick="payNow('Punjabi Grace white pink contrast suit',1199)">BUY NOW</button></div>
+
+<div class="card" data-collection="Lahori" data-size="XL" data-color="Blue" data-pattern="Solid" data-price="1399"><img src="19.jpeg" onclick="openP(this.parentElement)"><div>Silk Royality Dupatta set<br><span class="price"><s>₹1,599</s> ₹1,399/-</span><br><small>Size: XL</small></div><button class="buy" onclick="payNow('Silk Royality Dupatta set',1399)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="L XL 4XL" data-color="Red" data-pattern="Solid" data-price="1499"><img src="20.jpeg" onclick="openP(this.parentElement)"><div>Reyon Mirror Pink Grace<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: L/XL/4XL</small></div><button class="buy" onclick="payNow('Reyon Mirror Pink Grace',1499)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="XL XXL 4XL" data-color="Off White" data-pattern="Solid" data-price="1599"><img src="21.jpeg" onclick="openP(this.parentElement)"><div>Royality In Black & White tessels<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Size: XL/XXL/4XL</small></div><button class="buy" onclick="payNow('Royality In Black White tessels',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Anarkali" data-size="L XXL XXXXL" data-color="Green" data-pattern="Solid" data-price="2999"><img src="22.jpeg" onclick="openP(this.parentElement)"><div>Grace in RAMA green Golden Suit<br><span class="price"><s>₹2,299</s> ₹2,999/-</span><br><small>Size: L/XXL/XXXXL</small></div><button class="buy" onclick="payNow('Grace in RAMA green Golden Suit',2999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Printed" data-price="1499"><img src="23.jpeg" onclick="openP(this.parentElement)"><div>Rama Green Contrast with sharara<br><span class="price"><s>₹1,699</s> ₹1,499/-</span><br><small>Size: STD</small></div><button class="buy" onclick="payNow('Rama Green Contrast with sharara',1499)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="STD" data-color="Red" data-pattern="Solid" data-price="1599"><img src="25.jpeg" onclick="openP(this.parentElement)"><div>Rani Pink Kurti With Skirt<br><span class="price"><s>₹1,899</s> ₹1,599/-</span><br><small>Size: STD</small></div><button class="buy" onclick="payNow('Rani Pink Kurti With Skirt',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Solid" data-price="1599"><img src="27.jpeg" onclick="openP(this.parentElement)"><div>Rich Green sharara<br><span class="price"><s>₹1,699</s> ₹1,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Rich Green sharara',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="STD" data-color="Green" data-pattern="Solid" data-price="2599"><img src="29.jpeg" onclick="openP(this.parentElement)"><div>Grace in Green Lehnga<br><span class="price"><s>₹2,999</s> ₹2,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Grace in Green Lehnga',2599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Kurti" data-size="STD" data-color="Blue" data-pattern="Printed" data-price="1599"><img src="30.jpeg" onclick="openP(this.parentElement)"><div>Purple Grace Skirt Kurti<br><span class="price"><s>₹1,699</s> ₹1,599/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Purple Grace Skirt Kurti',1599)">BUY NOW</button></div>
+
+<div class="card" data-collection="Sharara" data-size="STD" data-color="Yellow" data-pattern="Solid" data-price="2199"><img src="31.jpeg" onclick="openP(this.parentElement)"><div>Nawabi Golden Party Wear Kurti & Skirt<br><span class="price"><s>₹2,999</s> ₹2,199/-</span><br><small>Item: STD</small></div><button class="buy" onclick="payNow('Nawabi Golden Party Wear',2199)">BUY NOW</button></div>
+
+<!-- SAREE 32-55 -->
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="32.jpeg" onclick="openP(this.parentElement)"><div>Digital print black & red with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Digital print black red saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="33.jpeg" onclick="openP(this.parentElement)"><div>Grey and Red Contrast Print with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Grey and Red Contrast Print saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="34.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Red & black bandhej saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Red black bandhej saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="35.jpeg" onclick="openP(this.parentElement)"><div>Cotton Queen with blouse saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Cotton Queen saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="36.jpeg" onclick="openP(this.parentElement)"><div>Organza Floral Pink<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Organza Floral Pink saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Off White" data-pattern="Printed" data-price="999"><img src="37.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Print With Blouse Saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Print saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="38.jpeg" onclick="openP(this.parentElement)"><div>Pure Chiffon Magic With Overall Print<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Pure Chiffon Magic saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="39.jpeg" onclick="openP(this.parentElement)"><div>Chiffon Love with Floral Pink<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Chiffon Love Floral Pink saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="40.jpeg" onclick="openP(this.parentElement)"><div>Festive Golden Purple Magic<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Festive Golden Purple Magic saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Mustard" data-pattern="Printed" data-price="999"><img src="41.jpeg" onclick="openP(this.parentElement)"><div>Pure Chiffon Narangi Orange saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Pure Chiffon Narangi Orange saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="42.jpeg" onclick="openP(this.parentElement)"><div>Half n Half Grace Saree<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Half n Half Grace Saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Red" data-pattern="Printed" data-price="999"><img src="43.jpeg" onclick="openP(this.parentElement)"><div>Evergreen Grace with Chiffon Magic<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Evergreen Grace saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="44.jpeg" onclick="openP(this.parentElement)"><div>Forever style with chiffon<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Forever style chiffon saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="45.jpeg" onclick="openP(this.parentElement)"><div>Gracefull Strip with Blouse<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Gracefull Strip with Blouse saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="999"><img src="46.jpeg" onclick="openP(this.parentElement)"><div>Magic Blue stars with Chiffon<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Magic Blue stars saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Green" data-pattern="Printed" data-price="999"><img src="47.jpeg" onclick="openP(this.parentElement)"><div>Jaipuri Silk Grace with Green<br><span class="price"><s>₹1,499</s> ₹999/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Jaipuri Silk Grace Green saree',999)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="1199"><img src="54.jpeg" onclick="openP(this.parentElement)"><div>Royal Gotta Pati with Chiffon Grace<br><span class="price"><s>₹1,599</s> ₹1,199/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Royal Gotta Pati saree',1199)">BUY NOW</button></div>
+
+<div class="card" data-collection="Saree" data-size="SAREE" data-color="Blue" data-pattern="Printed" data-price="1499"><img src="55.jpeg" onclick="openP(this.parentElement)"><div>Tradition flaunt with Silk<br><span class="price"><s>₹1,999</s> ₹1,499/-</span><br><small>Item: SAREE</small></div><button class="buy" onclick="payNow('Tradition flaunt Silk saree',1499)">BUY NOW</button></div>
+</div>
+
+<!-- FIXED JEWELLERY SECTION - CHHOTA, SUIT KE BARABAR -->
+<h2 id="jewellery-section" style="text-align:center;margin:50px 0 20px;font-size:28px;color:#4a102c;">JEWELLERY ITEM - BUY NOW</h2>
+<div class="collection-grid">
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1999"><video src="J1.mp4" autoplay loop muted playsinline onclick="openP(this.parentElement)"></video><div>Mini Sling Major Style<br><span class="price">₹1,999/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Mini Sling Major Style',1999)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1499"><img src="J2.jpeg" onclick="openP(this.parentElement)"><div>Karwa Chauth Glamour Ruby Set<br><span class="price">₹1,499/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Karwa Chauth Glamour Ruby Set',1499)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1299"><img src="J3.jpeg" onclick="openP(this.parentElement)"><div>Garba Royal Oxidised Jewellery Set<br><span class="price">₹1,299/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Garba Royal Oxidised Jewellery Set',1299)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1399"><img src="J4.jpeg" onclick="openP(this.parentElement)"><div>Peacock Elegance Crafted to Stand Out<br><span class="price">₹1,399/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Peacock Elegance Set',1399)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="599"><img src="J5.jpeg" onclick="openP(this.parentElement)"><div>Statement Earrings Timelessly Desi<br><span class="price">₹599/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Statement Earrings Timelessly Desi',599)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="499"><img src="J6.jpeg" onclick="openP(this.parentElement)"><div>A little blue a lot of luxury Ring<br><span class="price">₹499/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('A little blue luxury Ring',499)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1199"><img src="J7.jpeg" onclick="openP(this.parentElement)"><div>Wine-toned with oxidised twist Set<br><span class="price">₹1,199/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Wine-toned oxidised twist Set',1199)">BUY NOW</button></div>
+
+<div class="card" data-collection="JEWELLERY" data-size="JEWELLERY" data-price="1299"><video src="J8.mp4" autoplay loop muted playsinline onclick="openP(this.parentElement)"></video><div>Garba Special Navratri Edit<br><span class="price">₹1,299/-</span><br><small>Item: JEWELLERY</small></div><button class="buy" onclick="payNow('Garba Special Navratri Edit',1299)">BUY NOW</button></div>
+</div>
+
+<script>
+// ====== FILTER LOGIC FIXED - SIZE, COLOUR, PRICE, PRINTED, COLLECTION ======
+function filterCol(type){
+  const cards=document.querySelectorAll('.card');
+  const upType = type.toUpperCase();
+
+  if(type==='All'){
+    cards.forEach(c=>c.style.display='block');
+    window.scrollTo({top:document.getElementById('shop').offsetTop-80,behavior:'smooth'});
+    return;
   }
 
+  // Price range filter like 499-999
+  if(type.includes('-')){
+    let parts = type.split('-');
+    let min = parseInt(parts[0]);
+    let max = parseInt(parts[1]);
+    cards.forEach(c=>{
+      let p = parseInt(c.getAttribute('data-price')||0);
+      if(p>=min && p<=max) c.style.display='block'; else c.style.display='none';
+    });
+    return;
+  }
+
+  cards.forEach(c=>{
+    let size = (c.getAttribute('data-size')||'').toUpperCase();
+    let col = (c.getAttribute('data-collection')||'').toUpperCase();
+    let color = (c.getAttribute('data-color')||'').toUpperCase();
+    let pattern = (c.getAttribute('data-pattern')||'').toUpperCase();
+    let txt = c.innerText.toUpperCase();
+
+    let match = false;
+    if(size.includes(upType)) match=true;
+    if(col.includes(upType)) match=true;
+    if(color.includes(upType)) match=true;
+    if(pattern.includes(upType)) match=true;
+    if(txt.includes(upType)) match=true;
+
+    c.style.display = match? 'block' : 'none';
+  });
+
+  // Jewellery special scroll
+  if(upType==='JEWELLERY'){
+    document.getElementById('jewellery-section').scrollIntoView({behavior:'smooth'});
+  } else {
+    window.scrollTo({top:document.getElementById('shop').offsetTop-80,behavior:'smooth'});
+  }
+}
+
+// ====== PRODUCT POPUP ======
+function openP(el){
+  if(!el) return;
+  var imgEl = el.querySelector('img, video');
+  var imgSrc = imgEl? (imgEl.src || imgEl.getAttribute('src') || imgEl.poster) : '';
+  if(imgEl && imgEl.tagName==='VIDEO') imgSrc = el.querySelector('video')? el.querySelector('video').getAttribute('poster') || '' : '';
+  // For video, show first frame as image if possible, else keep video src
+  var title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+  var priceMatch = el.innerText.match(/₹\s*[\d,]+/);
+  var price = priceMatch? priceMatch[0] : '';
+
+  document.getElementById('pmImg').src = el.querySelector('img')? el.querySelector('img').src : '';
+  if(el.querySelector('video')){ document.getElementById('pmImg').style.display='none'; } else { document.getElementById('pmImg').style.display='block'; }
+  document.getElementById('pmTitle').innerText = title;
+  document.getElementById('pmPrice').innerText = price;
+  document.getElementById('pmBuy').onclick = function(){
+    document.getElementById('pModal').style.display='none';
+    let priceVal = parseInt(el.getAttribute('data-price')||999);
+    let nameVal = title;
+    payNow(nameVal, priceVal);
+  };
   document.getElementById('pModal').style.display='flex';
 }
 
-function addToBag(){
-  if(!curProd.isJewellery &&!selSizeVal){
-    document.getElementById('sizeErr').style.display='block';
-    return;
-  }
-  if(curProd.isJewellery){
-    selSizeVal = "Free Size";
-    document.getElementById('coSize').innerText = "Free Size";
-  }
-  document.getElementById('pModal').style.display='none';
-  document.getElementById('checkoutModal').style.display='block';
-}
+// Close popup on outside click
+document.getElementById('pModal').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
 
-// Direct BUY NOW from card - FIXED
-function payNow(name, price){
-  curProd = {name:name, price:price, img:"", isJewellery: name.toLowerCase().includes('jewellery') || name.toLowerCase().includes('ring') || name.toLowerCase().includes('earring')? true : false };
-  // Check if card is jewellery by finding it
-  let cards = document.querySelectorAll('.card');
-  cards.forEach(c=>{
-    if(c.innerText.includes(name.substring(0,10))){
-      let col = (c.getAttribute('data-collection')||'').toUpperCase();
-      if(col.includes('JEWELLERY') || col.includes('SAREE')) curProd.isJewellery = true;
-    }
-  });
-
-  document.getElementById('coTitle').innerText=name;
-  document.getElementById('coPrice').innerText="₹"+price;
-  if(curProd.isJewellery){
-    selSizeVal = "Free Size";
-    document.getElementById('coSize').innerText="Free Size";
-    document.getElementById('checkoutModal').style.display='block';
-  } else {
-    // For clothes, open size popup first
-    let foundEl = null;
-    document.querySelectorAll('.card').forEach(c=>{ if((c.getAttribute('data-price')==price) && c.innerText.includes(name.split(' ')[0])) foundEl = c; });
-    if(foundEl){ openP(foundEl); } else { document.getElementById('checkoutModal').style.display='block'; }
-  }
-}
-
-function finalPay(){ let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value; if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; } if(m.length!=10){ alert("Enter 10 digit mobile"); return; } var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal, handler:function(r){ alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id); var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a; window.open("https://wa.me/919582601194?text="+msg,"_blank"); document.getElementById('checkoutModal').style.display='none'; }, theme:{color:"#ff3e6c"} }; var rzp = new Razorpay(opt); rzp.open(); }
-
-// ===== MOBILE DROPDOWN FIX - VIDEO WALA ISSUE =====
-document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('.dropdown.dropbtn').forEach(btn=>{
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      let content = this.nextElementSibling;
-      let isOpen = content.classList.contains('show');
-      document.querySelectorAll('.dropdown-content').forEach(dc=>dc.classList.remove('show'));
-      if(!isOpen) content.classList.add('show');
-    });
-  });
-  document.addEventListener('click', function(){
-    document.querySelectorAll('.dropdown-content').forEach(dc=>dc.classList.remove('show'));
+// Mobile dropdown click support
+document.querySelectorAll('.dropdown.dropbtn').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    let content = this.nextElementSibling;
+    let isOpen = content.style.display==='block';
+    document.querySelectorAll('.dropdown-content').forEach(dc=>dc.style.display='none');
+    content.style.display = isOpen? 'none' : 'block';
   });
 });
-</script> </body> </html>
+document.addEventListener('click', function(){ document.querySelectorAll('.dropdown-content').forEach(dc=>{ if(window.innerWidth<=768) dc.style.display='none'; }); });
+</script>
+
+<!-- FOOTER -->
+<div style="background:#f2e5bf; color:#000; padding:30px 20px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; margin-top:30px;">
+<div style="flex:1; min-width:300px;">
+<img src="RANISAMPLE1.jpg" style="width:100%; max-width:380px; border-radius:12px; margin-bottom:20px; object-fit:cover;">
+<h3 style="color:#000; margin:15px 0 5px 0;">Payment & Delivery</h3>
+<p style="color:#000; font-weight:bold; margin:5px 0;">Secure Payments | Seamless Shopping</p>
+<p style="color:#000; margin:5px 0;">Visa • MasterCard • UPI • Net Banking • PayPal</p>
+<p style="color:#000; margin:5px 0;">100% Secure & Encrypted Payments</p>
+<p style="color:#000; margin:10px 0;"><b>Pan-India Delivery</b><br>Your order, delivered safely to your doorstep across India.</p>
+<hr style="border:0.5px solid #000; margin:15px 0;">
+<p style="color:#000; font-size:14px; line-height:1.5;"><b>Rani’s Petari – Terms & Conditions</b><br> All orders are confirmed against 100% advance payment.<br> Please note that we currently follow a No Return & No Exchange Policy.<br> Kindly review product details, size and colour carefully before placing your order.</p>
+<p style="color:#000; font-size:13px; margin-top:15px; font-weight:bold;">Rani’s Petari | Curated Fashion, Crafted for You<br>©️ 2026 Rani’s Petari. All Rights Reserved.</p>
+</div>
+</div>
+<!-- ===== MYNTRA STYLE PRODUCT MODAL ===== -->
+<div id="pModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:99999;justify-content:center;align-items:flex-end;">
+<div style="background:#fff;width:100%;max-width:500px;border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;position:relative;animation:slideUp 0.3s;">
+<span onclick="closeM()" style="position:absolute;top:12px;right:15px;font-size:26px;cursor:pointer;z-index:10;background:#f5f5f5;width:35px;height:35px;border-radius:50%;text-align:center;line-height:35px;">&times;</span>
+
+<img id="pmImg" src="" style="width:100%;height:450px;object-fit:contain;background:#f9f9f9;">
+
+<div style="padding:16px;">
+<h3 id="pmTitle" style="font-size:18px;font-weight:700;color:#282c3f;margin-bottom:4px;"></h3>
+<p id="pmPrice" style="font-size:20px;font-weight:700;color:#282c3f;"></p>
+<p style="font-size:12px;color:#03a685;margin:6px 0;">Inclusive of all taxes | Free Delivery</p>
+
+<!-- SIZE SELECT LIKE MYNTRA -->
+<div style="margin:15px 0;">
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<b style="font-size:14px;">SELECT SIZE</b>
+<span style="font-size:12px;color:#ff3f6c;font-weight:600;cursor:pointer;">SIZE CHART ></span>
+</div>
+<div id="sizeBox" style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+<button class="sBtn" onclick="selSize(this,'S')" style="width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;">S</button>
+<button class="sBtn" onclick="selSize(this,'M')" style="width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;">M</button>
+<button class="sBtn" onclick="selSize(this,'L')" style="width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;">L</button>
+<button class="sBtn" onclick="selSize(this,'XL')" style="width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;">XL</button>
+<button class="sBtn" onclick="selSize(this,'XXL')" style="width:50px;height:50px;border:1px solid #d4d5d9;border-radius:50px;font-weight:600;background:#fff;cursor:pointer;">XXL</button>
+</div>
+<p id="sizeErr" style="color:#ff3f6c;font-size:12px;display:none;margin-top:6px;">Please select a size</p>
+</div>
+
+<!-- PINCODE CHECK LIKE MYNTRA -->
+<div style="border:1px solid #d4d5d9;border-radius:8px;padding:10px;display:flex;gap:10px;margin:15px 0;">
+<input id="pinCheck" placeholder="Enter Pincode" maxlength="6" style="border:none;flex:1;outline:none;font-size:14px;">
+<span onclick="checkPin()" style="color:#ff3f6c;font-weight:700;font-size:13px;cursor:pointer;">CHECK</span>
+</div>
+<p id="pinMsg" style="font-size:12px;margin-top:-10px;margin-bottom:10px;"></p>
+
+<!-- MYNTRA STYLE BUTTONS -->
+<div style="display:flex;gap:10px;position:sticky;bottom:0;background:#fff;padding:10px 0;">
+<button onclick="addToBag()" style="flex:1;background:#fff;border:1px solid #d4d5d9;padding:14px;border-radius:8px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;">♡ WISHLIST</button>
+<button id="pmBuy" style="flex:2;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;cursor:pointer;">ADD TO BAG</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CHECKOUT FORM LIKE MYNTRA - Fixed -->
+<div id="checkoutModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:100000;overflow-y:auto;">
+<div style="padding:15px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;position:sticky;top:0;">
+<span onclick="document.getElementById('checkoutModal').style.display='none'" style="font-size:24px;cursor:pointer;">←</span>
+<b>Rani's Petari - Checkout</b>
+</div>
+<div style="padding:20px;max-width:500px;margin:0 auto;">
+<h3 style="margin-bottom:15px;">Delivery Details</h3>
+<input id="cName" placeholder="Full Name *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
+<input id="cMob" placeholder="Mobile Number *" type="tel" maxlength="10" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
+<input id="cPin" placeholder="Pincode *" maxlength="6" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;">
+<textarea id="cAddr" placeholder="Full Address (House No, Building, Street, Area) *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:12px;height:70px;"></textarea>
+<input id="cCity" placeholder="City *" style="width:100%;padding:12px;border:1px solid #d4d5d9;border-radius:4px;margin-bottom:20px;">
+
+<div style="background:#f5f5f6;padding:12px;border-radius:8px;margin-bottom:15px;">
+<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Product: <b id="coTitle"></b></span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Size: <b id="coSize"></b></span></div>
+<div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;"><span>Total Pay</span><span id="coPrice"></span></div>
+</div>
+
+<button onclick="finalPay()" style="width:100%;background:#ff3e6c;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;">PAY NOW & PLACE ORDER</button>
+</div>
+</div>
+
+<style>@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}</style>
+<script>
+let selSizeVal = "";
+let curProd = {name:"", price:0, img:""};
+
+function selSize(btn, size){
+document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
+btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c';
+selSizeVal = size;
+document.getElementById('sizeErr').style.display='none';
+}
+function checkPin(){
+let pin = document.getElementById('pinCheck').value;
+let msg = document.getElementById('pinMsg');
+if(pin.length!=6){ msg.innerText="Enter valid 6 digit pincode"; msg.style.color="#ff3f6c"; return; }
+msg.innerText="✓ Delivery available in 4-5 days at "+pin; msg.style.color="#03a685";
+document.getElementById('cPin').value = pin;
+}
+function closeM(){ document.getElementById('pModal').style.display='none'; }
+function openP(el){
+selSizeVal="";
+let img = el.querySelector('img')? el.querySelector('img').src : "";
+let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+let price = parseInt(el.getAttribute('data-price')||1499);
+curProd = {name:title, price:price, img:img};
+document.getElementById('pmImg').src=img;
+document.getElementById('pmTitle').innerText=title;
+document.getElementById('pmPrice').innerText="₹"+price;
+document.getElementById('coTitle').innerText=title;
+document.getElementById('coPrice').innerText="₹"+price;
+document.getElementById('pModal').style.display='flex';
+}
+function addToBag(){
+if(!selSizeVal){ document.getElementById('sizeErr').style.display='block'; return; }
+document.getElementById('coSize').innerText=selSizeVal;
+document.getElementById('pModal').style.display='none';
+document.getElementById('checkoutModal').style.display='block';
+}
+function finalPay(){
+let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
+if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
+if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
+var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
+handler:function(r){
+alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
+var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a;
+window.open("https://wa.me/919582601194?text="+msg,"_blank");
+document.getElementById('checkoutModal').style.display='none';
+}, theme:{color:"#ff3e6c"} };
+var rzp = new Razorpay(opt); rzp.open();
+}
+</script>
+</body>
+</html>
