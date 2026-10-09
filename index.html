@@ -441,7 +441,7 @@ alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_i
 var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a;
 window.open("https://wa.me/919711900520?text="+msg,"_blank");
 document.getElementById('checkoutModal').style.display='none';
-}, theme:{color:"#ff3e6c"}, modal:{ ondismiss: function(){ var msg="EXITED AT PAYMENT%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a; window.open("https://wa.me/919711900520?text="+msg,"_blank"); } } };
+}, theme:{color:"#ff3e6c"}, modal:{ ondismiss: function(){ var msg="CANCELLED ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a; window.location.href="https://wa.me/917982213267?text="+msg; } } };
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
