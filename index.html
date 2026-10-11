@@ -270,9 +270,16 @@ function finalPay(){
   if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
 
   var opt={
-    key:"rzp_live_Tj0FPF1woHNLkQ",
-    amount: parseInt(curProd.price)*100,
-    currency:"INR",
+ key:"rzp_live_Tj0FPF1woHNLkQ",
+ amount: (function(){ 
+   let pr = parseInt(curProd.price); 
+   if(!pr || isNaN(pr)){
+     let txt = document.getElementById('finalPayBtn')?.innerText || document.getElementById('cPrice')?.innerText || "";
+     pr = parseInt(txt.replace(/[^0-9]/g,'')) || 999;
+   }
+   return pr*100; 
+ })(),
+ currency:"INR",
     name:"Rani Petari Collection",
     description: curProd.name + " - Size: " + selSizeVal,
     image:"https://ranispetari.github.io/logo.png",
