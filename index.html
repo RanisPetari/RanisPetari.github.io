@@ -189,10 +189,27 @@ function openBuyModal(btn){
 let card=btn.closest('.watch-card');
 let name=card.getAttribute('data-name');
 let price=parseInt(card.getAttribute('data-price'));
+let cat = card.getAttribute('data-category') || '';
+let isJew = cat.toUpperCase().includes('JEWELLERY') || name.toLowerCase().includes('jewellery') || name.toLowerCase().includes('ruby') || name.toLowerCase().includes('set') || name.toLowerCase().includes('peacock');
+
 let sizeEl=card.querySelector('.size-btn[style*="background: rgb(0, 0, 0)"]');
-let size=sizeEl?sizeEl.innerText:'M';
+let size = isJew ? 'FREE SIZE' : (sizeEl?sizeEl.innerText:'M');
+
 if(typeof curProd!=='undefined'){
-curProd={name:name+' ('+size+')',price:price};
+curProd={name:name+' ('+size+')',price:price,cat:cat};
+}
+
+let sDiv = document.getElementById('sizeSection');
+let mDiv = document.getElementById('liveMeasure');
+if(sDiv){
+  sDiv.style.display = isJew ? 'none' : 'block';
+}
+if(mDiv){
+  mDiv.style.display = isJew ? 'none' : 'none';
+  if(!isJew) mDiv.style.display='none'; // kapdo pe size click pe khulega
+}
+if(isJew){
+  selSizeVal = 'FREE SIZE';
 }
 let cPrice=document.getElementById('cPrice');
 if(cPrice) cPrice.innerText='₹'+price;
