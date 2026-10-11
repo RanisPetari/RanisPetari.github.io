@@ -260,28 +260,35 @@ function confirmSize(){
   document.getElementById('checkoutModal').style.display='flex';
 }
 function finalPay(){
-  let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAdd').value, city=document.getElementById('cCity').value;
+  let n=document.getElementById('cName').value.trim();
+  let m=document.getElementById('cMob').value.trim();
+  let p=document.getElementById('cPin').value.trim();
+  let a=document.getElementById('cAddr').value.trim();
+  let city=document.getElementById('cCity').value.trim();
+
   if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
   if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
 
   var opt={
     key:"rzp_live_Tj0FPF1woHNLkQ",
-    amount:curProd.price*100,
+    amount: parseInt(curProd.price)*100,
     currency:"INR",
     name:"Rani Petari Collection",
-    description:curProd.name+" - Size: "+selSizeVal,
+    description: curProd.name + " - Size: " + selSizeVal,
     image:"https://ranispetari.github.io/logo.png",
     handler: function(res){
-      alert("Payment Successful! Payment ID: "+res.razorpay_payment_id+"\nOrder: "+curProd.name+" Size "+selSizeVal);
-      // yahan aap order ko Google Sheet ya WhatsApp pe bhej sakte ho
+      alert("Payment Successful! ID: "+res.razorpay_payment_id+"\nOrder: "+curProd.name+" Size "+selSizeVal);
+      document.getElementById('checkoutModal').style.display='none';
       window.location.href = "https://wa.me/919711900520?text=New Order - "+curProd.name+" Size "+selSizeVal+" - "+n+" - "+m;
     },
     prefill:{ name:n, contact:m },
-    notes:{ size:selSizeVal, address:a+", "+city+" - "+p, product:curProd.name },
-    theme:{ color:"#4a2a2a" }
+    theme:{ color:"#4a102c" }
   };
-  var rzp = new Razorpay(opt);
-  rzp.open();
+  var rzp1 = new Razorpay(opt);
+  rzp1.on('payment.failed', function (response){
+    alert("Payment Failed: "+response.error.description);
+  });
+  rzp1.open();
 }
 
 // sound toggle
