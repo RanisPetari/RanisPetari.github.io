@@ -541,52 +541,29 @@ var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
 <script>
-function makeGreenBuyNow(){
- // 1. Niche wale sare BUY NOW ko GREEN banao
- document.querySelectorAll('button').forEach(b=>{
-   if(b.innerText.trim().toUpperCase() === 'BUY NOW'){
-     b.style.background='#00c853';
-     b.style.backgroundColor='#00c853';
-     b.style.color='#fff';
-     b.style.display='block';
-     b.style.visibility='visible';
-   }
-   // WISHLIST / ADD TO BAG hide
-   if(b.innerText.toUpperCase().includes('WISHLIST') || b.innerText.toUpperCase().includes('ADD TO BAG')){
-     if(!b.closest('#watch-and-buy-rani')) b.style.display='none';
-   }
- });
+function addPopupBuyNow(){
+  document.querySelectorAll('div').forEach(box=>{
+    // Popup jisme SELECT SIZE likha hai
+    if(box.innerText.includes('SELECT SIZE') && box.innerText.includes('Enter Pincode') && box.offsetHeight > 200){
+      if(box.querySelector('.popup-green-buy')) return; // already hai
 
- // 2. Product Popup ke andar GREEN BUY NOW chipkao
- document.querySelectorAll('div').forEach(m=>{
-   if(m.innerText.includes('SELECT SIZE') && m.innerText.includes('Enter Pincode')){
-     let already=m.querySelector('.my-green-buy');
-     if(already) return;
-     // Pincode wala hide
-     let pin=m.querySelector('input[placeholder*="Pincode"]');
-     if(pin && pin.parentElement) pin.parentElement.style.display='none';
-
-     let btn=document.createElement('button');
-     btn.innerText='BUY NOW';
-     btn.className='my-green-buy';
-     btn.style.cssText='width:100%;background:#00c853;color:#fff;border:none;padding:16px;font-size:18px;font-weight:900;border-radius:0 0 12px 12px;position:sticky;bottom:0;left:0;z-index:9999;cursor:pointer;margin-top:20px;';
-     btn.onclick=function(){
-       let nameDiv=m.querySelector('div');
-       let pName=m.innerText.split('\n')[0] || 'Product';
-       if(typeof curProd!=='undefined') curProd={name:pName,price:999};
-       let chk=document.getElementById('checkoutModal');
-       if(chk) chk.style.display='flex';
-       m.closest('[style*="fixed"]')? m.closest('[style*="fixed"]').style.display='none' : null;
-     };
-     m.appendChild(btn);
-     // Modal ko scrollable banao taaki button dikhe
-     m.style.paddingBottom='0px';
-     m.style.overflowY='auto';
-     m.style.maxHeight='90vh';
-   }
- });
+      let btn = document.createElement('button');
+      btn.innerText = 'BUY NOW';
+      btn.className = 'popup-green-buy';
+      btn.style.cssText = 'width:100%;background:#00c853;color:white;border:none;padding:15px;font-size:18px;font-weight:800;border-radius:8px;margin-top:15px;cursor:pointer;display:block;';
+      btn.onclick = function(){
+        // aapka payment wala modal kholo
+        let modal = document.getElementById('checkoutModal');
+        if(modal) modal.style.display='flex';
+        // product ka naam price set karo
+        let name = box.querySelector('div')?.innerText || 'Product';
+        if(typeof curProd !== 'undefined') curProd = {name: name, price: 999};
+      };
+      box.appendChild(btn);
+    }
+  });
 }
-setInterval(makeGreenBuyNow, 800);
+setInterval(addPopupBuyNow, 700);
 </script>
 </body>
 </html>
