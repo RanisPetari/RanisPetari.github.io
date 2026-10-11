@@ -541,29 +541,33 @@ var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
 <script>
-function addPopupBuyNow(){
-  document.querySelectorAll('div').forEach(box=>{
-    // Popup jisme SELECT SIZE likha hai
-    if(box.innerText.includes('SELECT SIZE') && box.innerText.includes('Enter Pincode') && box.offsetHeight > 200){
-      if(box.querySelector('.popup-green-buy')) return; // already hai
-
-      let btn = document.createElement('button');
-      btn.innerText = 'BUY NOW';
-      btn.className = 'popup-green-buy';
-      btn.style.cssText = 'width:100%;background:#00c853;color:white;border:none;padding:15px;font-size:18px;font-weight:800;border-radius:8px;margin-top:15px;cursor:pointer;display:block;';
-      btn.onclick = function(){
-        // aapka payment wala modal kholo
-        let modal = document.getElementById('checkoutModal');
-        if(modal) modal.style.display='flex';
-        // product ka naam price set karo
-        let name = box.querySelector('div')?.innerText || 'Product';
-        if(typeof curProd !== 'undefined') curProd = {name: name, price: 999};
+setInterval(()=>{
+  document.querySelectorAll('button').forEach(b=>{
+    let t = b.innerText.toUpperCase().trim();
+    // 1. WISHLIST ko gayab karo
+    if(t.includes('WISHLIST')){
+      b.style.display='none';
+    }
+    // 2. ADD TO BAG ko hi BUY NOW GREEN banao
+    if(t === 'ADD TO BAG'){
+      b.innerText = 'BUY NOW';
+      b.style.background = '#00c853';
+      b.style.backgroundColor = '#00c853';
+      b.style.color = '#fff';
+      b.style.width = '100%';
+      b.style.display = 'block';
+      b.style.fontWeight = '900';
+      b.style.fontSize = '18px';
+      b.style.borderRadius = '8px';
+      b.style.padding = '14px';
+      // payment khulega
+      b.onclick = function(){
+        let pay = document.getElementById('checkoutModal');
+        if(pay) pay.style.display='flex';
       };
-      box.appendChild(btn);
     }
   });
-}
-setInterval(addPopupBuyNow, 700);
+}, 500);
 </script>
 </body>
 </html>
