@@ -569,98 +569,57 @@ setInterval(()=>{
   });
 }, 500);
 </script>
-  <!-- ===== SIZE MEASUREMENT POPUP START - FIXED ===== -->
-<div id="sizeGuideModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000; justify-content:center; align-items:center; padding:15px;">
-  <div style="background:#fff; border-radius:12px; max-width:400px; width:100%; max-height:90vh; overflow-y:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:15px; border-bottom:1px solid #eee;">
-      <b>SIZE GUIDE</b> <span onclick="document.getElementById('sizeGuideModal').style.display='none'" style="font-size:22px; cursor:pointer;">✕</span>
-    </div>
-    <div style="padding:10px; font-size:12px;">
-      <p style="font-size:13px; color:#555; padding-bottom:10px;">We Have Provided The Body Measurements To Help You Decide Which Size To Buy.</p>
-      <b>TOP</b>
-      <table border="1" style="width:100%; border-collapse:collapse; text-align:center; margin:5px 0 15px 0;">
-        <tr style="background:#e0e0e0;"><th>Size</th><th>Bust</th><th>Shoulder</th><th>Length</th></tr>
-        <tr><td>S</td><td>34-36"</td><td>14-15"</td><td>38-40"</td></tr>
-        <tr><td>M</td><td>36-38"</td><td>15-16"</td><td>40-42"</td></tr>
-        <tr><td>L</td><td>38-40"</td><td>16-17"</td><td>42-44"</td></tr>
-        <tr><td>XL</td><td>40-42"</td><td>17-18"</td><td>44-46"</td></tr>
-        <tr><td>XXL / 2XL</td><td>42-44"</td><td>18-19"</td><td>46-48"</td></tr>
-        <tr><td>3XL</td><td>44-46"</td><td>19-20"</td><td>48-50"</td></tr>
-      </table>
-      <b>BOTTOM</b>
-      <table border="1" style="width:100%; border-collapse:collapse; text-align:center; margin:5px 0;">
-        <tr style="background:#e0e0e0;"><th>Size</th><th>Waist</th><th>Hip</th><th>Length</th></tr>
-        <tr><td>S</td><td>28-30"</td><td>36-38"</td><td>38-40"</td></tr>
-        <tr><td>M</td><td>30-32"</td><td>38-40"</td><td>40-42"</td></tr>
-        <tr><td>L</td><td>32-34"</td><td>40-42"</td><td>42-44"</td></tr>
-        <tr><td>XL</td><td>34-36"</td><td>42-44"</td><td>44-46"</td></tr>
-        <tr><td>XXL / 2XL</td><td>36-38"</td><td>44-46"</td><td>46-48"</td></tr>
-        <tr><td>3XL</td><td>38-40"</td><td>46-48"</td><td>48-50"</td></tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div id="sizeMeasBox" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#4a2a2a; color:#fff; padding:12px 18px; border-radius:10px; z-index:10001; width:90%; max-width:350px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.3);">
-  <div style="display:flex; justify-content:space-between;"><b id="measSizeTitle">Size</b><span onclick="document.getElementById('sizeMeasBox').style.display='none'" style="cursor:pointer;">✕</span></div>
-  <div id="measDetails" style="font-size:12px; margin-top:8px; line-height:1.6; text-align:left;"></div>
-  <div style="margin-top:8px;"><span onclick="document.getElementById('sizeGuideModal').style.display='flex'" style="text-decoration:underline; font-size:11px; cursor:pointer;">View Full Size Guide</span></div>
-</div>
-
-<script>
-const MEASURE = {
- 'S':{top:'Bust 34-36" | Shoulder 14-15" | Length 38-40"', bottom:'Waist 28-30" | Hip 36-38" | Length 38-40"'},
- 'M':{top:'Bust 36-38" | Shoulder 15-16" | Length 40-42"', bottom:'Waist 30-32" | Hip 38-40" | Length 40-42"'},
- 'L':{top:'Bust 38-40" | Shoulder 16-17" | Length 42-44"', bottom:'Waist 32-34" | Hip 40-42" | Length 42-44"'},
- 'XL':{top:'Bust 40-42" | Shoulder 17-18" | Length 44-46"', bottom:'Waist 34-36" | Hip 42-44" | Length 44-46"'},
- '2XL':{top:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', bottom:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
- 'XXL':{top:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', bottom:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
- '3XL':{top:'Bust 44-46" | Shoulder 19-20" | Length 48-50"', bottom:'Waist 38-40" | Hip 46-48" | Length 48-50"'}
+ <script>
+const CHART = {
+ 'S': {t:'Bust 34-36" | Shoulder 14-15" | Length 38-40"', b:'Waist 28-30" | Hip 36-38" | Length 38-40"'},
+ 'M': {t:'Bust 36-38" | Shoulder 15-16" | Length 40-42"', b:'Waist 30-32" | Hip 38-40" | Length 40-42"'},
+ 'L': {t:'Bust 38-40" | Shoulder 16-17" | Length 42-44"', b:'Waist 32-34" | Hip 40-42" | Length 42-44"'},
+ 'XL':{t:'Bust 40-42" | Shoulder 17-18" | Length 44-46"', b:'Waist 34-36" | Hip 42-44" | Length 44-46"'},
+ 'XXL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
+ '2XL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
+ '3XL':{t:'Bust 44-46" | Shoulder 19-20" | Length 48-50"', b:'Waist 38-40" | Hip 46-48" | Length 48-50"'}
 };
+let lastClickedEl = null;
 
-function showSizeBox(size){
-  size = size.toUpperCase().trim();
-  if(size=='XXL') size='2XL'; // dono same
-  let d = MEASURE[size];
-  if(!d) return;
-  document.getElementById('measSizeTitle').innerText = size + ' ka Measurement';
-  document.getElementById('measDetails').innerHTML = <b>TOP:</b> ${d.top}<br><b>BOTTOM:</b> ${d.bottom};
-  document.getElementById('sizeMeasBox').style.display='block';
+function showHere(size, clickedEl){
+  let key = size.toUpperCase();
+  if(key==='XXL') key='2XL';
+  let d = CHART[key] || CHART['M'];
+  let old = document.getElementById('myMeasureBox');
+  if(old) old.remove();
+
+  let box = document.createElement('div');
+  box.id='myMeasureBox';
+  box.style.cssText='display:block;background:#e8f5e9;border:2px solid #00c853;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13px;line-height:1.5;color:#111;';
+  box.innerHTML = <div style="display:flex;justify-content:space-between;"><b style="color:#00c853;">${key} ka Measurement:</b><span onclick="this.parentElement.parentElement.remove()" style="cursor:pointer;font-weight:bold;">✕</span></div><b>TOP:</b> ${d.t}<br><b>BOTTOM:</b> ${d.b};
+
+  // Size ke gol gol button ke container ke just neeche lagao
+  let parent = clickedEl.parentElement; // S M L XL wala div
+  parent.parentElement.insertBefore(box, parent.nextSibling);
 }
 
-// Auto Link - Har size button se
 setInterval(()=>{
-  // SIZE GUIDE text pe click se popup khule
-  document.querySelectorAll('*').forEach(el=>{
-    if(el.innerText && el.innerText.toUpperCase().trim() === 'SIZE GUIDE' &&!el.dataset.guideLinked){
-      el.dataset.guideLinked='1';
-      el.style.cursor='pointer';
-      el.addEventListener('click',()=>{ document.getElementById('sizeGuideModal').style.display='flex'; });
-    }
-  });
-
-  // WISHLIST hatao + ADD TO BAG -> BUY NOW (tumhara pehla kaam)
+  // WISHLIST hatao
   document.querySelectorAll('button').forEach(b=>{
-    let t=b.innerText.toUpperCase().trim();
-    if(t.includes('WISHLIST')) b.style.display='none';
-    if(t==='ADD TO BAG'){
-      b.innerText='BUY NOW';
-      b.style.background='#00c853'; b.style.backgroundColor='#00c853'; b.style.color='#fff'; b.style.width='100%';
-    }
+    if(b.innerText.toUpperCase().includes('WISHLIST')) b.style.display='none';
   });
 
-  // Size circles S M L XL XXL 3XL ko pakdo
+  // Size buttons S M L XL XXL
   document.querySelectorAll('div,button,span').forEach(el=>{
-    let txt = el.innerText? el.innerText.trim().toUpperCase() : '';
-    if(['S','M','L','XL','XXL','2XL','3XL'].includes(txt) && el.offsetWidth>15 && el.offsetWidth<85){
-      if(!el.dataset.sizeLinked){
-        el.dataset.sizeLinked='1';
-        el.addEventListener('click',()=>{ showSizeBox(txt); });
+    let txt = (el.innerText||'').trim().toUpperCase();
+    if(['S','M','L','XL','XXL','2XL','3XL'].includes(txt) && el.offsetWidth>=20 && el.offsetWidth<=60){
+      if(!el.dataset.done){
+        el.dataset.done='1';
+        el.addEventListener('click', function(){
+          // thoda highlight
+          document.querySelectorAll('[data-done="1"]').forEach(x=>x.style.border='1px solid #ccc');
+          this.style.border='2px solid #00c853';
+          showHere(txt, this);
+        });
       }
     }
   });
-}, 800);
+}, 700);
 </script>
-<!-- ===== SIZE MEASUREMENT POPUP END ===== -->
 </body>
 </html>
