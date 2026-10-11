@@ -569,57 +569,46 @@ setInterval(()=>{
   });
 }, 500);
 </script>
- <script>
-const CHART = {
- 'S': {t:'Bust 34-36" | Shoulder 14-15" | Length 38-40"', b:'Waist 28-30" | Hip 36-38" | Length 38-40"'},
- 'M': {t:'Bust 36-38" | Shoulder 15-16" | Length 40-42"', b:'Waist 30-32" | Hip 38-40" | Length 40-42"'},
- 'L': {t:'Bust 38-40" | Shoulder 16-17" | Length 42-44"', b:'Waist 32-34" | Hip 40-42" | Length 42-44"'},
- 'XL':{t:'Bust 40-42" | Shoulder 17-18" | Length 44-46"', b:'Waist 34-36" | Hip 42-44" | Length 44-46"'},
- 'XXL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
- '2XL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'},
- '3XL':{t:'Bust 44-46" | Shoulder 19-20" | Length 48-50"', b:'Waist 38-40" | Hip 46-48" | Length 48-50"'}
+<style>
+#myMeasureBox{display:block!important; background:#e8f5e9; border:2px solid #00c853; border-radius:8px; padding:10px; margin:10px 0; font-size:13px; line-height:1.5;}
+</style>
+<script>
+const SIZE_DATA = {
+ 'S': ['Bust 34-36" | Shoulder 14-15" | Length 38-40"', 'Waist 28-30" | Hip 36-38" | Length 38-40"'],
+ 'M': ['Bust 36-38" | Shoulder 15-16" | Length 40-42"', 'Waist 30-32" | Hip 38-40" | Length 40-42"'],
+ 'L': ['Bust 38-40" | Shoulder 16-17" | Length 42-44"', 'Waist 32-34" | Hip 40-42" | Length 42-44"'],
+ 'XL': ['Bust 40-42" | Shoulder 17-18" | Length 44-46"', 'Waist 34-36" | Hip 42-44" | Length 44-46"'],
+ 'XXL':['Bust 42-44" | Shoulder 18-19" | Length 46-48"', 'Waist 36-38" | Hip 44-46" | Length 46-48"'],
+ '2XL':['Bust 42-44" | Shoulder 18-19" | Length 46-48"', 'Waist 36-38" | Hip 44-46" | Length 46-48"'],
+ '3XL':['Bust 44-46" | Shoulder 19-20" | Length 48-50"', 'Waist 38-40" | Hip 46-48" | Length 48-50"']
 };
-let lastClickedEl = null;
 
-function showHere(size, clickedEl){
-  let key = size.toUpperCase();
-  if(key==='XXL') key='2XL';
-  let d = CHART[key] || CHART['M'];
+document.addEventListener('click', function(e){
+  let t = (e.target.innerText||'').trim().toUpperCase();
+  if(!['S','M','L','XL','XXL','2XL','3XL'].includes(t)) return;
+  if(e.target.offsetWidth > 100) return; // bade button ko ignore
+
+  let sizeKey = t === 'XXL'? '2XL' : t;
+  let d = SIZE_DATA[sizeKey] || SIZE_DATA[t];
+  if(!d) return;
+
+  // purana box hatao
   let old = document.getElementById('myMeasureBox');
   if(old) old.remove();
 
   let box = document.createElement('div');
-  box.id='myMeasureBox';
-  box.style.cssText='display:block;background:#e8f5e9;border:2px solid #00c853;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13px;line-height:1.5;color:#111;';
-  box.innerHTML = <div style="display:flex;justify-content:space-between;"><b style="color:#00c853;">${key} ka Measurement:</b><span onclick="this.parentElement.parentElement.remove()" style="cursor:pointer;font-weight:bold;">✕</span></div><b>TOP:</b> ${d.t}<br><b>BOTTOM:</b> ${d.b};
+  box.id = 'myMeasureBox';
+  box.innerHTML = <b style="color:#00c853;">${t} ka Measurement:</b> <span onclick="this.parentElement.remove()" style="float:right;cursor:pointer;">✕</span><br><b>TOP:</b> ${d[0]}<br><b>BOTTOM:</b> ${d[1]};
 
-  // Size ke gol gol button ke container ke just neeche lagao
-  let parent = clickedEl.parentElement; // S M L XL wala div
-  parent.parentElement.insertBefore(box, parent.nextSibling);
-}
-
-setInterval(()=>{
-  // WISHLIST hatao
-  document.querySelectorAll('button').forEach(b=>{
-    if(b.innerText.toUpperCase().includes('WISHLIST')) b.style.display='none';
-  });
-
-  // Size buttons S M L XL XXL
-  document.querySelectorAll('div,button,span').forEach(el=>{
-    let txt = (el.innerText||'').trim().toUpperCase();
-    if(['S','M','L','XL','XXL','2XL','3XL'].includes(txt) && el.offsetWidth>=20 && el.offsetWidth<=60){
-      if(!el.dataset.done){
-        el.dataset.done='1';
-        el.addEventListener('click', function(){
-          // thoda highlight
-          document.querySelectorAll('[data-done="1"]').forEach(x=>x.style.border='1px solid #ccc');
-          this.style.border='2px solid #00c853';
-          showHere(txt, this);
-        });
-      }
-    }
-  });
-}, 700);
+  // Tumhari photo me size ke niche 110065 wala pincode box hai, uske upar lagana hai
+  // isliye BUY NOW green button dhoond ke uske just upar laga dete hai
+  let buyBtn = [...document.querySelectorAll('button')].find(b=>b.innerText.toUpperCase().includes('BUY NOW'));
+  if(buyBtn && buyBtn.parentElement){
+    buyBtn.parentElement.insertBefore(box, buyBtn);
+  } else {
+    e.target.parentElement.after(box);
+  }
+});
 </script>
 </body>
 </html>
