@@ -266,7 +266,7 @@ function finalPay(){
   let a=document.getElementById('cAddr').value.trim();
   let city=document.getElementById('cCity').value.trim();
 
-  if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
+  // auto bypass
   if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
 
   var opt={
