@@ -266,11 +266,13 @@ function finalPay(){
   let a=document.getElementById('cAddr').value.trim();
   let city=document.getElementById('cCity').value.trim();
 
-  // auto bypass
-  if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
-
-  var opt={
+ // auto bypass - har price auto lega
+ var priceText = curProd?.price || document.getElementById('finalPayBtn')?.innerText || "999";
+ let finalPrice = parseInt(String(priceText).replace(/[^0-9]/g,'')) || 999;
+ 
+ var opt={
  key:"rzp_live_Tj0FPF1woHNLkQ",
+ amount: finalPrice*100,
  amount: (function(){ 
    let pr = parseInt(curProd.price); 
    if(!pr || isNaN(pr)){
