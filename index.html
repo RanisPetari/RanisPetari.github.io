@@ -104,72 +104,101 @@ nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;ba
 <div style="background:#000; color:#fff; overflow:hidden; white-space:nowrap; padding:12px 0; margin:15px 0;">
 <div class="scroll-text" style="font-weight:bold; font-size:16px;"> ✨ New Festive Collection 2026 ✨ | Payment & Delivery - Secure Payments | Visa • MasterCard • UPI • PayPal | Pan-India Delivery | No Return & No Exchange | Handmade with Love - For Every Rani ✨ </div>
 </div>
-  
-<section id="watch-buy" style="padding:15px 10px;background:#fff;">
-<h2 style="text-align:center;font-weight:800;">WATCH & BUY</h2>
-<div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;">
+<!-- ===== Rani Petari - Watch and Buy FIXED ===== -->
+<section id="watch-and-buy-rani" style="padding:20px 0;background:#fff8f5;">
+<h2 style="text-align:center;font-family:serif;font-size:28px;margin-bottom:15px;color:#4a2a2a;">Watch and Buy</h2>
+<div class="watch-buy-wrapper" style="display:flex;gap:12px;overflow-x:auto;padding:0 10px 10px;scroll-snap-type:x mandatory;">
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V1.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)">
+<video src="V1.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video>
+<button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button>
+<div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div>
+</div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;cursor:pointer;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;cursor:pointer;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;cursor:pointer;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;cursor:pointer;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V2.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)"><video src="V2.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video><button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button><div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div></div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V3.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)"><video src="V3.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video><button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button><div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div></div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V4.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)"><video src="V4.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video><button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button><div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div></div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V5.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)"><video src="V5.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video><button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button><div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div></div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
-<div class="reel-card" style="min-width:220px;max-width:220px;height:400px;border-radius:16px;overflow:hidden;position:relative;background:#000;" onclick="toggleReel(this)">
-<video loop muted autoplay playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;"><source src="V6.mp4" type="video/mp4"></video>
-<span class="tap-badge" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:4px 8px;border-radius:12px;">🔊 TAP</span>
-<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,black,transparent);color:#fff;padding:8px;"><b style="font-size:13px;">Ranis Petari Collection</b><br>₹999 <s>₹2499</s><br><button onclick="event.stopPropagation();curProd={name:'Ranis Petari Collection',price:999};document.getElementById('checkoutModal').style.display='flex';" style="width:100%;margin-top:5px;background:#fff;color:#000;border:none;padding:7px;border-radius:20px;font-weight:800;">BUY NOW</button></div>
+<div class="watch-card" data-name="Rani Petari Collection" data-price="999" style="min-width:230px;max-width:230px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);scroll-snap-align:start;">
+<div class="video-box" style="position:relative;height:380px;background:#000;" onclick="toggleSound(this)"><video src="V6.mp4" muted loop playsinline webkit-playsinline preload="metadata" class="reel-video" style="width:100%;height:100%;object-fit:cover;"></video><button class="sound-toggle" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:20px;padding:4px 8px;font-size:12px;">🔇 TAP</button><div class="tag" style="position:absolute;top:8px;left:8px;background:#b91c1c;color:#fff;font-size:11px;padding:3px 7px;border-radius:10px;">50% OFF</div></div>
+<div class="p-details" style="padding:8px 10px;font-size:14px;"><b>Rani Petari Collection</b><br><span style="text-decoration:line-through;color:gray;font-size:12px;">₹1999</span> <span style="color:#b91c1c;font-weight:bold;">₹999</span></div>
+<div class="size-selector" style="display:flex;gap:6px;padding:0 10px;"><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">M</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">L</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XL</span><span class="size-btn" onclick="selectSize(this)" style="border:1px solid #ccc;padding:3px 8px;border-radius:6px;font-size:12px;">XXL</span></div>
+<button class="buy-now-btn" onclick="openBuyModal(this)" style="width:90%;margin:10px 5%;background:#000;color:#fff;border:none;padding:8px;border-radius:20px;font-weight:700;">BUY NOW</button>
 </div>
 
 </div>
 </section>
 <script>
-function toggleReel(card){
-let v=card.querySelector('video');
-let badge=card.querySelector('.tap-badge');
-if(v.paused || v.muted){
-document.querySelectorAll('#watch-buy video').forEach(x=>{ if(x!=v){ x.pause(); x.muted=true; x.closest('.reel-card').querySelector('.tap-badge').innerText='🔊 TAP'; } });
+function selectSize(el){
+el.parentElement.querySelectorAll('.size-btn').forEach(b=>b.style.background='#fff',b.style.color='#000');
+el.style.background='#000'; el.style.color='#fff';
+}
+function toggleSound(box){
+let v=box.querySelector('video');
+let btn=box.querySelector('.sound-toggle');
+if(v.muted || v.paused){
+document.querySelectorAll('#watch-and-buy-rani video').forEach(x=>{
+if(x!=v){ x.pause(); x.muted=true; x.parentElement.querySelector('.sound-toggle').innerText='🔇 TAP'; }
+});
 v.muted=false; v.volume=1; v.play();
-badge.innerText='⏸️ TAP TO PAUSE';
+btn.innerText='🔊 ON';
 }else{
 v.pause(); v.muted=true;
-badge.innerText='🔊 TAP';
+btn.innerText='🔇 TAP';
 }
 }
-let obs=new IntersectionObserver((entries)=>{
-entries.forEach(e=>{
-if(!e.isIntersecting){
-let v=e.target; v.pause(); v.muted=true;
-let b=v.closest('.reel-card')?.querySelector('.tap-badge');
-if(b) b.innerText='🔊 TAP';
-}
+// scroll pe band - hang nahi karega
+let obs=new IntersectionObserver(es=>{
+es.forEach(e=>{
+if(!e.isIntersecting){ e.target.pause(); e.target.muted=true; e.target.parentElement.querySelector('.sound-toggle').innerText='🔇 TAP'; }
+else{ e.target.play().catch(()=>{}); }
 });
-},{threshold:0.2});
-document.querySelectorAll('#watch-buy video').forEach(v=>obs.observe(v));
+},{threshold:0.3});
+document.querySelectorAll('#watch-and-buy-rani video').forEach(v=>obs.observe(v));
+
+function openBuyModal(btn){
+let card=btn.closest('.watch-card');
+let name=card.getAttribute('data-name');
+let price=parseInt(card.getAttribute('data-price'));
+let sizeEl=card.querySelector('.size-btn[style*="background: rgb(0, 0, 0)"]');
+let size=sizeEl?sizeEl.innerText:'M';
+if(typeof curProd!=='undefined'){
+curProd={name:name+' ('+size+')',price:price};
+}
+let cPrice=document.getElementById('cPrice');
+if(cPrice) cPrice.innerText='₹'+price;
+let modal=document.getElementById('checkoutModal');
+if(modal) modal.style.display='flex';
+}
 </script>
 <h2 id="shop" style="text-align:center;margin:25px 0;color:#4a102c">Our Best Sellers - Festive Collection</h2>
 
