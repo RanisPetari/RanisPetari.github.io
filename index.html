@@ -540,60 +540,53 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
-<style>
-/* Sirf WISHLIST, ADD TO BAG, PINCODE hide karo */
-button:has-text("WISHLIST"), button:has-text("ADD TO BAG") { display:none !important; }
-</style>
 <script>
-setTimeout(()=>{
-// 1. WISHLIST / ADD TO BAG wale button hide karo, unke parent ko nahi
-document.querySelectorAll('button').forEach(b=>{
-let t=b.innerText.trim().toUpperCase();
-if((t==='WISHLIST' || t==='ADD TO BAG' || t==='♡ WISHLIST') && !b.closest('#watch-and-buy-rani')){
-b.style.display='none';
-}
-});
-// 2. Pincode wala input hide
-document.querySelectorAll('input[placeholder*="Pincode"], input[placeholder*="pincode"]').forEach(i=>{
-let wrap=i.parentElement;
-if(wrap) wrap.style.display='none';
-});
-// 3. Modal me GREEN BUY NOW banao
-let modalCheck=setInterval(()=>{
-let modal=document.querySelector('[id*="productModal"], .product-modal, [style*="position: fixed"]');
-if(!modal) return;
-let hasGreen=modal.querySelector('.green-buy-btn');
-if(hasGreen) return;
-let sizeSection=modal.querySelector('div');
-let pincodeInput=modal.querySelector('input');
-if(modal.innerText.includes('SELECT SIZE')){
-if(!hasGreen){
-let greenBtn=document.createElement('button');
-greenBtn.innerText='BUY NOW';
-greenBtn.className='green-buy-btn';
-greenBtn.style.cssText='width:90%;margin:15px 5%;background:#00a651;color:#fff;border:none;padding:14px;border-radius:8px;font-weight:800;font-size:16px;cursor:pointer;';
-greenBtn.onclick=function(){
-let nameEl=modal.querySelector('b, h3');
-let name=nameEl?nameEl.innerText:'Product';
-if(typeof curProd!=='undefined') curProd={name:name,price:999};
-let chk=document.getElementById('checkoutModal');
-if(chk) chk.style.display='flex';
-modal.style.display='none';
-};
-modal.appendChild(greenBtn);
-}
-}
-},500);
+function makeGreenBuyNow(){
+ // 1. Niche wale sare BUY NOW ko GREEN banao
+ document.querySelectorAll('button').forEach(b=>{
+   if(b.innerText.trim().toUpperCase() === 'BUY NOW'){
+     b.style.background='#00c853';
+     b.style.backgroundColor='#00c853';
+     b.style.color='#fff';
+     b.style.display='block';
+     b.style.visibility='visible';
+   }
+   // WISHLIST / ADD TO BAG hide
+   if(b.innerText.toUpperCase().includes('WISHLIST') || b.innerText.toUpperCase().includes('ADD TO BAG')){
+     if(!b.closest('#watch-and-buy-rani')) b.style.display='none';
+   }
+ });
 
-// 4. Niche wale sare BUY NOW ko GREEN karo
-document.querySelectorAll('.product-card .buy-now-btn, .product-grid button').forEach(btn=>{
-if(btn.closest('#watch-and-buy-rani')) return;
-if(btn.innerText.includes('BUY NOW')){
-btn.style.background='#00a651';
-btn.style.color='#fff';
+ // 2. Product Popup ke andar GREEN BUY NOW chipkao
+ document.querySelectorAll('div').forEach(m=>{
+   if(m.innerText.includes('SELECT SIZE') && m.innerText.includes('Enter Pincode')){
+     let already=m.querySelector('.my-green-buy');
+     if(already) return;
+     // Pincode wala hide
+     let pin=m.querySelector('input[placeholder*="Pincode"]');
+     if(pin && pin.parentElement) pin.parentElement.style.display='none';
+
+     let btn=document.createElement('button');
+     btn.innerText='BUY NOW';
+     btn.className='my-green-buy';
+     btn.style.cssText='width:100%;background:#00c853;color:#fff;border:none;padding:16px;font-size:18px;font-weight:900;border-radius:0 0 12px 12px;position:sticky;bottom:0;left:0;z-index:9999;cursor:pointer;margin-top:20px;';
+     btn.onclick=function(){
+       let nameDiv=m.querySelector('div');
+       let pName=m.innerText.split('\n')[0] || 'Product';
+       if(typeof curProd!=='undefined') curProd={name:pName,price:999};
+       let chk=document.getElementById('checkoutModal');
+       if(chk) chk.style.display='flex';
+       m.closest('[style*="fixed"]')? m.closest('[style*="fixed"]').style.display='none' : null;
+     };
+     m.appendChild(btn);
+     // Modal ko scrollable banao taaki button dikhe
+     m.style.paddingBottom='0px';
+     m.style.overflowY='auto';
+     m.style.maxHeight='90vh';
+   }
+ });
 }
-});
-},1000);
+setInterval(makeGreenBuyNow, 800);
 </script>
 </body>
 </html>
