@@ -570,6 +570,35 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
+<script>
+setInterval(function(){
+  let nameEl = document.querySelector('#pName, #prodName, .product-title, h2');
+  let name = nameEl ? nameEl.innerText.toLowerCase() : '';
+  // jewellery ka naam check
+  let isJew = name.includes('jewellery') || name.includes('jewelery') || name.includes('garba') || name.includes('oxidised') || name.includes('earring') || name.includes('ruby') || name.includes('necklace');
 
+  let sizeDiv = document.getElementById('sizeSection');
+  // agar id nahi hai to SELECT SIZE text wala div dhoondho
+  if(!sizeDiv){
+    let all = document.querySelectorAll('div');
+    all.forEach(d=>{
+      if(d.innerText && d.innerText.includes('SELECT SIZE')){
+        d.id = 'sizeSection';
+      }
+    });
+    sizeDiv = document.getElementById('sizeSection');
+  }
+
+  let measureDiv = document.getElementById('liveMeasure');
+  
+  if(isJew){
+    if(sizeDiv) sizeDiv.style.display = 'none';
+    if(measureDiv) measureDiv.style.display = 'none';
+    selSizeVal = 'FREE SIZE';
+  } else {
+    if(sizeDiv) sizeDiv.style.display = 'block';
+  }
+}, 300);
+</script>
 </body>
 </html>
