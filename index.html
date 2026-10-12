@@ -398,6 +398,18 @@ function openP(el){
   if(el.querySelector('video')){ document.getElementById('pmImg').style.display='none'; } else { document.getElementById('pmImg').style.display='block'; }
   document.getElementById('pmTitle').innerText = title;
   document.getElementById('pmPrice').innerText = price;
+  // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
+let isJew = el.innerText.toUpperCase().includes('JEWELLERY') || title.toLowerCase().includes('jewellery') || title.toLowerCase().includes('earring') || title.toLowerCase().includes('oxidised') || title.toLowerCase().includes('garba') || title.toLowerCase().includes('ring') || title.toLowerCase().includes('twist');
+
+if(isJew){
+  document.getElementById('sizeMainBox').style.display='none';
+  document.getElementById('liveMeasure').style.display='none';
+  selSizeVal = 'FREE SIZE';
+} else {
+  document.getElementById('sizeMainBox').style.display='block';
+  document.getElementById('liveMeasure').style.display='none';
+  selSizeVal = '';
+}
   document.getElementById('pmBuy').onclick = function(){
     document.getElementById('pModal').style.display='none';
     let priceVal = parseInt(el.getAttribute('data-price')||999);
@@ -450,7 +462,7 @@ document.addEventListener('click', function(){ document.querySelectorAll('.dropd
 <p style="font-size:12px;color:#03a685;margin:6px 0;">Inclusive of all taxes | Free Delivery</p>
 
 <!-- SIZE SELECT LIKE MYNTRA -->
-<div style="margin:15px 0;">
+<div id="sizeMainBox" style="margin:15px 0;">
 <div style="display:flex;justify-content:space-between;align-items:center;">
 <b style="font-size:14px;">SELECT SIZE</b>
 <span style="font-size:12px;color:#ff3f6c;font-weight:600;cursor:pointer;">SIZE CHART ></span>
@@ -570,45 +582,6 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
-<script>
-// FINAL - Jewellery se Size / Measurement hatane ka code
-(function(){
-  function hideForJewellery(){
-    let modal = document.querySelector('div[style*="fixed"]') || document.body;
-    let text = modal.innerText || "";
-    let isJew = text.includes("Garba Royal Oxidised") || text.toLowerCase().includes("jewellery set") || text.toLowerCase().includes("earring") || text.includes("JEWELLERY");
-    
-    // sirf jab jewellery ka popup khula ho tab hide karo
-    if(text.includes("SELECT SIZE") && isJew){
-      document.querySelectorAll('*').forEach(el=>{
-        if(el.innerText === 'SELECT SIZE') el.style.display='none';
-        if(el.innerText && el.innerText.includes('SIZE CHART')) el.style.display='none';
-        if(el.innerText && el.innerText.includes('Measurement Of Size')) el.closest('div').style.display='none';
-      });
-      // S M L XL XXL wale buttons hide
-      let sizeBtns = document.querySelectorAll('div');
-      sizeBtns.forEach(d=>{
-        if(d.innerText.trim() === 'S M L XL XXL' || d.innerText.includes('S') && d.innerText.includes('XXL') && d.children.length>=4){
-           // check kar ke hide
-        }
-      });
-      // sab size circle hide
-      ['S','M','L','XL','XXL'].forEach(s=>{
-        document.querySelectorAll('div,span,button').forEach(el=>{
-          if(el.innerText.trim() === s && el.offsetWidth < 80 && el.offsetHeight < 80){
-             let parent = el.parentElement;
-             if(parent && parent.innerText.includes('XL')) parent.style.display='none';
-          }
-        });
-      });
-      // size select ko bypass karo taaki BUY NOW kaam kare
-      window.selSizeVal = 'FREE SIZE';
-      window.selectedSize = 'FREE SIZE';
-    }
-  }
-  // har click pe check karo
-  document.addEventListener('click', function(){ setTimeout(hideForJewellery, 150); setTimeout(hideForJewellery, 500); });
-})();
-</script>
+
 </body>
 </html>
