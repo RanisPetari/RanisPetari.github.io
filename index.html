@@ -401,7 +401,7 @@ function openP(el){
   // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
 let itemText = el.innerText.toUpperCase();
 let low = title.toLowerCase();
-let isJew = itemText.includes('JEWELLERY') || low.includes('jewellery') || low.includes('earring') || low.includes('necklace') || low.includes('oxidised') || low.includes('garba') || low.includes('peacock') || low.includes('elegance') || low.includes('statement') || low.includes('ring set');
+let isJew = itemText.includes('JEWELLERY');
 
 if(isJew){
   document.getElementById('sizeBox').parentElement.style.display='none';
@@ -409,7 +409,7 @@ if(isJew){
   selSizeVal = 'FREE SIZE';
 } else {
   document.getElementById('sizeBox').parentElement.style.display='block';
-  document.getElementById('liveMeasure').style.display='none';
+  document.getElementById('liveMeasure').style.display='block';
   selSizeVal = '';
 }
   document.getElementById('pmBuy').onclick = function(){
@@ -584,23 +584,6 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
-<script>
-setInterval(function(){
-  var tEl = document.getElementById('pmTitle');
-  if(!tEl) return;
-  var txt = tEl.innerText.toLowerCase();
-  var isCloth = txt.includes('kurta') || txt.includes('saree') || txt.includes('anarkali') || txt.includes('lehenga') || txt.includes('gown') || txt.includes('suit');
-  var sBox = document.getElementById('sizeBox');
-  var live = document.getElementById('liveMeasure');
-  if(sBox){
-    if(!isCloth){
-      sBox.parentElement.style.display='none';
-      if(live) live.style.display='none';
-    } else {
-      sBox.parentElement.style.display='block';
-    }
-  }
-}, 300);
-</script>
+
 </body>
 </html>
