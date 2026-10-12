@@ -399,9 +399,9 @@ function openP(el){
   document.getElementById('pmTitle').innerText = title;
   document.getElementById('pmPrice').innerText = price;
   // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
-let txt1 = (el.innerText || "").toUpperCase();
-let txt2 = title.toLowerCase();
-let isJew = txt1.includes('JEWELLERY') || txt2.includes('jewellery') || txt2.includes('ring') || txt2.includes('earring') || txt2.includes('garba') || txt2.includes('peacock') || txt2.includes('oxidised') || txt2.includes('navratri') || txt2.includes('elegance') || txt2.includes('statement');
+let low = title.toLowerCase();
+let isCloth = low.includes('kurta') || low.includes('saree') || low.includes('anarkali') || low.includes('lehenga') || low.includes('gown') || low.includes('suit');
+let isJew = !isCloth || el.innerText.toUpperCase().includes('JEWELLERY') || low.includes('earring') || low.includes('peacock') || low.includes('statement') || low.includes('oxidised') || low.includes('garba') || low.includes('necklace');
 
 if(isJew){
   document.getElementById('sizeBox').parentElement.style.display='none';
@@ -409,7 +409,7 @@ if(isJew){
   selSizeVal = 'FREE SIZE';
 } else {
   document.getElementById('sizeBox').parentElement.style.display='block';
-  document.getElementById('liveMeasure').style.display='block';
+  document.getElementById('liveMeasure').style.display='none';
   selSizeVal = '';
 }
   document.getElementById('pmBuy').onclick = function(){
@@ -559,19 +559,6 @@ let price = parseInt(el.getAttribute('data-price')||1499);
 curProd = {name:title, price:price, img:img};
 document.getElementById('pmImg').src=img;
 document.getElementById('pmTitle').innerText=title;
-let low = title.toLowerCase();
-let isJew = low.includes('ring') || low.includes('earring') || low.includes('oxidised') || low.includes('garba') || low.includes('peacock') || low.includes('wine') || low.includes('twist') || low.includes('desi') || low.includes('statement') || low.includes('jewellery') || low.includes('jewelery') || low.includes('navratri');
-let sb = document.getElementById('sizeBox');
-let lv = document.getElementById('liveMeasure');
-if(isJew){
-  if(sb) sb.parentElement.style.display='none';
-  if(lv) lv.style.display='none';
-  selSizeVal='FREE SIZE';
-}else{
-  if(sb) sb.parentElement.style.display='block';
-  if(lv) lv.style.display='block';
-  selSizeVal='';
-}
 document.getElementById('pmPrice').innerText="₹"+price;
 document.getElementById('coTitle').innerText=title;
 document.getElementById('coPrice').innerText="₹"+price;
