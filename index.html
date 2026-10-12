@@ -559,6 +559,19 @@ let price = parseInt(el.getAttribute('data-price')||1499);
 curProd = {name:title, price:price, img:img};
 document.getElementById('pmImg').src=img;
 document.getElementById('pmTitle').innerText=title;
+  let low=title.toLowerCase();
+let isJew=low.includes('ring')||low.includes('earring')||low.includes('oxidised')||low.includes('garba')||low.includes('peacock')||low.includes('wine')||low.includes('twist')||low.includes('jewellery')||low.includes('jewelery');
+let sb=document.getElementById('sizeBox');
+let lv=document.getElementById('liveMeasure');
+if(isJew){
+ if(sb) sb.parentElement.style.display='none';
+ if(lv) lv.style.display='none';
+ selSizeVal='FREE SIZE';
+}else{
+ if(sb) sb.parentElement.style.display='block';
+ if(lv) lv.style.display='block';
+ selSizeVal='';
+}
 document.getElementById('pmPrice').innerText="₹"+price;
 document.getElementById('coTitle').innerText=title;
 document.getElementById('coPrice').innerText="₹"+price;
