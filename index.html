@@ -571,43 +571,44 @@ var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
 <script>
-// JEWELLERY me size hide karne ka final code
-document.addEventListener('click', function(e){
-  if(e.target.innerText && e.target.innerText.includes('BUY NOW')){
-    setTimeout(function(){
-      let modal = document.querySelector('div[style*="fixed"]'); // popup modal
-      if(!modal) return;
-      
-      // Check karo product JEWELLERY hai ya nahi
-      let btnCard = e.target.closest('div');
-      let isJew = false;
-      if(btnCard && btnCard.innerText.includes('JEWELLERY')){
-        isJew = true;
-      }
-      // modal ke title se bhi check
-      if(modal.innerText.toLowerCase().includes('earring') || modal.innerText.toLowerCase().includes('ring') || modal.innerText.toLowerCase().includes('oxidised') || modal.innerText.toLowerCase().includes('twist set')){
-        isJew = true;
-      }
-
-      if(isJew){
-        // SELECT SIZE text hide
-        modal.querySelectorAll('*').forEach(function(el){
-          if(el.innerText === 'SELECT SIZE'){ el.style.display='none'; }
-          if(el.innerText && el.innerText.includes('SIZE CHART')){ el.style.display='none'; }
-          if(el.innerText && el.innerText.includes('Measurement Of Size')){ 
-            el.parentElement.style.display='none'; // pura green box
-          }
-          // S M L XL XXL ke circle hide
-          if(el.innerText === 'S' || el.innerText === 'M' || el.innerText === 'L' || el.innerText === 'XL' || el.innerText === 'XXL'){
-            if(el.parentElement && el.parentElement.children.length >= 5){
-              el.parentElement.style.display='none';
-            }
+// FINAL - Jewellery se Size / Measurement hatane ka code
+(function(){
+  function hideForJewellery(){
+    let modal = document.querySelector('div[style*="fixed"]') || document.body;
+    let text = modal.innerText || "";
+    let isJew = text.includes("Garba Royal Oxidised") || text.toLowerCase().includes("jewellery set") || text.toLowerCase().includes("earring") || text.includes("JEWELLERY");
+    
+    // sirf jab jewellery ka popup khula ho tab hide karo
+    if(text.includes("SELECT SIZE") && isJew){
+      document.querySelectorAll('*').forEach(el=>{
+        if(el.innerText === 'SELECT SIZE') el.style.display='none';
+        if(el.innerText && el.innerText.includes('SIZE CHART')) el.style.display='none';
+        if(el.innerText && el.innerText.includes('Measurement Of Size')) el.closest('div').style.display='none';
+      });
+      // S M L XL XXL wale buttons hide
+      let sizeBtns = document.querySelectorAll('div');
+      sizeBtns.forEach(d=>{
+        if(d.innerText.trim() === 'S M L XL XXL' || d.innerText.includes('S') && d.innerText.includes('XXL') && d.children.length>=4){
+           // check kar ke hide
+        }
+      });
+      // sab size circle hide
+      ['S','M','L','XL','XXL'].forEach(s=>{
+        document.querySelectorAll('div,span,button').forEach(el=>{
+          if(el.innerText.trim() === s && el.offsetWidth < 80 && el.offsetHeight < 80){
+             let parent = el.parentElement;
+             if(parent && parent.innerText.includes('XL')) parent.style.display='none';
           }
         });
-      }
-    }, 200);
+      });
+      // size select ko bypass karo taaki BUY NOW kaam kare
+      window.selSizeVal = 'FREE SIZE';
+      window.selectedSize = 'FREE SIZE';
+    }
   }
-});
+  // har click pe check karo
+  document.addEventListener('click', function(){ setTimeout(hideForJewellery, 150); setTimeout(hideForJewellery, 500); });
+})();
 </script>
 </body>
 </html>
