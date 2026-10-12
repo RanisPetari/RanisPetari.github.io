@@ -399,7 +399,10 @@ function openP(el){
   document.getElementById('pmTitle').innerText = title;
   document.getElementById('pmPrice').innerText = price;
   // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
-let isJew = el.innerText.toUpperCase().includes('JEWELLERY') || title.toLowerCase().includes('jewellery') || title.toLowerCase().includes('earring') || title.toLowerCase().includes('oxidised') || title.toLowerCase().includes('garba') || title.toLowerCase().includes('ring');
+let low = title.toLowerCase();
+let isCloth = low.includes('kurta') || low.includes('saree') || low.includes('anarkali') || low.includes('lehenga') || low.includes('gown') || low.includes('suit');
+let isJew = !isCloth || el.innerText.toUpperCase().includes('JEWELLERY') || low.includes('earring') || low.includes('peacock') || low.includes('statement') || low.includes('oxidised') || low.includes('garba') || low.includes('necklace');
+
 if(isJew){
   document.getElementById('sizeBox').parentElement.style.display='none';
   document.getElementById('liveMeasure').style.display='none';
