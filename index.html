@@ -552,36 +552,47 @@ document.getElementById('cPin').value = pin;
 }
 function closeM(){ document.getElementById('pModal').style.display='none'; }
 function openP(el){
-selSizeVal="";
-let img = el.querySelector('img')? el.querySelector('img').src : "";
-let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
-let price = parseInt(el.getAttribute('data-price')||1499);
-curProd = {name:title, price:price, img:img};
-document.getElementById('pmImg').src=img;
-document.getElementById('pmTitle').innerText=title;
+  selSizeVal="";
+  let img = el.querySelector('img')? el.querySelector('img').src : "";
+  let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+  let price = parseInt(el.getAttribute('data-price'))||1499;
+  curProd = {name:title, price:price, img:img};
+  document.getElementById('pmImg').src=img;
+  document.getElementById('pmTitle').innerText=title;
+  document.getElementById('pmPrice').innerText="₹"+price;
+  document.getElementById('coTitle').innerText=title;
+  document.getElementById('coPrice').innerText="₹"+price;
+
   let low=title.toLowerCase();
-let isJew=low.includes('ring')||low.includes('earring')||low.includes('oxidised')||low.includes('garba')||low.includes('peacock')||low.includes('wine')||low.includes('twist')||low.includes('jewellery')||low.includes('jewelery');
-let sb=document.getElementById('sizeBox');
-let lv=document.getElementById('liveMeasure');
-if(isJew){
- if(sb) sb.parentElement.style.display='none';
- if(lv) lv.style.display='none';
- selSizeVal='FREE SIZE';
-}else{
- if(sb) sb.parentElement.style.display='block';
- if(lv) lv.style.display='block';
- selSizeVal='';
+  let isJew=low.includes('ring')||low.includes('earring')||low.includes('oxidised')||low.includes('garba')||low.includes('peacock')||low.includes('wine')||low.includes('twist')||low.includes('jewellery')||low.includes('jewelery');
+  let sb=document.getElementById('sizeBox');
+  let lv=document.getElementById('liveMeasure');
+  if(isJew){
+    if(sb) sb.parentElement.style.display='none';
+    if(lv) lv.style.display='none';
+    selSizeVal='FREE SIZE';
+  }else{
+    if(sb) sb.parentElement.style.display='block';
+    if(lv) lv.style.display='block';
+    selSizeVal='';
+  }
+  document.getElementById('pModal').style.display='flex';
 }
-document.getElementById('pmPrice').innerText="₹"+price;
-document.getElementById('coTitle').innerText=title;
-document.getElementById('coPrice').innerText="₹"+price;
-document.getElementById('pModal').style.display='flex';
-}
+function openProduct(el){ return openP(el); }
 function addToBag(){
-if(!selSizeVal){ document.getElementById('sizeErr').style.display='block'; return; }
-document.getElementById('coSize').innerText=selSizeVal;
-document.getElementById('pModal').style.display='none';
-document.getElementById('checkoutModal').style.display='block';
+  if(!selSizeVal){
+    let t = curProd && curProd.name? curProd.name.toLowerCase() : "";
+    let isJ = t.includes('ring')||t.includes('earring')||t.includes('jewellery')||t.includes('oxidised')||t.includes('garba');
+    if(!isJ){
+      let er=document.getElementById('sizeErr'); if(er) er.style.display='block';
+      return;
+    }else{
+      selSizeVal='FREE SIZE';
+    }
+  }
+  let cs=document.getElementById('coSize'); if(cs) cs.innerText=selSizeVal;
+  document.getElementById('pModal').style.display='none';
+  document.getElementById('checkoutModal').style.display='block';
 }
 function finalPay(){
 let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
