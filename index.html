@@ -399,9 +399,9 @@ function openP(el){
   document.getElementById('pmTitle').innerText = title;
   document.getElementById('pmPrice').innerText = price;
   // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
-let itemText = el.innerText.toUpperCase();
-let low = title.toLowerCase();
-let isJew = itemText.includes('JEWELLERY');
+let txt1 = (el.innerText || "").toUpperCase();
+let txt2 = title.toLowerCase();
+let isJew = txt1.includes('JEWELLERY') || txt2.includes('jewellery') || txt2.includes('ring') || txt2.includes('earring') || txt2.includes('garba') || txt2.includes('peacock') || txt2.includes('oxidised') || txt2.includes('navratri') || txt2.includes('elegance') || txt2.includes('statement');
 
 if(isJew){
   document.getElementById('sizeBox').parentElement.style.display='none';
