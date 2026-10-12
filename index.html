@@ -399,14 +399,13 @@ function openP(el){
   document.getElementById('pmTitle').innerText = title;
   document.getElementById('pmPrice').innerText = price;
   // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
-let isJew = el.innerText.toUpperCase().includes('JEWELLERY') || title.toLowerCase().includes('jewellery') || title.toLowerCase().includes('earring') || title.toLowerCase().includes('oxidised') || title.toLowerCase().includes('garba') || title.toLowerCase().includes('ring') || title.toLowerCase().includes('twist');
-
+let isJew = el.innerText.toUpperCase().includes('JEWELLERY') || title.toLowerCase().includes('jewellery') || title.toLowerCase().includes('earring') || title.toLowerCase().includes('oxidised') || title.toLowerCase().includes('garba') || title.toLowerCase().includes('ring');
 if(isJew){
-  document.getElementById('sizeMainBox').style.display='none';
+  document.getElementById('sizeBox').parentElement.style.display='none';
   document.getElementById('liveMeasure').style.display='none';
   selSizeVal = 'FREE SIZE';
 } else {
-  document.getElementById('sizeMainBox').style.display='block';
+  document.getElementById('sizeBox').parentElement.style.display='block';
   document.getElementById('liveMeasure').style.display='none';
   selSizeVal = '';
 }
