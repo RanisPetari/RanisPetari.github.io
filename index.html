@@ -570,6 +570,44 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
+<script>
+// JEWELLERY me size hide karne ka final code
+document.addEventListener('click', function(e){
+  if(e.target.innerText && e.target.innerText.includes('BUY NOW')){
+    setTimeout(function(){
+      let modal = document.querySelector('div[style*="fixed"]'); // popup modal
+      if(!modal) return;
+      
+      // Check karo product JEWELLERY hai ya nahi
+      let btnCard = e.target.closest('div');
+      let isJew = false;
+      if(btnCard && btnCard.innerText.includes('JEWELLERY')){
+        isJew = true;
+      }
+      // modal ke title se bhi check
+      if(modal.innerText.toLowerCase().includes('earring') || modal.innerText.toLowerCase().includes('ring') || modal.innerText.toLowerCase().includes('oxidised') || modal.innerText.toLowerCase().includes('twist set')){
+        isJew = true;
+      }
 
+      if(isJew){
+        // SELECT SIZE text hide
+        modal.querySelectorAll('*').forEach(function(el){
+          if(el.innerText === 'SELECT SIZE'){ el.style.display='none'; }
+          if(el.innerText && el.innerText.includes('SIZE CHART')){ el.style.display='none'; }
+          if(el.innerText && el.innerText.includes('Measurement Of Size')){ 
+            el.parentElement.style.display='none'; // pura green box
+          }
+          // S M L XL XXL ke circle hide
+          if(el.innerText === 'S' || el.innerText === 'M' || el.innerText === 'L' || el.innerText === 'XL' || el.innerText === 'XXL'){
+            if(el.parentElement && el.parentElement.children.length >= 5){
+              el.parentElement.style.display='none';
+            }
+          }
+        });
+      }
+    }, 200);
+  }
+});
+</script>
 </body>
 </html>
