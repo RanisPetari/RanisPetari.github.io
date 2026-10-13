@@ -592,77 +592,66 @@ document.getElementById('pmBuy').onclick = function(e){
 }; 
 </script>
 <script>
-// RANIS PETARI - VIDEO 6 ITEMS SIZE FIX
-(function(){
-  // 1. Size button dabane pe pink karna aur save karna
-  document.addEventListener('click', function(e){
-    let b = e.target.closest('button');
-    if(!b) return;
-    let t = b.innerText.trim();
-    if(!['M','L','XL','XXL','S'].includes(t)) return;
-    if(!b.closest('div')) return;
-    
-    // Video wala card dhoondo - jisme Rani Collection likha hai
-    let card = b.parentElement;
-    while(card && card !== document.body){
-      if(card.innerHTML.includes('BUY NOW') && card.innerHTML.includes('Rani')) break;
-      card = card.parentElement;
-    }
-    if(!card) card = b.parentElement.parentElement;
-    
-    // Usi card ke saare size buttons normal karo
-    card.querySelectorAll('button').forEach(function(x){
-      let xt = x.innerText.trim();
-      if(['M','L','XL','XXL','S'].includes(xt)){
-        x.style.border='1px solid #ddd';
-        x.style.color='#000';
-        x.style.background='#fff';
-      }
-    });
-    // Jisko dabaya usko pink
-    b.style.border='2px solid #ff3f6c';
-    b.style.color='#ff3f6c';
-    b.style.background='#fff0f3';
-    card.dataset.size = t;
-    b.dataset.sel = '1';
-  }, true);
-
-  // 2. BUY NOW pe size check - sabse pehle pakadna hai
-  document.addEventListener('click', function(e){
-    let buy = e.target.closest('button');
-    if(!buy || buy.innerText.trim() !== 'BUY NOW') return;
-    
-    let card = buy.parentElement;
-    while(card && card !== document.body){
-      if(card.innerHTML.includes('Rani Petari Collection')) break;
-      card = card.parentElement;
-    }
-    if(!card) return;
-    
-    let size = card.dataset.size;
-    // Agar dataset me nahi to pink wala dhoondo
-    if(!size){
-      let pink = null;
-      card.querySelectorAll('button').forEach(function(x){
-        if(x.style.border.includes('ff3f6c')) pink = x.innerText.trim();
-      });
-      size = pink;
-    }
-    
-    if(!size){
-      e.preventDefault();
-      e.stopImmediatePropagation();
+// FINAL ONE SHOT FIX - 6 VIDEO ITEMS
+// Size button ko upar lao aur clickable banao
+document.querySelectorAll('button').forEach(function(b){
+  let t = b.innerText.trim();
+  if(['M','L','XL','XXL'].includes(t)){
+    b.style.pointerEvents = 'auto';
+    b.style.zIndex = '9999';
+    b.style.position = 'relative';
+    b.onclick = function(e){
       e.stopPropagation();
-      alert('Please select size M, L, XL, XXL');
-      return false;
-    }
-    
-    // Size mil gaya to checkout me bhej do
-    window.selSizeVal = size;
+      e.preventDefault();
+      let card = this.parentElement.parentElement;
+      // usi product ke saare size normal
+      card.querySelectorAll('button').forEach(function(x){
+        let xt = x.innerText.trim();
+        if(['M','L','XL','XXL'].includes(xt)){
+          x.style.border='1px solid #ddd';
+          x.style.color='#000';
+          x.style.background='#fff';
+        }
+      });
+      // ye wala pink
+      this.style.border='2px solid #ff3f6c';
+      this.style.color='#ff3f6c';
+      this.style.background='#fff0f3';
+      card.dataset.mySize = this.innerText.trim();
+    };
+  }
+});
+
+// BUY NOW check - agar size nahi to roko, agar hai to payment pe jane do
+document.addEventListener('click', function(e){
+  let buy = e.target.closest('button');
+  if(!buy || buy.innerText.trim() !== 'BUY NOW') return;
+  let card = buy.parentElement.parentElement;
+  if(!card.innerHTML.includes('Rani Petari Collection')) return;
+  
+  let sz = card.dataset.mySize;
+  if(!sz){
+    // pink wala check karo
+    let found = '';
+    card.querySelectorAll('button').forEach(function(x){
+      if(x.style.border.includes('ff3f6c')) found = x.innerText.trim();
+    });
+    sz = found;
+  }
+  
+  if(!sz){
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    alert('Please select size M, L, XL, XXL');
+    return false;
+  } else {
+    // size hai to coSize me daal do taki checkout me jaye
+    window.selSizeVal = sz;
     let co = document.getElementById('coSize');
-    if(co) co.innerText = size;
-  }, true);
-})();
+    if(co) co.innerText = sz;
+    // ab payment wala apna kaam karega, hum rokेंगे nahi
+  }
+}, true);
 </script>
 </body>
 </html>
