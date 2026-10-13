@@ -524,24 +524,25 @@ document.addEventListener('click', function(){ document.querySelectorAll('.dropd
 let selSizeVal = "";
 let curProd = {name:"", price:0, img:""};
 
-const SIZE_DATA = {
-'S':{t:'Bust 34-36" | Shoulder 14-15" | Length 38-40"', b:'Waist 28-30" | Hip 36-38" | Length 38-40"'},
-'M':{t:'Bust 36-38" | Shoulder 15-16" | Length 40-42"', b:'Waist 30-32" | Hip 38-40" | Length 40-42"'},
-'L':{t:'Bust 38-40" | Shoulder 16-17" | Length 42-44"', b:'Waist 32-34" | Hip 40-42" | Length 42-44"'},
-'XL':{t:'Bust 40-42" | Shoulder 17-18" | Length 44-46"', b:'Waist 34-36" | Hip 42-44" | Length 44-46"'},
-'XXL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'}
+const SIZE_DATA={
+'S':{t:'Bust 34-36 | Shoulder 14-15 | Length 38-40', b:'Waist 28-30 | Hip 36-38 | Length 38-40'},
+'M':{t:'Bust 36-38 | Shoulder 15-16 | Length 40-42', b:'Waist 30-32 | Hip 38-40 | Length 40-42'},
+'L':{t:'Bust 38-40 | Shoulder 16-17 | Length 42-44', b:'Waist 32-34 | Hip 40-42 | Length 42-44'},
+'XL':{t:'Bust 40-42 | Shoulder 17-18 | Length 44-46', b:'Waist 34-36 | Hip 42-44 | Length 44-46'},
+'XXL':{t:'Bust 42-44 | Shoulder 18-19 | Length 46-48', b:'Waist 36-38 | Hip 44-46 | Length 46-48'}
 };
-function selSize(btn, size){
- document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
- btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c';
- selSizeVal = size;
- document.getElementById('sizeErr').style.display='none';
- let d = SIZE_DATA[size];
- let box = document.getElementById('liveMeasure');
- if(d && box){
-   box.style.display='block';
-   box.innerHTML = '<b style="color:#00c853;">'+size+' Measurement Of Size:</b><br><b>TOP:</b> '+d.t+'<br><b>BOTTOM:</b> '+d.b;
- }
+function selSize(btn,size){
+document.querySelectorAll('.sBtn').forEach(function(b){b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
+btn.style.border='1px solid #ff3f6c';
+btn.style.color='#ff3f6c';
+selSizeVal=size;
+document.getElementById('sizeErr').style.display='none';
+let d=SIZE_DATA[size];
+let box=document.getElementById('liveMeasure');
+if(d && box){
+box.style.display='block';
+box.innerHTML='<b style="color:#00c853;">'+size+' Measurement Of Size:</b><br><b>TOP:</b> '+d.t+'<br><b>BOTTOM:</b> '+d.b;
+}
 }
 function checkPin(){
 let pin = document.getElementById('pinCheck').value;
