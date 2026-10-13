@@ -615,24 +615,28 @@ document.getElementById('pmBuy').onclick = function(e){
 }; 
 </script>
 <script>
-const _open = window.openBuyModal;
-window.openBuyModal = function(btn){
-  let card = btn.closest('.card');
-  let isJew = card && card.innerText.toLowerCase().includes('jewellery');
-  if(isJew){
-    window.selSizeVal='FREE SIZE';
-    card.dataset.selectedSize='FREE SIZE';
-    document.getElementById('coSize').innerText='FREE SIZE';
-  }
-  _open(btn);
-  if(isJew){
-    setTimeout(()=>{
-      let m=document.getElementById('checkoutModal');
-      m.querySelectorAll('button').forEach(b=>{ if(['S','M','L','XL','XXL'].includes(b.innerText.trim())) b.remove(); });
-      m.querySelectorAll('*').forEach(e=>{ if(e.innerText=='SELECT SIZE' || e.innerText.includes('SIZE CHART') || e.innerText.includes('Measurement')) e.remove(); });
-    },50);
-  }
-}
+(function(){
+  setInterval(()=>{
+    let m=document.getElementById('checkoutModal');
+    if(!m || m.style.display=='none') return;
+    let title=(m.innerText||'').toLowerCase();
+    // ye sab jewellery hai - in sab pe size hatana hai
+    if(title.includes('jewellery') || title.includes('jewelry') || title.includes('earrings') || title.includes('jewellery set')){
+      m.querySelectorAll('button').forEach(b=>{
+        let t=b.innerText.trim();
+        if(['S','M','L','XL','XXL'].includes(t)) b.style.display='none';
+      });
+      m.querySelectorAll('div,p,span,h4').forEach(d=>{
+        let t=(d.innerText||'').trim();
+        if(t=='SELECT SIZE' || t.includes('SIZE CHART') || t.includes('Measurement Of Size') || t.includes('BOTTOM: Waist') || t.includes('TOP: Bust')){
+          d.style.display='none';
+        }
+      });
+      let co=document.getElementById('coSize');
+      if(co) co.innerText='FREE SIZE';
+    }
+  },100);
+})();
 </script>
 </body>
 </html>
