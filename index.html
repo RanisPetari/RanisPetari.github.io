@@ -450,29 +450,44 @@ document.addEventListener('click', function(){
   }); 
 });
 
-// FINAL FIX - BUY NOW jam fix
-var selSizeVal = '';
+window.selSizeVal = '';
 window.selSize = function(btn,size){
-  selSizeVal = size;
   window.selSizeVal = size;
-  document.querySelectorAll('.sBtn').forEach(function(b){ b.style.border='1px solid #d4d5d9'; b.style.color='#000'; b.style.background='#fff'; });
-  btn.style.border='2px solid #ff3f6c'; btn.style.color='#ff3f6c';
+  selSizeVal = size;
+  document.querySelectorAll('#pModal button').forEach(function(b){
+    var t = b.innerText.trim();
+    if(['S','M','L','XL','XXL'].includes(t)){
+      b.style.border='1px solid #d4d5d9'; b.style.color='#000'; b.style.background='#fff';
+    }
+  });
+  btn.style.border='2px solid #ff3f6c'; btn.style.color='#ff3f6c'; btn.style.background='#fff0f3';
   var live = document.getElementById('liveMeasure'); if(live) live.style.display='block';
   var err = document.getElementById('sizeErr'); if(err) err.style.display='none';
 };
+
+// S M L buttons ko zabardasti click karwana
+document.addEventListener('click', function(ev){
+  var btn = ev.target.closest('button');
+  if(!btn) return;
+  var txt = btn.innerText.trim();
+  if(['S','M','L','XL','XXL'].includes(txt) && document.getElementById('pModal').style.display!=='none'){
+    window.selSize(btn, txt);
+  }
+});
+
 var buyBtn = document.getElementById('pmBuy');
 if(buyBtn){
   buyBtn.onclick = function(e){
     if(e) e.preventDefault();
-    if(!selSizeVal && !window.selSizeVal){
+    var sz = window.selSizeVal || selSizeVal;
+    if(!sz){
       var er = document.getElementById('sizeErr');
-      if(er){ er.style.display='block'; er.innerHTML='<b style=color:red>Please select size</b>'; }
-      else{ alert('Please select size S/M/L/XL/XXL'); }
+      if(er){ er.style.display='block'; er.innerHTML='<b style=color:red>Please select size S/M/L/XL/XXL</b>'; }
       return;
     }
-    var co = document.getElementById('coSize'); if(co) co.innerText = selSizeVal || window.selSizeVal;
+    var co = document.getElementById('coSize'); if(co) co.innerText = sz;
     document.getElementById('pModal').style.display='none';
-    document.getElementById('checkoutModal').style.display='block';
+    var c = document.getElementById('checkoutModal'); if(c) c.style.display='block';
   };
 }
 var selSizeVal = '';
