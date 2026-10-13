@@ -385,40 +385,50 @@ function filterCol(type){
 
 // ====== PRODUCT POPUP ======
 function openP(el){
-  if(!el) return;
-  var imgEl = el.querySelector('img, video');
-  var imgSrc = imgEl? (imgEl.src || imgEl.getAttribute('src') || imgEl.poster) : '';
-  if(imgEl && imgEl.tagName==='VIDEO') imgSrc = el.querySelector('video')? el.querySelector('video').getAttribute('poster') || '' : '';
-  // For video, show first frame as image if possible, else keep video src
-  var title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
-  var priceMatch = el.innerText.match(/₹\s*[\d,]+/);
-  var price = priceMatch? priceMatch[0] : '';
+ if(!el) return;
+ var imgEl = el.querySelector('img');
+ var vidEl = el.querySelector('video');
+ var imgSrc = '';
+ if(imgEl){ imgSrc = imgEl.src || ''; }
+ else if(vidEl){ imgSrc = vidEl.getAttribute('poster') || vidEl.src || ''; }
+ var txt = el.innerText || '';
+ var title = txt.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+ var priceMatch = txt.match(/₹\s*[\d,]+/);
+ var priceText = priceMatch? priceMatch[0] : '₹999';
+ var priceNum = parseInt(priceText.replace(/[^0-9]/g,'')) || 999;
 
-  document.getElementById('pmImg').src = el.querySelector('img')? el.querySelector('img').src : '';
-  if(el.querySelector('video')){ document.getElementById('pmImg').style.display='none'; } else { document.getElementById('pmImg').style.display='block'; }
-  document.getElementById('pmTitle').innerText = title;
-  document.getElementById('pmPrice').innerText = price;
-  // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
-let low = title.toLowerCase();
-let isCloth = low.includes('kurta') || low.includes('saree') || low.includes('anarkali') || low.includes('lehenga') || low.includes('gown') || low.includes('suit');
-let isJew = !isCloth || el.innerText.toUpperCase().includes('JEWELLERY') || low.includes('earring') || low.includes('peacock') || low.includes('statement') || low.includes('oxidised') || low.includes('garba') || low.includes('necklace');
+ document.getElementById('pmImg').src = imgSrc;
+ document.getElementById('pmImg').style.display = 'block';
+ document.getElementById('pmTitle').innerText = title;
+ document.getElementById('pmPrice').innerText = priceText;
+ curProd = {name:title, price:priceNum, img:imgSrc};
+ selSizeVal = "";
+ document.querySelectorAll('.sBtn').forEach(function(b){b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
+ var live = document.getElementById('liveMeasure');
+ if(live) live.style.display='none';
+ var err = document.getElementById('sizeErr');
+ if(err) err.style.display='none';
 
-if(isJew){
-  document.getElementById('sizeBox').parentElement.style.display='none';
-  document.getElementById('liveMeasure').style.display='none';
-  selSizeVal = 'FREE SIZE';
-} else {
-  document.getElementById('sizeBox').parentElement.style.display='block';
-  document.getElementById('liveMeasure').style.display='none';
-  selSizeVal = '';
-}
-  document.getElementById('pmBuy').onclick = function(){
-    document.getElementById('pModal').style.display='none';
-    let priceVal = parseInt(el.getAttribute('data-price')||999);
-    let nameVal = title;
-    payNow(nameVal, priceVal);
-  };
-  document.getElementById('pModal').style.display='flex';
+ // VIDEO ho ya ITEM ho - SIZE BOX hamesha dikhana hai
+ var sizeBox = document.getElementById('sizeBox');
+ if(sizeBox){
+   sizeBox.parentElement.style.display='block';
+   sizeBox.style.display='block';
+ }
+
+ document.getElementById('pModal').style.display='flex';
+
+ // BUY NOW pe size compulsory
+ document.getElementById('pmBuy').onclick = function(){
+   if(!selSizeVal){
+     var e=document.getElementById('sizeErr');
+     if(e){ e.style.display='block'; e.innerText='Please select size S/M/L/XL/XXL'; }
+     return;
+   }
+   document.getElementById('coSize').innerText=selSizeVal;
+   document.getElementById('pModal').style.display='none';
+   document.getElementById('checkoutModal').style.display='block';
+ };
 }
 
 // Close popup on outside click
