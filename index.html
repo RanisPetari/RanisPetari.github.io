@@ -591,67 +591,78 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('checkoutModal').style.display='block';
 }; 
 </script>
-  <script>
-// VIDEO WALE 6 ITEMS ME SIZE SELECT FIX
-document.addEventListener('click', function(e){
-  let btn = e.target.closest('button');
-  if(!btn) return;
-  let txt = btn.innerText.trim();
-  if(!['M','L','XL','XXL','S'].includes(txt)) return;
-  
-  // Ye video card ka size button hai kya check karo
-  let card = btn.closest('div');
-  if(!card) return;
-  
-  // Usi card ke saare size buttons ko normal karo
-  card.parentElement.querySelectorAll('button').forEach(function(b){
+<script>
+// RANIS PETARI - VIDEO 6 ITEMS SIZE FIX
+(function(){
+  // 1. Size button dabane pe pink karna aur save karna
+  document.addEventListener('click', function(e){
+    let b = e.target.closest('button');
+    if(!b) return;
     let t = b.innerText.trim();
-    if(['M','L','XL','XXL','S'].includes(t)){
-      b.style.border='1px solid #ccc';
-      b.style.color='#000';
-      b.style.background='#fff';
+    if(!['M','L','XL','XXL','S'].includes(t)) return;
+    if(!b.closest('div')) return;
+    
+    // Video wala card dhoondo - jisme Rani Collection likha hai
+    let card = b.parentElement;
+    while(card && card !== document.body){
+      if(card.innerHTML.includes('BUY NOW') && card.innerHTML.includes('Rani')) break;
+      card = card.parentElement;
     }
-  });
-  
-  // Click wala pink karo
-  btn.style.border='2px solid #ff3f6c';
-  btn.style.color='#ff3f6c';
-  btn.style.background='#fff0f3';
-  
-  // Size save karo usi card me
-  card.dataset.selSize = txt;
-  window.videoSelSize = txt;
-  
-  // Error hatado
-  let err = document.getElementById('sizeErr');
-  if(err) err.style.display='none';
-});
-
-// BUY NOW ko size check karwana
-document.querySelectorAll('button').forEach(function(buy){
-  if(buy.innerText.trim() === 'BUY NOW'){
-    buy.addEventListener('click', function(ev){
-      let card = ev.target.closest('div');
-      let size = card ? card.dataset.selSize : null;
-      if(!size && !window.selSizeVal){
-        // Agar video wale me size nahi select to roko
-        if(card && card.innerHTML.includes('Rani Petari Collection')){
-          // Video wale card me size check
-          let hasSel = false;
-          card.parentElement.querySelectorAll('button').forEach(function(b){
-            if(b.style.border.includes('ff3f6c')) hasSel = true;
-          });
-          if(!hasSel){
-            ev.preventDefault();
-            ev.stopPropagation();
-            alert('Please select size M/L/XL/XXL first');
-            return false;
-          }
-        }
+    if(!card) card = b.parentElement.parentElement;
+    
+    // Usi card ke saare size buttons normal karo
+    card.querySelectorAll('button').forEach(function(x){
+      let xt = x.innerText.trim();
+      if(['M','L','XL','XXL','S'].includes(xt)){
+        x.style.border='1px solid #ddd';
+        x.style.color='#000';
+        x.style.background='#fff';
       }
     });
-  }
-});
+    // Jisko dabaya usko pink
+    b.style.border='2px solid #ff3f6c';
+    b.style.color='#ff3f6c';
+    b.style.background='#fff0f3';
+    card.dataset.size = t;
+    b.dataset.sel = '1';
+  }, true);
+
+  // 2. BUY NOW pe size check - sabse pehle pakadna hai
+  document.addEventListener('click', function(e){
+    let buy = e.target.closest('button');
+    if(!buy || buy.innerText.trim() !== 'BUY NOW') return;
+    
+    let card = buy.parentElement;
+    while(card && card !== document.body){
+      if(card.innerHTML.includes('Rani Petari Collection')) break;
+      card = card.parentElement;
+    }
+    if(!card) return;
+    
+    let size = card.dataset.size;
+    // Agar dataset me nahi to pink wala dhoondo
+    if(!size){
+      let pink = null;
+      card.querySelectorAll('button').forEach(function(x){
+        if(x.style.border.includes('ff3f6c')) pink = x.innerText.trim();
+      });
+      size = pink;
+    }
+    
+    if(!size){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      alert('Please select size M, L, XL, XXL');
+      return false;
+    }
+    
+    // Size mil gaya to checkout me bhej do
+    window.selSizeVal = size;
+    let co = document.getElementById('coSize');
+    if(co) co.innerText = size;
+  }, true);
+})();
 </script>
 </body>
 </html>
