@@ -444,8 +444,37 @@ document.querySelectorAll('.dropdown.dropbtn').forEach(btn=>{
     content.style.display = isOpen? 'none' : 'block';
   });
 });
-document.addEventListener('click', function(){ document.querySelectorAll('.dropdown-content').forEach(dc=>{ if(window.innerWidth<=768) dc.style.display='none'; }); });
-// FINAL FIX - VIDEO + ITEM dono me SIZE compulsory
+document.addEventListener('click', function(){ 
+  document.querySelectorAll('.dropdown-content').forEach(function(dc){ 
+    if(window.innerWidth<=768) dc.style.display='none'; 
+  }); 
+});
+
+// FINAL FIX - BUY NOW jam fix
+var selSizeVal = '';
+window.selSize = function(btn,size){
+  selSizeVal = size;
+  window.selSizeVal = size;
+  document.querySelectorAll('.sBtn').forEach(function(b){ b.style.border='1px solid #d4d5d9'; b.style.color='#000'; b.style.background='#fff'; });
+  btn.style.border='2px solid #ff3f6c'; btn.style.color='#ff3f6c';
+  var live = document.getElementById('liveMeasure'); if(live) live.style.display='block';
+  var err = document.getElementById('sizeErr'); if(err) err.style.display='none';
+};
+var buyBtn = document.getElementById('pmBuy');
+if(buyBtn){
+  buyBtn.onclick = function(e){
+    if(e) e.preventDefault();
+    if(!selSizeVal && !window.selSizeVal){
+      var er = document.getElementById('sizeErr');
+      if(er){ er.style.display='block'; er.innerHTML='<b style=color:red>Please select size</b>'; }
+      else{ alert('Please select size S/M/L/XL/XXL'); }
+      return;
+    }
+    var co = document.getElementById('coSize'); if(co) co.innerText = selSizeVal || window.selSizeVal;
+    document.getElementById('pModal').style.display='none';
+    document.getElementById('checkoutModal').style.display='block';
+  };
+}
 var selSizeVal = '';
 window.selSize = function(btn,size){
   selSizeVal = size;
