@@ -608,29 +608,7 @@ button[class*="buy" i],
 </style>
 
 <script>
-// Ye code Buy Now ko measurement se alag karega
-document.addEventListener("DOMContentLoaded", function(){
-  const allBuyBtns = document.querySelectorAll("button");
-  
-  allBuyBtns.forEach(btn => {
-    if(btn.textContent.trim().toLowerCase() === "buy now"){
-      // Button click ko popup open se rokna
-      btn.addEventListener("click", function(event){
-        event.stopPropagation(); // Ye sabse important line hai
-        event.preventDefault();
-        
-        // Aapka purana Razorpay wala function yaha call hoga
-        // Jaise: openRazorpayCheckout() ya jo bhi aapne lagaya hai
-        console.log("Buy Now Clicked - " + btn.closest(".product-card")?.innerText);
-        
-        // Agar Razorpay function hai to use call karo
-        if(typeof initiatePayment === 'function'){
-            initiatePayment();
-        }
-      });
-    }
-  });
-});
+
 </script>
 </body>
 </html>
