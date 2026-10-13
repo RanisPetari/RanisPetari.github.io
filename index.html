@@ -421,33 +421,15 @@ if(isJew){
   selSizeVal = 'FREE SIZE';
 } else {
   document.getElementById('sizeBox').parentElement.style.display='block';
-  document.getElementById('liveMeasure').style.display='block';
+  document.getElementById('liveMeasure').style.display='none';
   selSizeVal = '';
 }
-document.getElementById('pmBuy').onclick = function(){
+  document.getElementById('pmBuy').onclick = function(){
     document.getElementById('pModal').style.display='none';
     let priceVal = parseInt(el.getAttribute('data-price')||999);
     let nameVal = title;
     payNow(nameVal, priceVal);
-    setTimeout(()=>{
-      let l2 = nameVal.toLowerCase();
-      let j2 = l2.includes('garba') || l2.includes('earring') || l2.includes('jewellery') || l2.includes('peacock') || l2.includes('wine') || l2.includes('statement');
-      let coModal = document.getElementById('checkoutModal');
-      if(j2 && coModal){
-        coModal.querySelectorAll('button').forEach(b=>{
-          if(['S','M','L','XL','XXL'].includes(b.innerText.trim())) b.style.display='none';
-        });
-        coModal.querySelectorAll('*').forEach(x=>{
-          let t=(x.innerText||'').trim();
-          if(t==='SELECT SIZE' || (t.includes('SIZE CHART') && t.length<30) || (t.includes('Measurement Of Size') && t.length<300)){
-            x.style.display='none';
-          }
-        });
-      }
-    },100);
   };
-  document.getElementById('pModal').style.display='flex';
-}
   document.getElementById('pModal').style.display='flex';
 }
 
