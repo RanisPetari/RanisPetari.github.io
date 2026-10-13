@@ -584,6 +584,13 @@ document.getElementById('checkoutModal').style.display='none';
 var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
-
+<script>
+document.getElementById('pmBuy').onclick = function(e){
+  e.preventDefault();
+  document.getElementById('pModal').style.display='none';
+  document.getElementById('checkoutModal').style.display='block';
+};
+</script>
+</body>
 </body>
 </html>
