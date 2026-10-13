@@ -615,49 +615,24 @@ document.getElementById('pmBuy').onclick = function(e){
 }; 
 </script>
 <script>
-// RANIS PETARI - JEWELLERY SIZE FIX - PASTE BEFORE </body>
-(function(){
-  function isJew(card){
-    if(!card) return false;
-    let t=(card.innerText||'').toLowerCase();
-    return t.includes('jewellery') || t.includes('jewelry') || t.includes('garba') || t.includes('peacock') || t.includes('ruby');
+const _open = window.openBuyModal;
+window.openBuyModal = function(btn){
+  let card = btn.closest('.card');
+  let isJew = card && card.innerText.toLowerCase().includes('jewellery');
+  if(isJew){
+    window.selSizeVal='FREE SIZE';
+    card.dataset.selectedSize='FREE SIZE';
+    document.getElementById('coSize').innerText='FREE SIZE';
   }
-  const oldOpen = window.openBuyModal;
-  window.openBuyModal = function(btn){
-    let card = btn.closest('.card') || btn.closest('.watch-card') || btn.closest('div');
-    // agar jewellery hai to size hide
-    if(isJew(card)){
-      window.selSizeVal='FREE SIZE';
-      if(card) card.dataset.selectedSize='FREE SIZE';
-      let co=document.getElementById('coSize');
-      if(co) co.innerText='FREE SIZE';
-      
-      if(oldOpen) {
-        // size check bypass karne ke liye pehle se set hai
-        try{ oldOpen.call(window, btn); }catch(e){}
-      }
-      
-      setTimeout(()=>{
-        let modal=document.getElementById('checkoutModal');
-        if(!modal) return;
-        modal.querySelectorAll('button').forEach(b=>{
-          let txt=b.innerText.trim();
-          if(['S','M','L','XL','XXL'].includes(txt)) b.style.display='none';
-        });
-        // SELECT SIZE, SIZE CHART, MEASUREMENT BOX hide
-        modal.querySelectorAll('div, p, span').forEach(d=>{
-          let txt=(d.innerText||'').trim();
-          if(txt=='SELECT SIZE' || txt.includes('SIZE CHART') || txt.includes('Measurement Of Size') || txt.includes('Bust 40-42')){
-            d.style.display='none';
-          }
-        });
-      },30);
-      return;
-    }
-    // kapdo ke liye normal
-    if(oldOpen) return oldOpen(btn);
-  };
-})();
+  _open(btn);
+  if(isJew){
+    setTimeout(()=>{
+      let m=document.getElementById('checkoutModal');
+      m.querySelectorAll('button').forEach(b=>{ if(['S','M','L','XL','XXL'].includes(b.innerText.trim())) b.remove(); });
+      m.querySelectorAll('*').forEach(e=>{ if(e.innerText=='SELECT SIZE' || e.innerText.includes('SIZE CHART') || e.innerText.includes('Measurement')) e.remove(); });
+    },50);
+  }
+}
 </script>
 </body>
 </html>
