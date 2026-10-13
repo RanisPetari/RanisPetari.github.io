@@ -185,19 +185,8 @@ function openBuyModal(btn){
     window.selSizeVal = 'FREE SIZE';
     if(card) card.dataset.selectedSize = 'FREE SIZE';
     // Checkout me SELECT SIZE wala div hide kar do agar hai
-setTimeout(()=>{
-  let m=document.getElementById('checkoutModal');
-  if(m){
-    m.querySelectorAll('button').forEach(b=>{
-      let t=b.innerText.trim();
-      if(t=='S'||t=='M'||t=='L'||t=='XL'||t=='XXL') b.style.display='none';
-    });
-    m.querySelectorAll('div,span,p').forEach(d=>{
-      let t=(d.innerText||'').trim();
-      if(t=='SELECT SIZE' || t.includes('SIZE CHART')) d.style.display='none';
-    });
-  }
-},50);
+    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
+    if(sizeBox) sizeBox.style.display = 'none';
   } else {
     // Normal kapdo ke liye size compulsory
     if(!card || !card.dataset.selectedSize){
@@ -613,23 +602,6 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('pModal').style.display='none';
   document.getElementById('checkoutModal').style.display='block';
 }; 
-</script>
-<script>
-setInterval(()=>{
-  let m=document.getElementById('checkoutModal');
-  if(!m || m.style.display=='none') return;
-  let txt=(m.innerText||'').toLowerCase();
-  if(txt.includes('earrings') || txt.includes('jewellery') || txt.includes('wine-toned') || txt.includes('oxidised') || txt.includes('garba')){
-    m.querySelectorAll('button').forEach(b=>{
-      let t=b.innerText.trim();
-      if(['S','M','L','XL','XXL'].includes(t)) b.style.display='none';
-    });
-    m.querySelectorAll('div,p,span,h4').forEach(d=>{
-      let t=(d.innerText||'').trim();
-      if(t=='SELECT SIZE' || t.includes('SIZE CHART') || t.includes('Measurement')) d.style.display='none';
-    });
-  }
-},200);
 </script>
 
 </body>
