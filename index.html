@@ -157,12 +157,29 @@ nav a, .dropbtn{color:#fff;text-decoration:none;font-size:14px;cursor:pointer;ba
 
 </div>
 </section>
-<script>
 function selectSize(el){
-el.parentElement.querySelectorAll('.size-btn').forEach(b=>b.style.background='#fff',b.style.color='#000');
-el.style.background='#000'; el.style.color='#fff';
+  let card = el.closest('.watch-card');
+  let selector = el.closest('.size-selector');
+  selector.querySelectorAll('.size-btn').forEach(b=>{
+    b.style.background='#fff'; b.style.color='#000'; b.style.border='1px solid #ddd';
+  });
+  el.style.background='#000'; el.style.color='#fff'; el.style.border='2px solid #000';
+  card.dataset.selectedSize = el.innerText.trim();
 }
-function toggleSound(box){
+function openBuyModal(btn){
+  let card = btn.closest('.watch-card');
+  if(!card.dataset.selectedSize){
+    alert('Please select size M, L, XL, XXL');
+    return;
+  }
+  let size = card.dataset.selectedSize;
+  let coSize = document.getElementById('coSize');
+  if(coSize) coSize.innerText = size;
+  window.selSizeVal = size;
+  let modal = document.getElementById('checkoutModal');
+  if(modal) modal.style.display='block';
+}
+  function toggleSound(box){
 let v=box.querySelector('video');
 let btn=box.querySelector('.sound-toggle');
 if(v.muted || v.paused){
@@ -591,67 +608,6 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('checkoutModal').style.display='block';
 }; 
 </script>
-<script>
-// FINAL ONE SHOT FIX - 6 VIDEO ITEMS
-// Size button ko upar lao aur clickable banao
-document.querySelectorAll('button').forEach(function(b){
-  let t = b.innerText.trim();
-  if(['M','L','XL','XXL'].includes(t)){
-    b.style.pointerEvents = 'auto';
-    b.style.zIndex = '9999';
-    b.style.position = 'relative';
-    b.onclick = function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      let card = this.parentElement.parentElement;
-      // usi product ke saare size normal
-      card.querySelectorAll('button').forEach(function(x){
-        let xt = x.innerText.trim();
-        if(['M','L','XL','XXL'].includes(xt)){
-          x.style.border='1px solid #ddd';
-          x.style.color='#000';
-          x.style.background='#fff';
-        }
-      });
-      // ye wala pink
-      this.style.border='2px solid #ff3f6c';
-      this.style.color='#ff3f6c';
-      this.style.background='#fff0f3';
-      card.dataset.mySize = this.innerText.trim();
-    };
-  }
-});
 
-// BUY NOW check - agar size nahi to roko, agar hai to payment pe jane do
-document.addEventListener('click', function(e){
-  let buy = e.target.closest('button');
-  if(!buy || buy.innerText.trim() !== 'BUY NOW') return;
-  let card = buy.parentElement.parentElement;
-  if(!card.innerHTML.includes('Rani Petari Collection')) return;
-  
-  let sz = card.dataset.mySize;
-  if(!sz){
-    // pink wala check karo
-    let found = '';
-    card.querySelectorAll('button').forEach(function(x){
-      if(x.style.border.includes('ff3f6c')) found = x.innerText.trim();
-    });
-    sz = found;
-  }
-  
-  if(!sz){
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    alert('Please select size M, L, XL, XXL');
-    return false;
-  } else {
-    // size hai to coSize me daal do taki checkout me jaye
-    window.selSizeVal = sz;
-    let co = document.getElementById('coSize');
-    if(co) co.innerText = sz;
-    // ab payment wala apna kaam karega, hum rokेंगे nahi
-  }
-}, true);
-</script>
 </body>
 </html>
