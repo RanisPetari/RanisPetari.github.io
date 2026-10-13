@@ -445,6 +445,35 @@ document.querySelectorAll('.dropdown.dropbtn').forEach(btn=>{
   });
 });
 document.addEventListener('click', function(){ document.querySelectorAll('.dropdown-content').forEach(dc=>{ if(window.innerWidth<=768) dc.style.display='none'; }); });
+// FINAL FIX - VIDEO + ITEM dono me SIZE compulsory
+var selSizeVal = '';
+window.selSize = function(btn,size){
+  selSizeVal = size;
+  document.querySelectorAll('.sBtn, [class*="size"] button').forEach(function(b){ b.style.border='1px solid #d4d5d9'; b.style.color='#000'; });
+  btn.style.border='2px solid #ff3f6c';
+  btn.style.color='#ff3f6c';
+  var live = document.getElementById('liveMeasure');
+  if(live){
+    live.style.display='block';
+    live.innerHTML = '<b style=color:#00c853>'+size+' Measurement:</b><br>Bust '+size+' | Length '+size;
+  }
+  var err = document.getElementById('sizeErr');
+  if(err) err.style.display='none';
+}
+var buyBtn = document.getElementById('pmBuy');
+if(buyBtn){
+  buyBtn.onclick = function(){
+    if(!selSizeVal){
+      var e=document.getElementById('sizeErr');
+      if(e){ e.style.display='block'; e.innerHTML='<b style=color:red>Please select size S/M/L/XL/XXL</b>'; }
+      else{ alert('Please select size S/M/L/XL/XXL'); }
+      return;
+    }
+    document.getElementById('coSize').innerText = selSizeVal;
+    document.getElementById('pModal').style.display='none';
+    document.getElementById('checkoutModal').style.display='block';
+  };
+}
 </script>
 
 <!-- FOOTER -->
