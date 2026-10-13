@@ -185,8 +185,19 @@ function openBuyModal(btn){
     window.selSizeVal = 'FREE SIZE';
     if(card) card.dataset.selectedSize = 'FREE SIZE';
     // Checkout me SELECT SIZE wala div hide kar do agar hai
-    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
-    if(sizeBox) sizeBox.style.display = 'none';
+setTimeout(()=>{
+  let m=document.getElementById('checkoutModal');
+  if(m){
+    m.querySelectorAll('button').forEach(b=>{
+      let t=b.innerText.trim();
+      if(t=='S'||t=='M'||t=='L'||t=='XL'||t=='XXL') b.style.display='none';
+    });
+    m.querySelectorAll('div,span,p').forEach(d=>{
+      let t=(d.innerText||'').trim();
+      if(t=='SELECT SIZE' || t.includes('SIZE CHART')) d.style.display='none';
+    });
+  }
+},50);
   } else {
     // Normal kapdo ke liye size compulsory
     if(!card || !card.dataset.selectedSize){
