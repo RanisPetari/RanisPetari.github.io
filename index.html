@@ -385,50 +385,40 @@ function filterCol(type){
 
 // ====== PRODUCT POPUP ======
 function openP(el){
- if(!el) return;
- var imgEl = el.querySelector('img');
- var vidEl = el.querySelector('video');
- var imgSrc = '';
- if(imgEl){ imgSrc = imgEl.src || ''; }
- else if(vidEl){ imgSrc = vidEl.getAttribute('poster') || vidEl.src || ''; }
- var txt = el.innerText || '';
- var title = txt.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
- var priceMatch = txt.match(/₹\s*[\d,]+/);
- var priceText = priceMatch? priceMatch[0] : '₹999';
- var priceNum = parseInt(priceText.replace(/[^0-9]/g,'')) || 999;
+  if(!el) return;
+  var imgEl = el.querySelector('img, video');
+  var imgSrc = imgEl? (imgEl.src || imgEl.getAttribute('src') || imgEl.poster) : '';
+  if(imgEl && imgEl.tagName==='VIDEO') imgSrc = el.querySelector('video')? el.querySelector('video').getAttribute('poster') || '' : '';
+  // For video, show first frame as image if possible, else keep video src
+  var title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
+  var priceMatch = el.innerText.match(/₹\s*[\d,]+/);
+  var price = priceMatch? priceMatch[0] : '';
 
- document.getElementById('pmImg').src = imgSrc;
- document.getElementById('pmImg').style.display = 'block';
- document.getElementById('pmTitle').innerText = title;
- document.getElementById('pmPrice').innerText = priceText;
- curProd = {name:title, price:priceNum, img:imgSrc};
- selSizeVal = "";
- document.querySelectorAll('.sBtn').forEach(function(b){b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
- var live = document.getElementById('liveMeasure');
- if(live) live.style.display='none';
- var err = document.getElementById('sizeErr');
- if(err) err.style.display='none';
+  document.getElementById('pmImg').src = el.querySelector('img')? el.querySelector('img').src : '';
+  if(el.querySelector('video')){ document.getElementById('pmImg').style.display='none'; } else { document.getElementById('pmImg').style.display='block'; }
+  document.getElementById('pmTitle').innerText = title;
+  document.getElementById('pmPrice').innerText = price;
+  // SIRF JEWELLERY se size/measurement hatana - kapdo me rahega
+let low = title.toLowerCase();
+let isCloth = low.includes('kurta') || low.includes('saree') || low.includes('anarkali') || low.includes('lehenga') || low.includes('gown') || low.includes('suit');
+let isJew = !isCloth || el.innerText.toUpperCase().includes('JEWELLERY') || low.includes('earring') || low.includes('peacock') || low.includes('statement') || low.includes('oxidised') || low.includes('garba') || low.includes('necklace');
 
- // VIDEO ho ya ITEM ho - SIZE BOX hamesha dikhana hai
- var sizeBox = document.getElementById('sizeBox');
- if(sizeBox){
-   sizeBox.parentElement.style.display='block';
-   sizeBox.style.display='block';
- }
-
- document.getElementById('pModal').style.display='flex';
-
- // BUY NOW pe size compulsory
- document.getElementById('pmBuy').onclick = function(){
-   if(!selSizeVal){
-     var e=document.getElementById('sizeErr');
-     if(e){ e.style.display='block'; e.innerText='Please select size S/M/L/XL/XXL'; }
-     return;
-   }
-   document.getElementById('coSize').innerText=selSizeVal;
-   document.getElementById('pModal').style.display='none';
-   document.getElementById('checkoutModal').style.display='block';
- };
+if(isJew){
+  document.getElementById('sizeBox').parentElement.style.display='none';
+  document.getElementById('liveMeasure').style.display='none';
+  selSizeVal = 'FREE SIZE';
+} else {
+  document.getElementById('sizeBox').parentElement.style.display='block';
+  document.getElementById('liveMeasure').style.display='none';
+  selSizeVal = '';
+}
+  document.getElementById('pmBuy').onclick = function(){
+    document.getElementById('pModal').style.display='none';
+    let priceVal = parseInt(el.getAttribute('data-price')||999);
+    let nameVal = title;
+    payNow(nameVal, priceVal);
+  };
+  document.getElementById('pModal').style.display='flex';
 }
 
 // Close popup on outside click
@@ -444,80 +434,7 @@ document.querySelectorAll('.dropdown.dropbtn').forEach(btn=>{
     content.style.display = isOpen? 'none' : 'block';
   });
 });
-document.addEventListener('click', function(){ 
-  document.querySelectorAll('.dropdown-content').forEach(function(dc){ 
-    if(window.innerWidth<=768) dc.style.display='none'; 
-  }); 
-});
-
-window.selSizeVal = '';
-window.selSize = function(btn,size){
-  window.selSizeVal = size;
-  selSizeVal = size;
-  document.querySelectorAll('#pModal button').forEach(function(b){
-    var t = b.innerText.trim();
-    if(['S','M','L','XL','XXL'].includes(t)){
-      b.style.border='1px solid #d4d5d9'; b.style.color='#000'; b.style.background='#fff';
-    }
-  });
-  btn.style.border='2px solid #ff3f6c'; btn.style.color='#ff3f6c'; btn.style.background='#fff0f3';
-  var live = document.getElementById('liveMeasure'); if(live) live.style.display='block';
-  var err = document.getElementById('sizeErr'); if(err) err.style.display='none';
-};
-
-// S M L buttons ko zabardasti click karwana
-document.addEventListener('click', function(ev){
-  var btn = ev.target.closest('button');
-  if(!btn) return;
-  var txt = btn.innerText.trim();
-  if(['S','M','L','XL','XXL'].includes(txt) && document.getElementById('pModal').style.display!=='none'){
-    window.selSize(btn, txt);
-  }
-});
-
-var buyBtn = document.getElementById('pmBuy');
-if(buyBtn){
-  buyBtn.onclick = function(e){
-    if(e) e.preventDefault();
-    var sz = window.selSizeVal || selSizeVal;
-    if(!sz){
-      var er = document.getElementById('sizeErr');
-      if(er){ er.style.display='block'; er.innerHTML='<b style=color:red>Please select size S/M/L/XL/XXL</b>'; }
-      return;
-    }
-    var co = document.getElementById('coSize'); if(co) co.innerText = sz;
-    document.getElementById('pModal').style.display='none';
-    var c = document.getElementById('checkoutModal'); if(c) c.style.display='block';
-  };
-}
-var selSizeVal = '';
-window.selSize = function(btn,size){
-  selSizeVal = size;
-  document.querySelectorAll('.sBtn, [class*="size"] button').forEach(function(b){ b.style.border='1px solid #d4d5d9'; b.style.color='#000'; });
-  btn.style.border='2px solid #ff3f6c';
-  btn.style.color='#ff3f6c';
-  var live = document.getElementById('liveMeasure');
-  if(live){
-    live.style.display='block';
-    live.innerHTML = '<b style=color:#00c853>'+size+' Measurement:</b><br>Bust '+size+' | Length '+size;
-  }
-  var err = document.getElementById('sizeErr');
-  if(err) err.style.display='none';
-}
-var buyBtn = document.getElementById('pmBuy');
-if(buyBtn){
-  buyBtn.onclick = function(){
-    if(!selSizeVal){
-      var e=document.getElementById('sizeErr');
-      if(e){ e.style.display='block'; e.innerHTML='<b style=color:red>Please select size S/M/L/XL/XXL</b>'; }
-      else{ alert('Please select size S/M/L/XL/XXL'); }
-      return;
-    }
-    document.getElementById('coSize').innerText = selSizeVal;
-    document.getElementById('pModal').style.display='none';
-    document.getElementById('checkoutModal').style.display='block';
-  };
-}
+document.addEventListener('click', function(){ document.querySelectorAll('.dropdown-content').forEach(dc=>{ if(window.innerWidth<=768) dc.style.display='none'; }); });
 </script>
 
 <!-- FOOTER -->
@@ -607,25 +524,24 @@ if(buyBtn){
 let selSizeVal = "";
 let curProd = {name:"", price:0, img:""};
 
-const SIZE_DATA={
-'S':{t:'Bust 34-36 | Shoulder 14-15 | Length 38-40', b:'Waist 28-30 | Hip 36-38 | Length 38-40'},
-'M':{t:'Bust 36-38 | Shoulder 15-16 | Length 40-42', b:'Waist 30-32 | Hip 38-40 | Length 40-42'},
-'L':{t:'Bust 38-40 | Shoulder 16-17 | Length 42-44', b:'Waist 32-34 | Hip 40-42 | Length 42-44'},
-'XL':{t:'Bust 40-42 | Shoulder 17-18 | Length 44-46', b:'Waist 34-36 | Hip 42-44 | Length 44-46'},
-'XXL':{t:'Bust 42-44 | Shoulder 18-19 | Length 46-48', b:'Waist 36-38 | Hip 44-46 | Length 46-48'}
+const SIZE_DATA = {
+'S':{t:'Bust 34-36" | Shoulder 14-15" | Length 38-40"', b:'Waist 28-30" | Hip 36-38" | Length 38-40"'},
+'M':{t:'Bust 36-38" | Shoulder 15-16" | Length 40-42"', b:'Waist 30-32" | Hip 38-40" | Length 40-42"'},
+'L':{t:'Bust 38-40" | Shoulder 16-17" | Length 42-44"', b:'Waist 32-34" | Hip 40-42" | Length 42-44"'},
+'XL':{t:'Bust 40-42" | Shoulder 17-18" | Length 44-46"', b:'Waist 34-36" | Hip 42-44" | Length 44-46"'},
+'XXL':{t:'Bust 42-44" | Shoulder 18-19" | Length 46-48"', b:'Waist 36-38" | Hip 44-46" | Length 46-48"'}
 };
-function selSize(btn,size){
-document.querySelectorAll('.sBtn').forEach(function(b){b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
-btn.style.border='1px solid #ff3f6c';
-btn.style.color='#ff3f6c';
-selSizeVal=size;
-document.getElementById('sizeErr').style.display='none';
-let d=SIZE_DATA[size];
-let box=document.getElementById('liveMeasure');
-if(d && box){
-box.style.display='block';
-box.innerHTML='<b style="color:#00c853;">'+size+' Measurement Of Size:</b><br><b>TOP:</b> '+d.t+'<br><b>BOTTOM:</b> '+d.b;
-}
+function selSize(btn, size){
+ document.querySelectorAll('.sBtn').forEach(b=>{b.style.border='1px solid #d4d5d9'; b.style.color='#000';});
+ btn.style.border='1px solid #ff3f6c'; btn.style.color='#ff3f6c';
+ selSizeVal = size;
+ document.getElementById('sizeErr').style.display='none';
+ let d = SIZE_DATA[size];
+ let box = document.getElementById('liveMeasure');
+ if(d && box){
+   box.style.display='block';
+   box.innerHTML = '<b style="color:#00c853;">'+size+' Measurement Of Size:</b><br><b>TOP:</b> '+d.t+'<br><b>BOTTOM:</b> '+d.b;
+ }
 }
 function checkPin(){
 let pin = document.getElementById('pinCheck').value;
@@ -655,28 +571,19 @@ document.getElementById('pModal').style.display='none';
 document.getElementById('checkoutModal').style.display='block';
 }
 function finalPay(){
- let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAdd').value, city=document.getElementById('cCity').value;
- if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
- if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
- var opt={
-   key:"rzp_live_Tj0fPF1woHNLkQ",
-   amount:curProd.price*100,
-   currency:"INR",
-   name:"Rani's Petari",
-   description:curProd.name+" - Size "+selSizeVal,
-   handler:function(r){
-     alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
-     var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMob: "+m;
-     window.open("https://wa.me/919711900520?text="+msg,"_blank");
-     document.getElementById('checkoutModal').style.display='none';
-   },
-   prefill:{name:n, contact:m},
-   theme:{color:"#ff3e6c"},
-   modal:{ondismiss:function(){ document.getElementById('checkoutModal').style.display='none'; }}
- };
- var rzp = new Razorpay(opt);
- rzp.open();
+let n=document.getElementById('cName').value, m=document.getElementById('cMob').value, p=document.getElementById('cPin').value, a=document.getElementById('cAddr').value, city=document.getElementById('cCity').value;
+if(!n||!m||!p||!a||!city){ alert("Please fill all fields"); return; }
+if(m.length!=10){ alert("Enter 10 digit mobile"); return; }
+var opt={ key:"rzp_live_Tj0fPF1woHNLkQ", amount:curProd.price*100, currency:"INR", name:"Rani's Petari", description:curProd.name+" Size "+selSizeVal,
+handler:function(r){
+alert("Payment Success! Order will deliver in 7 days. ID: "+r.razorpay_payment_id);
+var msg="NEW ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0APayID: "+r.razorpay_payment_id+"%0AName: "+n+"%0AMobile: "+m+"%0APin: "+p+"%0ACity: "+city+"%0AAddr: "+a;
+window.open("https://wa.me/919711900520?text="+msg,"_blank");
+document.getElementById('checkoutModal').style.display='none';
+}, theme:{color:"#ff3e6c"}, modal:{ ondismiss: function(){ var msg="CANCELLED ORDER%0AProduct: "+curProd.name+"%0ASize: "+selSizeVal+"%0APrice: Rs"+curProd.price+"%0AName: "+n+"%0AMob: "+m+"%0APin: "+p+"%0AAdd: "+a; window.location.href="https://wa.me/917982213267?text="+msg; } } };
+var rzp = new Razorpay(opt); rzp.open();
 }
 </script>
+
 </body>
 </html>
