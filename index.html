@@ -168,15 +168,39 @@ function selectSize(el){
   card.dataset.selectedSize = el.innerText.trim();
 }
 function openBuyModal(btn){
-  let card = btn.closest('.watch-card');
-  if(!card.dataset.selectedSize){
-    alert('Please select size M, L, XL, XXL');
-    return;
+  let card = btn.closest('.watch-card') || btn.closest('.card');
+  let isJew = false;
+  if(card){
+    let coll = (card.dataset.collection || card.getAttribute('data-collection') || '').toLowerCase();
+    let txt = (card.innerText || '').toLowerCase();
+    if(coll.includes('jewellery') || coll.includes('jewelry') || txt.includes('jewellery') || txt.includes('garba royal') || txt.includes('peacock elegance') || txt.includes('karwa chauth')){
+      isJew = true;
+    }
   }
-  let size = card.dataset.selectedSize;
-  let coSize = document.getElementById('coSize');
-  if(coSize) coSize.innerText = size;
-  window.selSizeVal = size;
+
+  if(isJew){
+    // Jewellery ke liye size check skip, FREE SIZE
+    let coSize = document.getElementById('coSize');
+    if(coSize) coSize.innerText = 'FREE SIZE';
+    window.selSizeVal = 'FREE SIZE';
+    if(card) card.dataset.selectedSize = 'FREE SIZE';
+    // Checkout me SELECT SIZE wala div hide kar do agar hai
+    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
+    if(sizeBox) sizeBox.style.display = 'none';
+  } else {
+    // Normal kapdo ke liye size compulsory
+    if(!card || !card.dataset.selectedSize){
+      alert('Please select size M, L, XL, XXL');
+      return;
+    }
+    let size = card.dataset.selectedSize;
+    let coSize = document.getElementById('coSize');
+    if(coSize) coSize.innerText = size;
+    window.selSizeVal = size;
+    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
+    if(sizeBox) sizeBox.style.display = 'block';
+  }
+
   let modal = document.getElementById('checkoutModal');
   if(modal) modal.style.display='block';
 }
