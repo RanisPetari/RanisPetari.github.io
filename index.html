@@ -591,5 +591,67 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('checkoutModal').style.display='block';
 }; 
 </script>
+  <script>
+// VIDEO WALE 6 ITEMS ME SIZE SELECT FIX
+document.addEventListener('click', function(e){
+  let btn = e.target.closest('button');
+  if(!btn) return;
+  let txt = btn.innerText.trim();
+  if(!['M','L','XL','XXL','S'].includes(txt)) return;
+  
+  // Ye video card ka size button hai kya check karo
+  let card = btn.closest('div');
+  if(!card) return;
+  
+  // Usi card ke saare size buttons ko normal karo
+  card.parentElement.querySelectorAll('button').forEach(function(b){
+    let t = b.innerText.trim();
+    if(['M','L','XL','XXL','S'].includes(t)){
+      b.style.border='1px solid #ccc';
+      b.style.color='#000';
+      b.style.background='#fff';
+    }
+  });
+  
+  // Click wala pink karo
+  btn.style.border='2px solid #ff3f6c';
+  btn.style.color='#ff3f6c';
+  btn.style.background='#fff0f3';
+  
+  // Size save karo usi card me
+  card.dataset.selSize = txt;
+  window.videoSelSize = txt;
+  
+  // Error hatado
+  let err = document.getElementById('sizeErr');
+  if(err) err.style.display='none';
+});
+
+// BUY NOW ko size check karwana
+document.querySelectorAll('button').forEach(function(buy){
+  if(buy.innerText.trim() === 'BUY NOW'){
+    buy.addEventListener('click', function(ev){
+      let card = ev.target.closest('div');
+      let size = card ? card.dataset.selSize : null;
+      if(!size && !window.selSizeVal){
+        // Agar video wale me size nahi select to roko
+        if(card && card.innerHTML.includes('Rani Petari Collection')){
+          // Video wale card me size check
+          let hasSel = false;
+          card.parentElement.querySelectorAll('button').forEach(function(b){
+            if(b.style.border.includes('ff3f6c')) hasSel = true;
+          });
+          if(!hasSel){
+            ev.preventDefault();
+            ev.stopPropagation();
+            alert('Please select size M/L/XL/XXL first');
+            return false;
+          }
+        }
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>
