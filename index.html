@@ -618,11 +618,11 @@ document.getElementById('pmBuy').onclick = function(e){
 setInterval(()=>{
   let m=document.getElementById('checkoutModal');
   if(!m || m.style.display=='none') return;
-  let cardText = (m.innerText||'').toLowerCase();
-  // Agar jewellery ka item khula hai to size hide
-  if(cardText.includes('earrings') || cardText.includes('jewellery set') || cardText.includes('wine-toned') || cardText.includes('oxidised') || cardText.includes('garba special')){
+  let txt=(m.innerText||'').toLowerCase();
+  if(txt.includes('earrings') || txt.includes('jewellery') || txt.includes('wine-toned') || txt.includes('oxidised') || txt.includes('garba')){
     m.querySelectorAll('button').forEach(b=>{
-      if(['S','M','L','XL','XXL'].includes(b.innerText.trim())) b.style.display='none';
+      let t=b.innerText.trim();
+      if(['S','M','L','XL','XXL'].includes(t)) b.style.display='none';
     });
     m.querySelectorAll('div,p,span,h4').forEach(d=>{
       let t=(d.innerText||'').trim();
@@ -631,5 +631,6 @@ setInterval(()=>{
   }
 },200);
 </script>
+
 </body>
 </html>
