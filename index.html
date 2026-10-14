@@ -603,6 +603,23 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('checkoutModal').style.display='block';
 }; 
 </script>
-
+<script>
+(function(){
+const oldOpen = window.openPModal;
+window.openPModal = function(el){
+oldOpen(el);
+let title = (el.innerText.split('\n')[0] || "").toLowerCase();
+let isJew = title.includes('oxidised') || title.includes('wine-toned') || title.includes('peacock') || title.includes('necklace') || title.includes('earring') || title.includes('twist');
+if(isJew){
+document.getElementById('sizeMainBox').style.display = 'none';
+selSizeVal = 'Free Size';
+}else{
+document.getElementById('sizeMainBox').style.display = 'block';
+selSizeVal = "";
+}
+}
+})();
+</script>
+<div id="sizeMainBox">
 </body>
 </html>
