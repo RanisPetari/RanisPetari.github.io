@@ -178,7 +178,7 @@ function openBuyModal(btn){
     }
   }
 
-  if(isJew){
+ if(isJew){
     // Jewellery ke liye size check skip, FREE SIZE
     let coSize = document.getElementById('coSize');
     if(coSize) coSize.innerText = 'FREE SIZE';
@@ -187,6 +187,9 @@ function openBuyModal(btn){
     // Checkout me SELECT SIZE wala div hide kar do agar hai
     let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
     if(sizeBox) sizeBox.style.display = 'none';
+    // SIZE CHART link bhi hide
+    let sizeChartLink = document.querySelector('.size-chart-link');
+    if(sizeChartLink) sizeChartLink.style.display = 'none';
   } else {
     // Normal kapdo ke liye size compulsory
     if(!card || !card.dataset.selectedSize){
