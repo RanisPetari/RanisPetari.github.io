@@ -179,34 +179,25 @@ function openBuyModal(btn){
   }
 
  if(isJew){
-    // Jewellery ke liye size check skip, FREE SIZE
     let coSize = document.getElementById('coSize');
     if(coSize) coSize.innerText = 'FREE SIZE';
     window.selSizeVal = 'FREE SIZE';
     if(card) card.dataset.selectedSize = 'FREE SIZE';
-    // Checkout me SELECT SIZE wala div hide kar do agar hai
-  // ID na mile to SELECT SIZE text se dhoondh ke hide karo
-    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
-    if(!sizeBox){
-      document.querySelectorAll('div, p, h4').forEach(d=>{
-        if(d.innerText && d.innerText.trim() === 'SELECT SIZE'){
-          sizeBox = d.parentElement; // poora S M L wala box
+    
+    setTimeout(()=>{
+      document.querySelectorAll('div, span, p, button').forEach(el=>{
+        let t = el.innerText ? el.innerText.trim() : '';
+        if(t === 'SELECT SIZE' || t === 'SIZE CHART >' || t === 'SIZE CHART' || t === 'S' || t === 'M' || t === 'L' || t === 'XL' || t === 'XXL'){
+          el.style.display = 'none';
+        }
+        if(t.includes('Measurement Of Size')){
+          el.style.display = 'none';
         }
       });
-    }
-    if(sizeBox) sizeBox.style.display = 'none';
+    }, 50);
     
-    // XXL Measurement wala green box bhi hide
-    document.querySelectorAll('div').forEach(d=>{
-      if(d.innerText && d.innerText.includes('Measurement Of Size')){
-        d.style.display = 'none';
-      }
-    });
-    // SIZE CHART link bhi hide
-    let sizeChartLink = document.querySelector('.size-chart-link');
-    if(sizeChartLink) sizeChartLink.style.display = 'none';
   } else {
-    // Normal kapdo ke liye size compulsory
+      // Normal kapdo ke liye size compulsory
     if(!card || !card.dataset.selectedSize){
       alert('Please select size M, L, XL, XXL');
       return;
