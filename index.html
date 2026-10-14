@@ -185,8 +185,23 @@ function openBuyModal(btn){
     window.selSizeVal = 'FREE SIZE';
     if(card) card.dataset.selectedSize = 'FREE SIZE';
     // Checkout me SELECT SIZE wala div hide kar do agar hai
+  // ID na mile to SELECT SIZE text se dhoondh ke hide karo
     let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
+    if(!sizeBox){
+      document.querySelectorAll('div, p, h4').forEach(d=>{
+        if(d.innerText && d.innerText.trim() === 'SELECT SIZE'){
+          sizeBox = d.parentElement; // poora S M L wala box
+        }
+      });
+    }
     if(sizeBox) sizeBox.style.display = 'none';
+    
+    // XXL Measurement wala green box bhi hide
+    document.querySelectorAll('div').forEach(d=>{
+      if(d.innerText && d.innerText.includes('Measurement Of Size')){
+        d.style.display = 'none';
+      }
+    });
     // SIZE CHART link bhi hide
     let sizeChartLink = document.querySelector('.size-chart-link');
     if(sizeChartLink) sizeChartLink.style.display = 'none';
