@@ -178,26 +178,17 @@ function openBuyModal(btn){
     }
   }
 
- if(isJew){
+  if(isJew){
+    // Jewellery ke liye size check skip, FREE SIZE
     let coSize = document.getElementById('coSize');
     if(coSize) coSize.innerText = 'FREE SIZE';
     window.selSizeVal = 'FREE SIZE';
     if(card) card.dataset.selectedSize = 'FREE SIZE';
-    
-    setTimeout(()=>{
-      document.querySelectorAll('div, span, p, button').forEach(el=>{
-        let t = el.innerText ? el.innerText.trim() : '';
-        if(t === 'SELECT SIZE' || t === 'SIZE CHART >' || t === 'SIZE CHART' || t === 'S' || t === 'M' || t === 'L' || t === 'XL' || t === 'XXL'){
-          el.style.display = 'none';
-        }
-        if(t.includes('Measurement Of Size')){
-          el.style.display = 'none';
-        }
-      });
-    }, 50);
-    
+    // Checkout me SELECT SIZE wala div hide kar do agar hai
+    let sizeBox = document.getElementById('sizeSection') || document.getElementById('checkoutSizeBox');
+    if(sizeBox) sizeBox.style.display = 'none';
   } else {
-      // Normal kapdo ke liye size compulsory
+    // Normal kapdo ke liye size compulsory
     if(!card || !card.dataset.selectedSize){
       alert('Please select size M, L, XL, XXL');
       return;
@@ -578,10 +569,7 @@ let img = el.querySelector('img')? el.querySelector('img').src : "";
 let title = el.innerText.split('₹')[0].replace('BUY NOW','').trim().slice(0,80);
 let price = parseInt(el.getAttribute('data-price')||1499);
 curProd = {name:title, price:price, img:img};
- let isJew = el.innerText.toUpperCase().includes('JEWELLERY') || title.toUpperCase().includes('JEWELLERY');
-curProd.isJew = isJew; 
 document.getElementById('pmImg').src=img;
-document.getElementById('sizeMainBox').style.display = isJew ? 'none' : 'block';  
 document.getElementById('pmTitle').innerText=title;
 document.getElementById('pmPrice').innerText="₹"+price;
 document.getElementById('coTitle').innerText=title;
@@ -589,11 +577,8 @@ document.getElementById('coPrice').innerText="₹"+price;
 document.getElementById('pModal').style.display='flex';
 }
 function addToBag(){
-if(!curProd.isJew && !selSizeVal){
-alert('Please select a size');
-return;
-}
-document.getElementById('coSize').innerText=selSizeVal || 'Free Size';
+if(!selSizeVal){ document.getElementById('sizeErr').style.display='block'; return; }
+document.getElementById('coSize').innerText=selSizeVal;
 document.getElementById('pModal').style.display='none';
 document.getElementById('checkoutModal').style.display='block';
 }
