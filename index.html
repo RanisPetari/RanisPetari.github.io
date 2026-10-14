@@ -612,6 +612,22 @@ document.getElementById('pmBuy').onclick = function(e){
   document.getElementById('checkoutModal').style.display='block';
 }; 
 </script>
-
+<script>
+// FINAL FIX - Jewellery se SELECT SIZE hamesha ke liye hide
+setInterval(()=>{
+  document.querySelectorAll('div').forEach(box=>{
+    let txt = box.innerText || '';
+    // Agar ye box Wine-toned ya JEWELLERY wala modal hai
+    if(txt.includes('SELECT SIZE') && (txt.includes('JEWELLERY') || txt.toLowerCase().includes('wine-toned') || txt.toLowerCase().includes('oxidised'))){
+      box.querySelectorAll('div, span, p, button').forEach(el=>{
+        let t = (el.innerText||'').trim();
+        if(t==='SELECT SIZE' || t.includes('SIZE CHART') || ['S','M','L','XL','XXL'].includes(t) || t.includes('Measurement Of Size') || t.includes('Bust 42-44')){
+          el.style.setProperty('display','none','important');
+        }
+      });
+    }
+  });
+}, 300);
+</script>
 </body>
 </html>
