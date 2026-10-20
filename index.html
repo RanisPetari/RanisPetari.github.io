@@ -631,5 +631,18 @@ selSizeVal = "";
 })();
 </script>
 <div id="sizeMainBox">
+  <script>
+(function(){
+  const oldOpen = window.openPModal;
+  window.openPModal = function(el){
+    oldOpen(el);
+    let t = (el.innerText.split('\n')[0] || "").toLowerCase();
+    if(t.includes('emerald') || t.includes('royal') || t.includes('pair of') || t.includes('topp') || t.includes('necklace')){
+      let b = document.getElementById('sizeMainBox');
+      if(b) b.style.display = 'none';
+    }
+  };
+})();
+</script>
 </body>
 </html>
