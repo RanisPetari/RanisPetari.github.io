@@ -619,7 +619,7 @@ const oldOpen = window.openPModal;
 window.openPModal = function(el){
 oldOpen(el);
 let title = (el.innerText.split('\n')[0] || "").toLowerCase();
-let isJew = title.includes('oxidised') || title.includes('wine-toned') || title.includes('peacock') || title.includes('necklace') || title.includes('emerald') || title.includes('royal') || title.includes('topp') || title.includes('earring') || title.includes('statement') || title.includes('bangle') || title.includes('pair of') || title.includes('jewellery');
+let isJew = title.includes('oxidised') || title.includes('wine-toned') || title.includes('peacock') || title.includes('necklace') || title.includes('emerald') || title.includes('royal') || title.includes('pair of') || title.includes('topp') || title.includes('tops');
 if(isJew){
 document.getElementById('sizeMainBox').style.display = 'none';
 selSizeVal = 'Free Size';
