@@ -1,6 +1,24 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
+  <script>
+// === MAINTENANCE CONTROL ===
+// Jab paise aa jaye to isko false kar dena
+// Jab paise pending ho to true kar dena
+const maintenanceDue = true; 
+
+if (maintenanceDue) {
+  document.documentElement.innerHTML = `
+    <div style="height:100vh; display:flex; align-items:center; justify-content:center; font-family:Arial; text-align:center; background:#fff;">
+      <div>
+        <h1 style="color:#d00;">Website Under Maintenance</h1>
+        <p>Please contact Administrator for renewal.</p>
+        <p>ranispetari.com</p>
+      </div>
+    </div>
+  `;
+}
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ3DCR2EHH"></script>
 <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-GJ3DCR2EHH'); </script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
